@@ -13,13 +13,18 @@ struct ContentView: View {
 
     var body: some View {
         switch currentPhase {
+            // ini masih belum fix, silahkan klau mau di otak atik
         case .story:
-            Text("Story phase - TODO")
+            StoryView { story in
+                currentPhase = .placement
+            }
         case .placement:
-            PlacementView(arViewModel: arViewModel)
+            ARCameraView(arViewModel: arViewModel)
         case .simulation:
             Text("Simulation phase - TODO")
         }
     }
 }
-
+#Preview {
+    ContentView()
+}

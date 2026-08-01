@@ -14,7 +14,7 @@ Berikut adalah penjelasan tiap folder, tujuannya, beserta contoh file yang ada d
 * **Contoh File**: `ARSessionManager.swift`. File ini mengurus konfigurasi kamera AR, menangkap *delegate* dari ARKit, dan memperbarui status pelacakan kamera. Kelas ini disembunyikan di balik protokol `ARSessionManagerProtocol` agar mudah di-test (Unit Testing).
 
 ### 3. `ViewModels/`
-* **Tujuan**: Sebagai "Otak/Manajer" untuk UI. ViewModel bertugas menerjemahkan data teknis dari `Services` menjadi data  yang siap ditampilkan oleh UI, serta mengatur logika transisi status.
+* **Tujuan**: Sebagai "Otak/Manajer" untuk UI. ViewModel bertugas menerjemahkan data teknis dari `Services` menjadi data ππ yang siap ditampilkan oleh UI, serta mengatur logika transisi status.
 * **Contoh File**: `ARViewModel.swift`. File ini memanggil `ARSessionManager`, lalu menerjemahkan error ARKit (seperti `.excessiveMotion`) menjadi teks String yang bisa dibaca manusia (`"Slow down, moving too fast"`). ViewModel ini menggunakan *macro* `@Observable` agar SwiftUI bisa bereaksi otomatis.
 
 ### 4. `View/` (dan file Root seperti `ContentView.swift`)
