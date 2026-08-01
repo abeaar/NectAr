@@ -1,5 +1,4 @@
 //
-//  PlacementViewModels.swift
 //  NectAr
 //
 //  Created by abr on 01/08/26.
@@ -8,7 +7,7 @@ import ARKit
 import Foundation
 
 @Observable
-final class ARViewModel<Manager: ARSessionManagerProtocol> {
+final class ARViewModel<Manager: ARSessionManaging> {
 
     private let sessionManager: Manager
     init(sessionManager: Manager) {

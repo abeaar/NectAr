@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PlacementView: View {
+struct ARCameraView: View {
     let arViewModel: ARViewModel<ARSessionManager>
 
     var body: some View {
