@@ -8,10 +8,10 @@ import ARKit
 import Foundation
 
 @Observable
-final class PlacementViewModel {
-    private let sessionManager: ARSessionManaging
+final class ARViewModel<Manager: ARSessionManagerProtocol> {
 
-    init(sessionManager: ARSessionManaging = ARSessionManager()) {
+    private let sessionManager: Manager
+    init(sessionManager: Manager) {
         self.sessionManager = sessionManager
     }
     var arSession: ARSession {
@@ -36,5 +36,11 @@ final class PlacementViewModel {
 
     func start() {
         sessionManager.start()
+    }
+}
+
+extension ARViewModel where Manager == ARSessionManager {
+    convenience init() {
+        self.init(sessionManager: ARSessionManager())
     }
 }

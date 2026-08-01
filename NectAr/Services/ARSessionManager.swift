@@ -1,8 +1,7 @@
 import ARKit
-import Combine
 
 @Observable
-final class ARSessionManager: NSObject, ARSessionManaging, ARSessionDelegate {
+final class ARSessionManager: NSObject, ARSessionManagerProtocol, ARSessionDelegate {
     let session = ARSession()
     var trackingFailureReason: TrackingFailureReason?
 

@@ -1,21 +1,22 @@
 //
-//  ContentView.swift
+//  PlacementView.swift
 //  NectAr
 //
 //  Created by abr on 01/08/26.
 //
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
-    @State private var viewModel = PlacementViewModel()
+struct PlacementView: View {
+    let arViewModel: ARViewModel<ARSessionManager>
 
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(session: viewModel.arSession)
+            ARContainerView(session: arViewModel.arSession)
                 .ignoresSafeArea()
 
-            Text(viewModel.hintText)
+            Text(arViewModel.hintText)
                 .padding()
                 .background(.black.opacity(0.6))
                 .foregroundStyle(.white)
@@ -23,11 +24,7 @@ struct ContentView: View {
                 .padding(.top, 60)
         }
         .onAppear {
-            viewModel.start()
+            arViewModel.start()
         }
     }
-}
-
-#Preview {
-    ContentView()
 }
