@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var viewModel = PlacementViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack(alignment: .top) {
+            ARContainerView(session: viewModel.arSession)
+                .ignoresSafeArea()
+
+            Text(viewModel.hintText)
+                .padding()
+                .background(.black.opacity(0.6))
+                .foregroundStyle(.white)
+                .clipShape(Capsule())
+                .padding(.top, 60)
         }
-        .padding()
+        .onAppear {
+            viewModel.start()
+        }
     }
 }
 
