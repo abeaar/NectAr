@@ -8,7 +8,6 @@
 import Foundation
 
 enum AppPhase {
-    case story
-    case placement
+    case preparation
     case simulation
 }
