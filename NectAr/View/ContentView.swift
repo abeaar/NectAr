@@ -8,18 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentPhase: AppPhase = .placement
+    @State private var currentPhase: AppPhase = .preparation
     @State private var arViewModel = ARViewModel()
 
     var body: some View {
         switch currentPhase {
-            // ini masih belum fix, silahkan klau mau di otak atik
-        case .story:
-            StoryView { story in
-                currentPhase = .placement
+        case .preparation:
+            PreparationView(arViewModel: arViewModel) {
+                currentPhase = .simulation
             }
-        case .placement:
-            ARCameraView(arViewModel: arViewModel)
         case .simulation:
             Text("Simulation phase - TODO")
         }

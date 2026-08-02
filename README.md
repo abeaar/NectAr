@@ -1,50 +1,35 @@
+# NectAr
 
-## 📂 Struktur Folder (Arsitektur MVVM)
+## 📂 Arsitektur Proyek
 
-Proyek ini menggunakan arsitektur **MVVM (Model-View-ViewModel)** yang dikombinasikan dengan prinsip *Clean Architecture* dan *Dependency Injection* untuk memisahkan logika UI dengan sistem AR.
+Proyek ini mengadopsi arsitektur **MVVM (Model-View-ViewModel)** yang dipadukan dengan prinsip *Clean Architecture* dan *Dependency Injection* untuk memisahkan logika antarmuka (UI) dengan sistem pengenalan ruang (AR).
 
-Berikut adalah penjelasan tiap folder, tujuannya, beserta contoh file yang ada di dalamnya:
+### Struktur Direktori
 
-### 1. `Models/`
-* **Tujuan**: Tempat penyimpanan struktur data murni (Data Structures), Enum, dan *State* yang tidak memiliki logika bisnis atau UI sama sekali.
-* **Contoh File**: `ARTrackingState.swift` (Berisi enum `TrackingFailureReason`), `AppPhase.swift` (Berisi status fase aplikasi seperti `.story`, `.placement`).
-
-### 2. `Services/`
-* **Tujuan**: Tempat untuk *Heavy-lifting* dan Logika Bisnis. Semua yang berhubungan dengan interaksi ke *framework* Apple (seperti ARKit, Network) diletakkan di sini.
-* **Contoh File**: `ARSessionManager.swift`. File ini mengurus konfigurasi kamera AR, menangkap *delegate* dari ARKit, dan memperbarui status pelacakan kamera. Kelas ini disembunyikan di balik protokol `ARSessionManagerProtocol` agar mudah di-test (Unit Testing).
-
-### 3. `ViewModels/`
-* **Tujuan**: Sebagai "Otak/Manajer" untuk UI. ViewModel bertugas menerjemahkan data teknis dari `Services` menjadi data ππ yang siap ditampilkan oleh UI, serta mengatur logika transisi status.
-* **Contoh File**: `ARViewModel.swift`. File ini memanggil `ARSessionManager`, lalu menerjemahkan error ARKit (seperti `.excessiveMotion`) menjadi teks String yang bisa dibaca manusia (`"Slow down, moving too fast"`). ViewModel ini menggunakan *macro* `@Observable` agar SwiftUI bisa bereaksi otomatis.
-
-### 4. `View/` (dan file Root seperti `ContentView.swift`)
-* **Tujuan**: Murni untuk tampilan (*Presentation*). Di sinilah tata letak (ZStack, VStack), warna, dan animasi diatur. UI *dilarang keras* memiliki logika bisnis atau memanggil fungsi *hardware* secara langsung.
-* **Contoh File**: `ARContainer.swift` (Membungkus ARView dari RealityKit agar bisa dipakai di SwiftUI), `ContentView.swift` (Layar utama yang merender komponen berdasarkan status di ViewModel).
-
-### 5. `Repository/` *(Future)*
-* **Tujuan**: Jika ke depannya aplikasi membutuhkan koneksi ke Database (CoreData/SwiftData) atau API Server (Backend), kodenya akan diletakkan di sini untuk memisahkan logika pengambilan data.
-
-### 6. `Utilities/` & `Loaders/`
-* **Tujuan**: Berisi fungsi-fungsi *helper* kecil, ekstensi (extension) Swift, atau *asset loader* 3D model (usdz) yang bisa dipakai di mana saja.
+- **`App/`**: Titik masuk utama aplikasi (Entry point).
+  - *File*: `NectArApp.swift`.
+- **`Models/`**: Definisi struktur data, entitas murni, enum, dan *state* tanpa dependensi UI.
+  - *File*: `AppPhase.swift`, `Story.swift`, `TrackingFailureReason.swift`.
+- **`Services/`**: Layer integrasi *framework* (misal: ARKit) dan *heavy-lifting* logika inti.
+  - *File*: `ARSessionManager.swift` (implementasi), `ARSessionManaging.swift` (protokol).
+- **`ViewModels/`**: Pengelola *state* UI. Menerjemahkan data dari *Services* menjadi format presentasi yang reaktif (`@Observable`).
+  - *File*: `ARViewModel.swift`.
+- **`View/`**: Lapisan presentasi berbasis SwiftUI. Menangani *layout*, warna, dan komponen visual murni.
+  - *File*: `ContentView.swift`, `ARContainer.swift`, `PreparationView.swift`, `StoryView.swift`, `ARCameraView.swift`.
+- **`Resources/`**: Aset statis aplikasi.
+  - *File*: `Assets.xcassets`.
+- **`Repository/`**: *(Future)* Layer akses data (CoreData/SwiftData atau eksternal API).
+- **`Loaders/` & `Utilities/`**: Fungsi utilitas dan pemuat model 3D (usdz).
 
 ---
 
-## 🔄 Contoh Kasus Data Flow (Alur Data)
+## 🔄 Alur Data (Data Flow)
 
-Agar seluruh tim Developer sepemahaman, berikut adalah contoh **Alur Data (Data Flow)** ketika Pengguna (User) menggerakkan HP terlalu cepat saat memindai ruangan:
+Aplikasi mengimplementasikan alur data **searah (unidirectional)** yang reaktif:
 
-1. **[HARDWARE / ARKit]**
-   Kamera iPhone mendeteksi pergerakan yang terlalu cepat. ARKit mengirimkan *event* perubahan status lewat fungsi `session(_:cameraDidChangeTrackingState:)`.
-   👇
-2. **[SERVICE] -> `ARSessionManager`**
-   *Service* menangkap *event* tersebut. Ia mengubah variabel `trackingFailureReason` miliknya menjadi `.excessiveMotion`.
-   👇
-3. **[VIEWMODEL] -> `ARViewModel`**
-   Karena *ViewModel* mengamati (observe) *Service*, ia sadar ada perubahan. *Computed property* `hintText` di dalam ViewModel secara otomatis menghitung ulang dan mengembalikan nilai *String* manusiawi: `"Slow down, moving too fast"`.
-   👇
-4. **[VIEW] -> `ContentView`**
-   SwiftUI, berkat `@Observable`, menyadari bahwa `hintText` milik `ARViewModel` telah berubah. Layar kemudian **menggambar ulang (re-render)** komponen `Text(viewModel.hintText)`, sehingga tulisan di layar pengguna langsung berubah seketika.
+1. **[Hardware] Sensor ARKit**: Kamera mendeteksi perubahan (contoh: pergerakan terlalu cepat).
+2. **[Service] `ARSessionManager`**: Menangkap *event* delegasi ARKit dan memperbarui *state* internal (misal: `trackingFailureReason = .excessiveMotion`).
+3. **[ViewModel] `ARViewModel`**: Bereaksi terhadap perubahan di *Service*, lalu memprosesnya menjadi properti siap pakai untuk UI (misal: `hintText = "Slow down, moving too fast"`).
+4. **[View] `ContentView`**: SwiftUI membaca perubahan pada *ViewModel* (berkat `@Observable`) dan melakukan *render* ulang (re-render) pada komponen teks secara otomatis.
 
-### Kenapa Alur ini Penting?
-Karena alur ini **Satu Arah (Unidirectional)**. 
-`View` tidak pernah mengatur kamera. `View` hanya bereaksi terhadap `ViewModel`. Dan `ViewModel` hanya bertugas menerjemahkan data dari `Service`. Desain ini membuat aplikasi sangat mudah dicari *bug*-nya (mudah di-debug) dan tidak mudah rusak (scalable).
+Desain pemisahan lapisan (*Separation of Concerns*) ini membuat aplikasi memiliki *testability* tinggi dan lebih mudah dipelihara (*maintainable*).
