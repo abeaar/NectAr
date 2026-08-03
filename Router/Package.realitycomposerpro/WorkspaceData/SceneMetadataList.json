@@ -22,5 +22,17 @@
         "isLocked" : false
       }
     ]
+  },
+  "F891C902-01A7-4EAB-8BE3-BA9FE4477706" : {
+    "objectMetadataList" : [
+      [
+        "F891C902-01A7-4EAB-8BE3-BA9FE4477706",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
   }
 }
