@@ -10,6 +10,7 @@ import Foundation
 final class ARViewModel<Manager: ARSessionManaging> {
 
     private let sessionManager: Manager
+    
     init(sessionManager: Manager) {
         self.sessionManager = sessionManager
     }
