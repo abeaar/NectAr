@@ -1,9 +1,13 @@
 {
   "pathsToIds" : {
-    "\/Router\/Sources\/Router\/Router.rkassets\/Scene.usda" : "B710D817-7C5A-450E-85D5-9F97356F02FF"
+    "\/Router\/Sources\/Router\/Router.rkassets\/Scene.usda" : "B710D817-7C5A-450E-85D5-9F97356F02FF",
+    "Router\/Sources\/Router\/Router.rkassets\/Scene.usda" : "00928EE4-06B4-4CCD-B7DF-5164F7C1FA19",
+    "Router\/Sources\/Router\/Router.rkassets\/mail.usda" : "46676500-A472-4918-86BF-94A1CD27F2D7"
   },
   "projectID" : -6894179565458277986,
   "uuidToIntID" : {
+    "00928EE4-06B4-4CCD-B7DF-5164F7C1FA19" : 7746553175851139204,
+    "46676500-A472-4918-86BF-94A1CD27F2D7" : 2809813822772673824,
     "B710D817-7C5A-450E-85D5-9F97356F02FF" : -7794272545478877471
   }
 }
