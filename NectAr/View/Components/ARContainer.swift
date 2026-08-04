@@ -2,25 +2,22 @@
 //  ARContainer.swift
 //  NectAr
 //
-//  
+//
 import SwiftUI
 import RealityKit
 import ARKit
 
 struct ARContainerView: UIViewRepresentable {
-    let session: ARSession
-    //for debug
+    let arView: ARView
     var isDebugModeOn: Bool = false
+    let controller: PlacementSceneController
 
     func makeUIView(context: Context) -> ARView {
-        let arView = ARView(frame: .zero, cameraMode: .ar, automaticallyConfigureSession: false)
-        arView.session = session
-        //    arView.debugOptions = [.showAnchorGeometry] For prod
         arView.debugOptions = isDebugModeOn ? [.showAnchorGeometry] : []
+        controller.arView = arView
         return arView
     }
-    
-    // func updateUIView(_ uiView: ARView, context: Context) {} for prod 
+
     func updateUIView(_ uiView: ARView, context: Context) {
         uiView.debugOptions = isDebugModeOn ? [.showAnchorGeometry] : []
     }

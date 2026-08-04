@@ -9,5 +9,5 @@ import Foundation
 
 enum AppPhase {
     case preparation
-    case simulation
+    case simulation(PlacedTopology)
 }
