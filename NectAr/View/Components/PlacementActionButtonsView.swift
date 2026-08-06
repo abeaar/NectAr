@@ -16,7 +16,7 @@ struct PlacementActionButtonsView: View {
                         placementController.confirmPlacement()
                     }
                 } label: {
-                    Image(systemName: placementController.isComplete ? "play.fill" : "checkmark.circle.fill")
+                    Image(systemName: placementController.isComplete ? "play.circle.fill" : "plus.circle.fill")
                         .font(.system(size: 32))
                         .padding()
                         .background(.black.opacity(0.6))
@@ -25,15 +25,17 @@ struct PlacementActionButtonsView: View {
                 }
 
                 Button {
-                    placementController.reset()
+                    placementController.undoLastPlacement()
                 } label: {
-                    Image(systemName: "arrow.counterclockwise.circle.fill")
+                    Image(systemName: "arrow.uturn.backward.circle.fill")
                         .font(.system(size: 32))
                         .padding()
                         .background(.black.opacity(0.6))
                         .foregroundStyle(.white)
                         .clipShape(Circle())
                 }
+                .disabled(!placementController.canUndo)
+                .opacity(placementController.canUndo ? 1.0 : 0.4)
             }
             .padding(.trailing, 20)
         }

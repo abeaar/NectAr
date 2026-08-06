@@ -10,5 +10,7 @@ struct HintTextView: View {
             .foregroundStyle(.white)
             .clipShape(Capsule())
             .padding(.top, 60)
+            .frame(maxWidth: .infinity)
+            .ignoresSafeArea(edges: .leading)
     }
 }

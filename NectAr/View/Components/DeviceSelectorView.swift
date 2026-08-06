@@ -2,10 +2,10 @@ import SwiftUI
 
 struct DeviceSelectorView: View {
     let controller: PlacementSceneController
+    private static let itemSize: CGFloat = 97
 
     var body: some View {
-        // temporary
-        HStack(spacing: 16) {
+        VStack(spacing: 35) {
             ForEach(DeviceKind.allCases, id: \.self) { kind in
                 let isPlaced = controller.placedKinds.contains(kind)
 
@@ -13,12 +13,14 @@ struct DeviceSelectorView: View {
                     controller.selectedDeviceKind = kind
                 } label: {
                     VStack(spacing: 4) {
-                        Image(systemName: isPlaced ? "plus.circle.fill" : kind.icon)
+                        Image(systemName: isPlaced ? "checkmark.circle.fill" : kind.icon)
                             .font(.title2)
                         Text(kind.label)
                             .font(.caption)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                     }
-                    .padding(10)
+                    .frame(width: Self.itemSize, height: Self.itemSize)
                     .background(
                         controller.selectedDeviceKind == kind
                             ? Color.accentColor.opacity(0.4)
@@ -31,6 +33,6 @@ struct DeviceSelectorView: View {
                 .opacity(isPlaced ? 0.4 : 1.0)
             }
         }
-        .padding()
+        .padding(.leading, 31)
     }
 }

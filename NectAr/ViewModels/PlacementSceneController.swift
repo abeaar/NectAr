@@ -10,6 +10,8 @@ import Combine
 /// (`UIViewRepresentable.makeUIView`), which owns the actual `ARView`'s lifetime.
 @Observable
 final class PlacementSceneController {
+    /// Non-device kinds get the grey ghost preview, device markers are small enough
+    /// that the crosshair already covers them and stay on the plain crosshair.
     private static let previewableKinds: Set<DeviceKind> = [.router]
     /// Fraction of the remaining distance/rotation closed each frame (0-1). Manual
     /// lerp/slerp rather than `Entity.move(to:duration:)`, since retargeting an
@@ -34,6 +36,7 @@ final class PlacementSceneController {
         }
     }
     private var placedAnchors: [DeviceKind: AnchorEntity] = [:]
+    private var placementOrder: [DeviceKind] = []
 
     private var updateSubscription: Cancellable?
     private var previewAnchor: AnchorEntity?
@@ -54,6 +57,10 @@ final class PlacementSceneController {
 
     func canPlace(_ kind: DeviceKind) -> Bool {
         !placedKinds.contains(kind)
+    }
+
+    var canUndo: Bool {
+        !placementOrder.isEmpty
     }
 
     func confirmPlacement() {
@@ -82,23 +89,24 @@ final class PlacementSceneController {
                 let anchor = AnchoredEntityPlacer.place(entity, at: firstResult.worldTransform, in: arView.scene)
                 placedAnchors[kind] = anchor
                 placedTransforms[kind] = firstResult.worldTransform
+                placementOrder.append(kind)
             } catch {
                 print("Failed to load \(kind) entity: \(error)")
             }
         }
     }
 
-    func reset() {
-        guard let arView else { return }
+    func undoLastPlacement() {
+        guard let arView, let lastKind = placementOrder.popLast() else { return }
 
-        for (_, anchor) in placedAnchors {
+        if let anchor = placedAnchors[lastKind] {
             AnchoredEntityPlacer.remove(anchor, from: arView.scene)
         }
-        placedAnchors.removeAll()
-        placedTransforms.removeAll()
+        placedAnchors[lastKind] = nil
+        placedTransforms[lastKind] = nil
 
-        if Self.previewableKinds.contains(selectedDeviceKind) {
-            Task { await setupPreview(for: selectedDeviceKind) }
+        if lastKind == selectedDeviceKind, Self.previewableKinds.contains(lastKind) {
+            Task { await setupPreview(for: lastKind) }
         }
     }
 
@@ -108,6 +116,15 @@ final class PlacementSceneController {
         teardownPreview()
         updateSubscription?.cancel()
         updateSubscription = nil
+    }
+
+    /// Releases every spawned entity so nothing lingers in the AR scene once this
+    /// controller itself goes away, for example when navigating back to a main page.
+    deinit {
+        updateSubscription?.cancel()
+        guard let arView else { return }
+        if let previewAnchor { AnchoredEntityPlacer.remove(previewAnchor, from: arView.scene) }
+        for (_, anchor) in placedAnchors { AnchoredEntityPlacer.remove(anchor, from: arView.scene) }
     }
 
     // MARK: - Live placement preview

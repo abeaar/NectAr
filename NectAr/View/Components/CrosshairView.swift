@@ -6,5 +6,6 @@ struct CrosshairView: View {
             .font(.system(size: 44))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .ignoresSafeArea(edges: .leading)
     }
 }

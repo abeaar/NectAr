@@ -25,8 +25,9 @@ struct ARCameraView: View {
             HintTextView(hintText: arViewModel.hintText)
             DebugToggleButton(isDebugModeOn: $isDebugModeOn)
             PlacementActionButtonsView(placementController: placementController, onComplete: onComplete)
+            BackButton {}
         }
-        .safeAreaInset(edge: .bottom) {
+        .safeAreaInset(edge: .leading) {
             DeviceSelectorView(controller: placementController)
         }
         .onAppear {
