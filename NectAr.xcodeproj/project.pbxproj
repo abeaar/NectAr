@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
+		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
 		645740443020B31800CDEF0D /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 645740433020B31800CDEF0D /* Router */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				645740443020B31800CDEF0D /* Router in Frameworks */,
+				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
+				642379A73024528F00CFEE71 /* Bee in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +75,8 @@
 			name = NectAr;
 			packageProductDependencies = (
 				645740433020B31800CDEF0D /* Router */,
+				642379A63024528F00CFEE71 /* Bee */,
+				642379AB3024926500CFEE71 /* Router_3d */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -102,6 +108,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */,
+				642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */,
+				642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
@@ -345,6 +353,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Bee;
+		};
+		642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Router_3d;
+		};
 		645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Router;
@@ -352,6 +368,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		642379A63024528F00CFEE71 /* Bee */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Bee;
+		};
+		642379AB3024926500CFEE71 /* Router_3d */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Router_3d;
+		};
 		645740433020B31800CDEF0D /* Router */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Router;

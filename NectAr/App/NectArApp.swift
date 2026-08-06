@@ -11,7 +11,7 @@ import SwiftUI
 struct NectArApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TestBee()
         }
     }
 }

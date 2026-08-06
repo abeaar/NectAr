@@ -2,6 +2,11 @@ import Foundation
 import RealityKit
 import ARKit
 
+/// Drives the preparation phase: raycasts from the screen center against detected
+/// planes, and anchors the selected ``DeviceKind``'s entity at the hit point.
+///
+/// Holds `arView` weakly because it's injected by `ARContainerView`
+/// (`UIViewRepresentable.makeUIView`), which owns the actual `ARView`'s lifetime.
 @Observable
 final class PlacementSceneController {
     var selectedDeviceKind: DeviceKind = .deviceA
