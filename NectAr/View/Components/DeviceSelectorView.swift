@@ -4,6 +4,7 @@ struct DeviceSelectorView: View {
     let controller: PlacementSceneController
 
     var body: some View {
+        // temporary
         HStack(spacing: 16) {
             ForEach(DeviceKind.allCases, id: \.self) { kind in
                 let isPlaced = controller.placedKinds.contains(kind)
@@ -12,7 +13,7 @@ struct DeviceSelectorView: View {
                     controller.selectedDeviceKind = kind
                 } label: {
                     VStack(spacing: 4) {
-                        Image(systemName: isPlaced ? "checkmark.circle.fill" : kind.icon)
+                        Image(systemName: isPlaced ? "plus.circle.fill" : kind.icon)
                             .font(.title2)
                         Text(kind.label)
                             .font(.caption)
