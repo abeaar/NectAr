@@ -19,7 +19,9 @@ struct ARCameraView: View {
             ARContainerView(arView: arViewModel.arView, isDebugModeOn: isDebugModeOn, controller: placementController)
                 .ignoresSafeArea()
 
-            CrosshairView()
+            if !placementController.isPreviewActive {
+                CrosshairView()
+            }
             HintTextView(hintText: arViewModel.hintText)
             DebugToggleButton(isDebugModeOn: $isDebugModeOn)
             PlacementActionButtonsView(placementController: placementController, onComplete: onComplete)

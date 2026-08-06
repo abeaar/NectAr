@@ -10,6 +10,7 @@ struct PlacementActionButtonsView: View {
             VStack(spacing: 16) {
                 Button {
                     if placementController.isComplete {
+                        placementController.stopPreview()
                         onComplete(PlacedTopology(transforms: placementController.placedTransforms))
                     } else {
                         placementController.confirmPlacement()
