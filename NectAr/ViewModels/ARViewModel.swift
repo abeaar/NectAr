@@ -4,16 +4,21 @@
 //  Created by abr on 01/08/26.
 //
 import ARKit
+import RealityKit
 import Foundation
 
 @Observable
 final class ARViewModel<Manager: ARSessionManaging> {
 
     private let sessionManager: Manager
-    
+    let arView: ARView
+
     init(sessionManager: Manager) {
         self.sessionManager = sessionManager
+        self.arView = ARView(frame: .zero, cameraMode: .ar, automaticallyConfigureSession: false)
+        self.arView.session = sessionManager.session
     }
+
     var arSession: ARSession {
         sessionManager.session
     }

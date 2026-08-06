@@ -1,7 +1,5 @@
 import SwiftUI
 
-import SwiftUI
-
 struct StoryView: View {
     @Binding var selection: Story.ID?
 

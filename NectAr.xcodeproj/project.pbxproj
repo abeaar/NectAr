@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		645740443020B31800CDEF0D /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 645740433020B31800CDEF0D /* Router */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		64B5DCFF301DD212004E2683 /* NectAr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NectAr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645740443020B31800CDEF0D /* Router in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = NectAr;
 			packageProductDependencies = (
+				645740433020B31800CDEF0D /* Router */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 64B5DCF6301DD212004E2683;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
 			projectDirPath = "";
@@ -334,6 +343,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Router;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		645740433020B31800CDEF0D /* Router */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Router;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 64B5DCF7301DD212004E2683 /* Project object */;
 }
