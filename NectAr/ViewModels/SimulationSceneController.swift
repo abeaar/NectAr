@@ -2,6 +2,13 @@ import Foundation
 import RealityKit
 import ARKit
 
+/// Drives the simulation phase: animates the mail packet through
+/// `deviceA → router → deviceB → router → deviceA`, looping until stopped.
+///
+/// Slows legs that cross a real detected wall (see ``WallObstructionChecker``) to
+/// `baseLegDuration * obstructedMultiplier`, and surfaces `currentLegHint` so the UI
+/// can explain why. Obstruction is computed once per ``startAnimating(topology:)``
+/// call, not per-frame — the room doesn't change shape mid-simulation.
 @Observable
 final class SimulationSceneController {
     private static let baseLegDuration: TimeInterval = 3
@@ -11,6 +18,8 @@ final class SimulationSceneController {
     private(set) var currentLegHint: String?
     private var animationTask: Task<Void, Never>?
 
+    /// Starts (or restarts) the looping A → Router → B → Router → A animation for the
+    /// given placed topology. Cancels any animation already in progress.
     func startAnimating(topology: PlacedTopology) {
         guard let arView else {
             print("AR view not ready yet")

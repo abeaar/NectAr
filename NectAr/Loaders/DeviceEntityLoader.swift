@@ -10,10 +10,14 @@ import RealityKit
 import UIKit
 import Router
 
+/// Builds the RealityKit entity for each placed node, including its floating text
+/// label. Router and mail-packet models are loaded from the ``Router`` package bundle
+/// (`routerBundle`); device markers are procedural discs, not package assets.
 enum DeviceEntityLoader {
     private static let markerLabelHeight: Float = 0.15
     private static let routerLabelHeight: Float = 0.3
 
+    /// Loads (or builds) the entity for `kind` and attaches its floating label.
     static func load(_ kind: DeviceKind) async throws -> Entity {
         let entity: Entity
         let labelHeight: Float

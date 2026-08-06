@@ -1,0 +1,11 @@
+{
+  "pathsToIds" : {
+    "\/Router_3d\/Sources\/Router_3d\/Router_3d.rkassets\/Scene.usda" : "D334AC07-6A10-41D9-931F-B60F9E2D6E34",
+    "Router_3d\/Sources\/Router_3d\/Router_3d.rkassets\/Router_3d.usda" : "5F08A222-A67E-4C6E-95AB-C780D7C00939"
+  },
+  "projectID" : -49554080254736595,
+  "uuidToIntID" : {
+    "5F08A222-A67E-4C6E-95AB-C780D7C00939" : -2668796519980232633,
+    "D334AC07-6A10-41D9-931F-B60F9E2D6E34" : 2941231193827028476
+  }
+}

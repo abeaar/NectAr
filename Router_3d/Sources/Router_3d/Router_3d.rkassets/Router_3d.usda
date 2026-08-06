@@ -1,0 +1,358 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.100.6)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Cube", "AntennaL", "AntennaR", "Logo"]
+    def Cube "Cube" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Cube/DefaultMaterial>
+        double size = 0.2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.1, 1)
+        float3 xformOp:translate = (0, 0, 0.009144396)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.925, 0.7386695, 0.15324229) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Capsule "AntennaL" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-0.34906584, 0, 0)
+        }
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/AntennaL/DefaultMaterial>
+        double radius = 0.1
+        quatf xformOp:orient = (0.9848077, -0.17364818, 0, 0)
+        float3 xformOp:scale = (0.1, 0.5, 0.1)
+        float3 xformOp:translate = (-0.1, 0.09, -0.09)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/AntennaL/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Capsule "AntennaR" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-0.34906584, 0, 0)
+        }
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/AntennaR/DefaultMaterial>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.9848077, -0.17364831, 0, 0)
+        float3 xformOp:scale = (0.1, 0.49999994, 0.09999999)
+        float3 xformOp:translate = (0.1, 0.09, -0.09)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/AntennaR/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Logo" (
+        active = true
+    )
+    {
+        float3 xformOp:translate = (0, 0, 0.022404425)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Cylinder "Cylinder_5" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (5.421837e-20, 0, -4.3662397e-11)
+            }
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Logo/Cylinder_5/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (100, 100)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.15, 0.01, 0.15)
+            float3 xformOp:translate = (0, 0.0113, 0.0075955745)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Logo/Cylinder_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0, 0, 0) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Xform "Group" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (0.12217307, 0, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.9981348, 0.06104855, 0, 0)
+            float3 xformOp:scale = (1, 0.6, 1)
+            float3 xformOp:translate = (0, 0, 0.0075955745)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "Cylinder" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 0)
+                }
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Logo/Group/Cylinder/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.7, 0.01, 0.7)
+                float3 xformOp:translate = (0, 0.01, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Logo/Group/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cylinder "Cylinder_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (5.421837e-20, 0, -4.3662397e-11)
+                }
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Logo/Group/Cylinder_1/DefaultMaterial>
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.6, 0.01, 0.6)
+                float3 xformOp:translate = (0, 0.011, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Logo/Group/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cylinder "Cylinder_2" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (5.421837e-20, 0, -4.3662397e-11)
+                }
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Logo/Group/Cylinder_2/DefaultMaterial>
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.5, 0.01, 0.5)
+                float3 xformOp:translate = (0, 0.0111, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Logo/Group/Cylinder_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cylinder "Cylinder_3" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (5.421837e-20, 0, -4.3662397e-11)
+                }
+            )
+            {
+                reorder nameChildren = ["DefaultMaterial", "Cylinder_4"]
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Logo/Group/Cylinder_3/DefaultMaterial>
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.4, 0.01, 0.4)
+                float3 xformOp:translate = (0, 0.0112, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Logo/Group/Cylinder_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cylinder "Cylinder_4" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (5.421837e-20, 0, -4.3662397e-11)
+                }
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Logo/Group/Cylinder_4/DefaultMaterial>
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (80, 80)
+                int ui:nodegraph:node:stackingOrder = 4
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.3, 0.01, 0.3)
+                float3 xformOp:translate = (0, 0.0113, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Logo/Group/Cylinder_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0, 0, 0) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+        }
+    }
+}
+

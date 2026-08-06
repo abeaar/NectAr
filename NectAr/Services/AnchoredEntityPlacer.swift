@@ -1,5 +1,7 @@
 import RealityKit
 
+/// Places and removes anchored entities in a RealityKit scene, always under an
+/// identity-transform anchor — see ``place(_:at:in:)`` for why.
 enum AnchoredEntityPlacer {
     /// Anchors `entity` at `transform` in world space and adds it to `scene`.
     ///
