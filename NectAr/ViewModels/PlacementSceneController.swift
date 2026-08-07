@@ -18,6 +18,8 @@ final class PlacementSceneController {
     /// in-flight move animation every frame during fast camera motion is a known
     /// source of RealityKit visibly glitching (entities flickering or ghosting).
     private static let previewSmoothingFactor: Float = 0.25
+    /// Maximum camera-to-target distance placement is allowed at, in meters.
+    private static let maxPlacementDistance: Float = 3.0
 
     var selectedDeviceKind: DeviceKind = .deviceA {
         didSet {
@@ -41,6 +43,10 @@ final class PlacementSceneController {
     private var updateSubscription: Cancellable?
     private var previewAnchor: AnchorEntity?
     private var previewEntity: Entity?
+
+    /// Set while the crosshair is over a surface farther than `maxPlacementDistance`,
+    /// used as the placement hint and to block `confirmPlacement()`.
+    private(set) var placementDistanceHint: String?
 
     var placedKinds: Set<DeviceKind> {
         Set(placedTransforms.keys)
@@ -72,6 +78,10 @@ final class PlacementSceneController {
         let kind = selectedDeviceKind
         guard canPlace(kind) else {
             print("\(kind.label) has already been placed")
+            return
+        }
+        guard placementDistanceHint == nil else {
+            print("Too far to place \(kind.label), move closer")
             return
         }
 
@@ -133,7 +143,27 @@ final class PlacementSceneController {
         guard let arView else { return }
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
             self?.updatePreview()
+            self?.updateDistanceGate()
         }
+    }
+
+    /// Live per-frame distance check against whatever's currently under the
+    /// crosshair, so the move-closer hint tracks the user's position in real time.
+    private func updateDistanceGate() {
+        guard let arView, !placedKinds.contains(selectedDeviceKind) else {
+            placementDistanceHint = nil
+            return
+        }
+
+        let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
+        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
+            placementDistanceHint = nil
+            return
+        }
+
+        let hitPosition = Transform(matrix: hit.worldTransform).translation
+        let distance = simd_distance(arView.cameraTransform.translation, hitPosition)
+        placementDistanceHint = distance > Self.maxPlacementDistance ? "Move closer to place \(selectedDeviceKind.label)" : nil
     }
 
     private func setupPreview(for kind: DeviceKind) async {

@@ -22,7 +22,7 @@ struct ARCameraView: View {
             if !placementController.isPreviewActive {
                 CrosshairView()
             }
-            HintTextView(hintText: arViewModel.hintText)
+            HintTextView(hintText: placementController.placementDistanceHint ?? arViewModel.hintText)
             DebugToggleButton(isDebugModeOn: $isDebugModeOn)
             PlacementActionButtonsView(placementController: placementController, onComplete: onComplete)
             BackButton {}
