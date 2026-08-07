@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct PlacementActionButton: View {
-    @State var isComplete: Bool = false
+    
+    @State private var ActionButtonType = ActionButtonViewModel()
+    
+    // mock
     @State var isUndo: Bool = false
     @State var isRedo: Bool = false
     
@@ -33,16 +36,16 @@ struct PlacementActionButton: View {
                 .padding(.bottom, 20)
                 
                 Button(action: {
-                    self.isComplete.toggle()
+                    ActionButtonType.handleButtonTap()
                 }) {
-                    Image(systemName: isComplete ? "play.circle.fill" : "plus.circle.fill")
+                    Image(systemName: ActionButtonType.buttonIconName)
                         .font(.system(size: 85))
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(ActionButtonType.buttonColor.opacity(0.9))
                 }
             }
         }
 // for dev only
-//        .background(.gray)
+//        .background(.black)
     }
 }
 
