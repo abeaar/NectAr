@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DeviceSelectorView: View {
     let controller: PlacementSceneController
+    let mascotController: MascotOnboardingController
     private static let itemSize: CGFloat = 97
 
     var body: some View {
@@ -10,6 +11,7 @@ struct DeviceSelectorView: View {
                 let isPlaced = controller.placedKinds.contains(kind)
 
                 Button {
+                    guard !mascotController.isActive else { return }
                     controller.selectedDeviceKind = kind
                 } label: {
                     VStack(spacing: 4) {

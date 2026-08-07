@@ -11,10 +11,12 @@ struct ARContainerView: UIViewRepresentable {
     let arView: ARView
     var isDebugModeOn: Bool = false
     let controller: PlacementSceneController
+    let mascotController: MascotOnboardingController
 
     func makeUIView(context: Context) -> ARView {
         arView.debugOptions = isDebugModeOn ? [.showAnchorGeometry] : []
         controller.arView = arView
+        mascotController.arView = arView
         return arView
     }
 

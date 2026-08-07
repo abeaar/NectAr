@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PlacementActionButtonsView: View {
     let placementController: PlacementSceneController
+    let mascotController: MascotOnboardingController
     let onComplete: (PlacedTopology) -> Void
 
     var body: some View {
@@ -9,14 +10,16 @@ struct PlacementActionButtonsView: View {
             Spacer()
             VStack(spacing: 16) {
                 Button {
-                    if placementController.isComplete {
+                    if mascotController.isActive {
+                        mascotController.attemptFind()
+                    } else if placementController.isComplete {
                         placementController.stopPreview()
                         onComplete(PlacedTopology(transforms: placementController.placedTransforms))
                     } else {
                         placementController.confirmPlacement()
                     }
                 } label: {
-                    Image(systemName: placementController.isComplete ? "play.circle.fill" : "plus.circle.fill")
+                    Image(systemName: placeButtonIcon)
                         .font(.system(size: 32))
                         .padding()
                         .background(.black.opacity(0.6))
@@ -40,5 +43,15 @@ struct PlacementActionButtonsView: View {
             .padding(.trailing, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+    }
+
+    private var placeButtonIcon: String {
+        if mascotController.isActive {
+            "hand.rays.fill"
+        } else if placementController.isComplete {
+            "play.circle.fill"
+        } else {
+            "plus.circle.fill"
+        }
     }
 }

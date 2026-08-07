@@ -11,24 +11,25 @@ import SwiftUI
 struct ARCameraView: View {
     let arViewModel: ARViewModel<ARSessionManager>
     let placementController: PlacementSceneController
+    let mascotController: MascotOnboardingController
     let onComplete: (PlacedTopology) -> Void
     @State private var isDebugModeOn = false
 
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(arView: arViewModel.arView, isDebugModeOn: isDebugModeOn, controller: placementController)
+            ARContainerView(arView: arViewModel.arView, isDebugModeOn: isDebugModeOn, controller: placementController, mascotController: mascotController)
                 .ignoresSafeArea()
 
             if !placementController.isPreviewActive {
                 CrosshairView()
             }
-            HintTextView(hintText: placementController.placementDistanceHint ?? arViewModel.hintText)
+            HintTextView(hintText: mascotController.mascotHint ?? placementController.placementDistanceHint ?? arViewModel.hintText)
             DebugToggleButton(isDebugModeOn: $isDebugModeOn)
-            PlacementActionButtonsView(placementController: placementController, onComplete: onComplete)
+            PlacementActionButtonsView(placementController: placementController, mascotController: mascotController, onComplete: onComplete)
             BackButton {}
         }
         .safeAreaInset(edge: .leading) {
-            DeviceSelectorView(controller: placementController)
+            DeviceSelectorView(controller: placementController, mascotController: mascotController)
         }
         .onAppear {
             arViewModel.start()
