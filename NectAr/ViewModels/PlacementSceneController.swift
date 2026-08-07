@@ -170,7 +170,7 @@ final class PlacementSceneController {
         guard let arView else { return }
 
         do {
-            let entity = try await DeviceEntityLoader.load(kind)
+            let entity = try await DeviceEntityLoader.load(kind, includeRangeSphere: false)
             PlacementPreviewStyler.applyGhostMaterial(to: entity)
             entity.isEnabled = false
 
