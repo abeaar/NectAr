@@ -17,8 +17,7 @@ struct BackButton: View {
         } label: {
             Image(systemName: "chevron.left.circle.fill")
                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                .background(.gray)
+                .foregroundColor(.white.opacity(0.9))
                 .padding(10)
         }
     }
