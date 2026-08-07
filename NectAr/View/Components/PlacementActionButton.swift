@@ -14,7 +14,7 @@ struct PlacementActionButton: View {
     
     var body: some View {
         HStack {
-            VStack(spacing: 14) {
+            VStack(spacing: 16) {
                 Button(action: {
                     self.isRedo.toggle()
                 }) {
@@ -29,8 +29,8 @@ struct PlacementActionButton: View {
                     Image(systemName: "arrow.uturn.backward.circle.fill")
                         .font(.system(size: 50))
                         .foregroundColor(.white.opacity(0.9))
-                        .padding(.bottom, 10)
                 }
+                .padding(.bottom, 20)
                 
                 Button(action: {
                     self.isComplete.toggle()
@@ -42,7 +42,7 @@ struct PlacementActionButton: View {
             }
         }
 // for dev only
-//        .background(.black)
+//        .background(.gray)
     }
 }
 
