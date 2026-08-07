@@ -11,7 +11,7 @@ struct SimulationView: View {
             SimulationContainerView(arView: arViewModel.arView, controller: simulationController)
                 .ignoresSafeArea()
 
-            if let hint = simulationController.currentLegHint {
+            if let hint = simulationController.deadzoneHint ?? simulationController.currentLegHint {
                 HintTextView(hintText: hint)
             }
 
