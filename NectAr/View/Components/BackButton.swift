@@ -15,10 +15,10 @@ struct BackButton: View {
         Button {
             dismiss()
         } label: {
-            Image(systemName: "chevron.left.circle.fill")
-                .font(.system(size: 48, weight: .bold, design: .rounded))
-                .foregroundColor(.white.opacity(0.9))
-                .padding(10)
+            Image("BackButton")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 55)
         }
     }
 }

@@ -10,11 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @State private var currentPhase: AppPhase = .preparation
     @State private var arViewModel = ARViewModel()
+    @State private var placementController = PlacementSceneController()
 
     var body: some View {
         switch currentPhase {
         case .preparation:
-            PreparationView(arViewModel: arViewModel) {
+            PreparationView(arViewModel: arViewModel, placementController: placementController) {
                 currentPhase = .simulation
             }
         case .simulation:

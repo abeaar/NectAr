@@ -21,31 +21,36 @@ struct PlacementActionButton: View {
                 Button(action: {
                     self.isRedo.toggle()
                 }) {
-                    Image(systemName: "arrow.uturn.forward.circle.fill")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white.opacity(0.9))
+                    Image("Redo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 55)
                 }
+                .disabled(ActionButtonType.isPlaying)
+                .opacity(ActionButtonType.isPlaying ? 0.5 : 1.0)
                 
                 Button(action: {
                     self.isUndo.toggle()
                 }) {
-                    Image(systemName: "arrow.uturn.backward.circle.fill")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white.opacity(0.9))
+                    Image("Undo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 55)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 16)
+                .disabled(ActionButtonType.isPlaying)
+                .opacity(ActionButtonType.isPlaying ? 0.5 : 1.0)
                 
                 Button(action: {
                     ActionButtonType.handleButtonTap()
                 }) {
-                    Image(systemName: ActionButtonType.buttonIconName)
-                        .font(.system(size: 85))
-                        .foregroundColor(ActionButtonType.buttonColor.opacity(0.9))
+                    Image(ActionButtonType.buttonIconName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
                 }
             }
         }
-// for dev only
-//        .background(.black)
     }
 }
 

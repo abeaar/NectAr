@@ -17,26 +17,14 @@ class PlacementSceneController {
     var buttonIconName: String {
         if isComplete {
             if isPlaying {
-                return "stop.circle.fill"
+                return "StopButton"
             } else {
-                return "play.circle.fill"
+                return "PlayButton"
             }
         } else {
-            return "plus.circle.fill"
+            return "PlusButton"
         }
     }
-    
-    var buttonColor: Color {
-            if isComplete {
-                if isPlaying {
-                    return .red // stop
-                } else {
-                    return .green// play
-                }
-            } else {
-                return .white // preparation
-            }
-        }
     
     func handleButtonTap() {
         if isComplete {
