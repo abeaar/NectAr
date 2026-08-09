@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlacementActionButton: View {
     
-    @State private var ActionButtonType = ActionButtonViewModel()
+    @State private var ActionButtonType = PlacementSceneController()
     
     // mock
     @State var isUndo: Bool = false

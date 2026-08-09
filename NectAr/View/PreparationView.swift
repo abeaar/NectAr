@@ -17,10 +17,28 @@ struct PreparationView: View {
     let onComplete: () -> Void
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
-            StoryView(selection: $selection)
-        } detail: {
+        ZStack {
             ARCameraView(arViewModel: arViewModel)
+                .ignoresSafeArea()
+            
+            CrossHairView()
+        }
+        .overlay(alignment: .topLeading) {
+            BackButton()
+                .padding(.top, 16)
+                .padding(.leading, 24)
+        }
+//        .overlay(alignment: .leading) {
+//            DeviceSelectorView()
+//                .padding(.leading, 24)
+//        }
+        .overlay(alignment: .trailing) {
+            PlacementActionButton()
+                .padding(.trailing, 24)
         }
     }
+}
+
+#Preview {
+    PreparationView(arViewModel: ARViewModel(), onComplete: {})
 }

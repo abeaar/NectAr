@@ -1,5 +1,5 @@
 //
-//  ActionButtonViewModel.swift
+//  PlacementSceneController.swift
 //  NectAr
 //
 //  Created by Putri Aziza Mufva on 07/08/26.
@@ -8,7 +8,9 @@
 import SwiftUI
 
 @Observable
-class ActionButtonViewModel {
+class PlacementSceneController {
+    
+    var selectedDeviceKind: DeviceKind = .deviceA
     var isComplete: Bool = false
     var isPlaying: Bool = false
     
