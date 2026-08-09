@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct ExpandableCard: View {
-    @State private var isExpanded: Bool = false
+    let story: Story
+    let isActive: Bool
+    
+    @Binding var expandedStoryID: Story.ID?
+    
+    var isExpanded: Bool {
+        expandedStoryID == story.id
+    }
     
     // animation
     let easeOutBack = Animation.timingCurve(0.175, 0.885, 0.32, 1.275, duration: 0.5)
@@ -22,11 +29,11 @@ struct ExpandableCard: View {
                     if isExpanded {
                         Button(action: {
                             withAnimation(easeInBack) {
-                                isExpanded = false
+                                expandedStoryID = nil
                             }
                         }) {
                             Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 28))
+                                .font(.system(size: 65))
                                 .foregroundColor(.gray)
                         }
                         .transition(.opacity)
@@ -40,7 +47,7 @@ struct ExpandableCard: View {
                             print("Play button tapped") // test
                         }) {
                             Text("Play")
-                                .font(.title3.bold())
+                                .font(.title2.bold())
                                 .padding(.horizontal, 32)
                                 .padding(.vertical, 12)
                                 .background(Color.gray)
@@ -59,21 +66,20 @@ struct ExpandableCard: View {
             
             ZStack {
                 Color.gray
-                
-                if !isExpanded {
-                    Text("Tap to expand")
-                        .foregroundColor(.white.opacity(0.8))
-                        .fontWeight(.medium)
-                }
+                Image(story.icon)
+                    .resizable()
+                    .padding(75)
             }
-            .frame(width: 500, height: 500)
+            .frame(width: 475, height: 475)
             .clipShape(RoundedRectangle(cornerRadius: 24))
             .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
             .offset(x: isExpanded ? -220 : 0)
             .onTapGesture {
+                guard isActive else { return }
+                
                 if !isExpanded {
                     withAnimation(easeOutBack) {
-                        isExpanded = true
+                        expandedStoryID = story.id
                     }
                 }
             }
@@ -83,5 +89,16 @@ struct ExpandableCard: View {
 
 
 #Preview {
-    ExpandableCard()
+    struct PreviewWrapper: View {
+        @State private var mockExpandedID: String? = nil
+        
+        var body: some View {
+            ExpandableCard(
+                story: Story(id:"texting", title: "Texting", icon: "AbeeIcon"),
+                isActive: true,
+                expandedStoryID: $mockExpandedID
+            )
+        }
+    }
+    return PreviewWrapper()
 }
