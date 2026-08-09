@@ -25,6 +25,10 @@ preparation phase into the simulation phase.
 
 ## Topics
 
+### Essentials
+
+- <doc:DataFlow>
+
 ### App flow
 
 - ``AppPhase``
