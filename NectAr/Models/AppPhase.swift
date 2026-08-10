@@ -7,7 +7,14 @@
 
 import Foundation
 
+/// The app's only navigation state.
+///
+/// There is no navigation stack — this enum *is* the router. `ContentView` switches on
+/// it directly, and `.simulation` carries the payload (``PlacedTopology``) captured
+/// during `.preparation` forward into the simulation screen.
 enum AppPhase {
+    /// The user is placing Device A, Router, and Device B markers in AR.
     case preparation
-    case simulation
+    /// The user is watching the mail packet animate through the placed topology.
+    case simulation(PlacedTopology)
 }

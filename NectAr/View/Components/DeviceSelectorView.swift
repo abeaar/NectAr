@@ -1,14 +1,9 @@
-//
-//  Untitled.swift
-//  NectAr
-//
-//  Created by Putri Aziza Mufva on 07/08/26.
-//
-
 import SwiftUI
 
 struct DeviceSelectorView: View {
     let controller: PlacementSceneController
+    let mascotController: MascotOnboardingController
+    private static let itemSize: CGFloat = 97
     
     // mock
     var isPlaced: Bool = false
@@ -32,9 +27,6 @@ struct DeviceSelectorView: View {
                 .opacity(isPlaced ? 0.5 : 1.0)
             }
         }
+        .padding(.leading, 31)
     }
-}
-
-#Preview {
-    DeviceSelectorView(controller: PlacementSceneController())
 }

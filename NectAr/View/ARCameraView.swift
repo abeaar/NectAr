@@ -10,35 +10,26 @@ import SwiftUI
 
 struct ARCameraView: View {
     let arViewModel: ARViewModel<ARSessionManager>
+    let placementController: PlacementSceneController
+    let mascotController: MascotOnboardingController
+    let onComplete: (PlacedTopology) -> Void
     @State private var isDebugModeOn = false
 
     var body: some View {
         ZStack(alignment: .top) {
-            // ARContainerView(session: arViewModel.arSession) for prod
-            ARContainerView(session: arViewModel.arSession, isDebugModeOn: isDebugModeOn)
+            ARContainerView(arView: arViewModel.arView, isDebugModeOn: isDebugModeOn, controller: placementController, mascotController: mascotController)
                 .ignoresSafeArea()
 
-            Text(arViewModel.hintText)
-                .padding()
-                .background(.black.opacity(0.6))
-                .foregroundStyle(.white)
-                .clipShape(Capsule())
-                .padding(.top, 60)
-        //for debug, delete later in prod
-            HStack {
-                Spacer()
-                Button {
-                    isDebugModeOn.toggle()
-                } label: {
-                    Image(systemName: isDebugModeOn ? "eye" : "eye.slash")
-                        .padding()
-                        .background(.black.opacity(0.6))
-                        .foregroundStyle(.white)
-                        .clipShape(Circle())
-                }
-                .padding(.trailing, 20)
-                .padding(.top, 60)
+            if !placementController.isPreviewActive {
+                CrosshairView()
             }
+            HintTextView(hintText: mascotController.mascotHint ?? placementController.placementDistanceHint ?? arViewModel.hintText)
+            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
+            PlacementActionButtonsView(placementController: placementController, mascotController: mascotController, onComplete: onComplete)
+            BackButton {}
+        }
+        .safeAreaInset(edge: .leading) {
+            DeviceSelectorView(controller: placementController, mascotController: mascotController)
         }
         .onAppear {
             arViewModel.start()

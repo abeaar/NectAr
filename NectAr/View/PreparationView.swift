@@ -5,21 +5,17 @@
 //  Created by abr on 02/08/26.
 //
 
-import SwiftUI
 import Foundation
 import SwiftUI
 
 struct PreparationView: View {
-    @State private var selection: Story.ID?
-    @State private var columnVisibility: NavigationSplitViewVisibility = .detailOnly
-    
     let arViewModel: ARViewModel<ARSessionManager>
     let placementController: PlacementSceneController
-    let onComplete: () -> Void
-
+    let mascotController: MascotOnboardingController
+    let onComplete: (PlacedTopology) -> Void
     var body: some View {
         ZStack {
-            ARCameraView(arViewModel: arViewModel)
+            ARCameraView(arViewModel: arViewModel, placementController: placementController, mascotController: mascotController, onComplete: onComplete)
                 .ignoresSafeArea()
             
             CrossHairView()
@@ -40,6 +36,3 @@ struct PreparationView: View {
     }
 }
 
-#Preview {
-    PreparationView(arViewModel: ARViewModel(), placementController: PlacementSceneController(), onComplete: {})
-}

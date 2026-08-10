@@ -1,10 +1,3 @@
-//
-//  HintTextView.swift
-//  NectAr
-//
-//  Created by Putri Aziza Mufva on 07/08/26.
-//
-
 import SwiftUI
 
 struct HintTextView: View {

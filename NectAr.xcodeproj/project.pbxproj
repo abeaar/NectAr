@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
+		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
+		645740443020B31800CDEF0D /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 645740433020B31800CDEF0D /* Router */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		64B5DCFF301DD212004E2683 /* NectAr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NectAr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645740443020B31800CDEF0D /* Router in Frameworks */,
+				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
+				642379A73024528F00CFEE71 /* Bee in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,9 @@
 			);
 			name = NectAr;
 			packageProductDependencies = (
+				645740433020B31800CDEF0D /* Router */,
+				642379A63024528F00CFEE71 /* Bee */,
+				642379AB3024926500CFEE71 /* Router_3d */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -94,6 +106,11 @@
 			);
 			mainGroup = 64B5DCF6301DD212004E2683;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */,
+				642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */,
+				642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
 			projectDirPath = "";
@@ -253,9 +270,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VMKDVWCB45;
+				DEVELOPMENT_TEAM = 9BAZ4456C2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NectArTest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -267,7 +285,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abr.NectAr;
+				PRODUCT_BUNDLE_IDENTIFIER = abr.NectArTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -286,9 +304,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VMKDVWCB45;
+				DEVELOPMENT_TEAM = 9BAZ4456C2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NectArTest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -300,7 +319,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abr.NectAr;
+				PRODUCT_BUNDLE_IDENTIFIER = abr.NectArTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -334,6 +353,36 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Bee;
+		};
+		642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Router_3d;
+		};
+		645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Router;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		642379A63024528F00CFEE71 /* Bee */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Bee;
+		};
+		642379AB3024926500CFEE71 /* Router_3d */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Router_3d;
+		};
+		645740433020B31800CDEF0D /* Router */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Router;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 64B5DCF7301DD212004E2683 /* Project object */;
 }
