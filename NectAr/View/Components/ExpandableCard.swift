@@ -27,15 +27,11 @@ struct ExpandableCard: View {
                 HStack {
                     Spacer()
                     if isExpanded {
-                        Button(action: {
+                        CloseButton(action: {
                             withAnimation(easeInBack) {
                                 expandedStoryID = nil
                             }
-                        }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 65))
-                                .foregroundColor(.gray)
-                        }
+                        })
                         .transition(.opacity)
                     }
                 }
@@ -46,34 +42,31 @@ struct ExpandableCard: View {
                         Button(action: {
                             print("Play button tapped") // test
                         }) {
-                            Text("Play")
-                                .font(.title2.bold())
-                                .padding(.horizontal, 32)
-                                .padding(.vertical, 12)
-                                .background(Color.gray)
-                                .foregroundColor(.white)
-                                .clipShape(Capsule())
+                            Image("RectanglePlayButton")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 65)
                         }
                         .transition(.opacity)
                     }
                 }
             }
-            .padding(24)
+            .padding(44)
             
             .frame(width: isExpanded ? 1100 : 300, height: isExpanded ? 750 : 200)
             .background(Color(white: 0.9))
             .clipShape(RoundedRectangle(cornerRadius: 32))
             
             ZStack {
-                Color.gray
+                Image("StoryCard")
+                    .resizable()
+                
                 Image(story.icon)
                     .resizable()
                     .padding(75)
             }
-            .frame(width: 475, height: 475)
-            .clipShape(RoundedRectangle(cornerRadius: 24))
-            .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-            .offset(x: isExpanded ? -220 : 0)
+            .frame(width: 525, height: 525)
+            .offset(x: isExpanded ? -225 : 0)
             .onTapGesture {
                 guard isActive else { return }
                 
