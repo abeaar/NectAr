@@ -85,7 +85,7 @@ Assigning it is what starts the per-frame preview loop.
 
   ── on tap of the confirm button ─────────────────────────────────────
 
-  PlacementActionButtonsView              View/Components/PlacementActionButtonsView.swift
+  PlacementActionButton                   View/Components/PlacementActionButton.swift
         │
         ├─ isComplete == false ──▶ confirmPlacement()
         │                               │  raycast screen center

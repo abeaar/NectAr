@@ -3,10 +3,10 @@ import SwiftUI
 struct DeviceSelectorView: View {
     let controller: PlacementSceneController
     let mascotController: MascotOnboardingController
-    private static let itemSize: CGFloat = 97
+    private static let itemSize: CGFloat = 100
 
     var body: some View {
-        VStack(spacing: 35) {
+        VStack(spacing: 16) {
             ForEach(DeviceKind.allCases, id: \.self) { kind in
                 let isPlaced = controller.placedKinds.contains(kind)
 
@@ -14,25 +14,15 @@ struct DeviceSelectorView: View {
                     guard !mascotController.isActive else { return }
                     controller.selectedDeviceKind = kind
                 } label: {
-                    VStack(spacing: 4) {
-                        Image(systemName: isPlaced ? "checkmark.circle.fill" : kind.icon)
-                            .font(.title2)
-                        Text(kind.label)
-                            .font(.caption)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
-                    }
-                    .frame(width: Self.itemSize, height: Self.itemSize)
-                    .background(
-                        controller.selectedDeviceKind == kind
-                            ? Color.accentColor.opacity(0.4)
-                            : Color.black.opacity(0.4)
-                    )
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    // The card artwork already contains the device label, so there's
+                    // no separate Text here — see DeviceKind.icon.
+                    Image(kind.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: Self.itemSize)
                 }
                 .disabled(isPlaced)
-                .opacity(isPlaced ? 0.4 : 1.0)
+                .opacity(isPlaced ? 0.5 : 1.0)
             }
         }
         .padding(.leading, 31)

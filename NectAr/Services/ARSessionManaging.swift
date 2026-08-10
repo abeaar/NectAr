@@ -10,5 +10,6 @@ import ARKit
 protocol ARSessionManaging: AnyObject {
     var session: ARSession { get }
     var trackingFailureReason: TrackingFailureReason? { get }
+    var sessionError: String? { get }
     func start()
 }

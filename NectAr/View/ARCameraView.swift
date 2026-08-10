@@ -12,6 +12,7 @@ struct ARCameraView: View {
     let arViewModel: ARViewModel<ARSessionManager>
     let placementController: PlacementSceneController
     let mascotController: MascotOnboardingController
+    let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
     @State private var isDebugModeOn = false
 
@@ -24,9 +25,15 @@ struct ARCameraView: View {
                 CrosshairView()
             }
             HintTextView(hintText: mascotController.mascotHint ?? placementController.placementDistanceHint ?? arViewModel.hintText)
-            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
-            PlacementActionButtonsView(placementController: placementController, mascotController: mascotController, onComplete: onComplete)
-            BackButton {}
+//            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
+            BackButton {
+                placementController.stopPreview()
+                onBack()
+            }
+        }
+        .overlay(alignment: .trailing) {
+            PlacementActionButton(placementController: placementController, mascotController: mascotController, onComplete: onComplete)
+                .padding(.trailing, 24)
         }
         .safeAreaInset(edge: .leading) {
             DeviceSelectorView(controller: placementController, mascotController: mascotController)

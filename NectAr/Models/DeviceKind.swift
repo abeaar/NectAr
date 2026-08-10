@@ -26,11 +26,14 @@ enum DeviceKind: CaseIterable, Hashable {
         }
     }
 
+    /// Asset-catalog name of the device selector card, not an SF Symbol — the artwork
+    /// carries the icon and the label together, so `DeviceSelectorView` draws it with
+    /// `Image(_:)` rather than `Image(systemName:)`.
     var icon: String {
         switch self {
-        case .deviceA: return "iphone"
-        case .router: return "wifi.router"
-        case .deviceB: return "ipad"
+        case .deviceA: return "DeviceA"
+        case .router: return "Router"
+        case .deviceB: return "DeviceB"
         }
     }
 }

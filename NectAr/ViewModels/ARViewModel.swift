@@ -34,7 +34,12 @@ final class ARViewModel<Manager: ARSessionManaging> {
 
     /// User-facing hint derived from the session's current tracking-failure reason —
     /// e.g. "Move your device to find a surface" while no plane has been found yet.
+    /// Takes priority over tracking state, since a failed session never gets far
+    /// enough to have a tracking-failure reason at all.
     var hintText: String {
+        if let sessionError = sessionManager.sessionError {
+            return sessionError
+        }
         switch sessionManager.trackingFailureReason {
         case .none:
             return "Move your device to find a surface"

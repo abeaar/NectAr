@@ -13,12 +13,26 @@ import ARKit
 final class ARSessionManager: NSObject, ARSessionManaging, ARSessionDelegate {
     let session = ARSession()
     var trackingFailureReason: TrackingFailureReason?
+    /// Set when `session.run()` fails outright — e.g. camera permission denied. Distinct
+    /// from `trackingFailureReason`, which only covers a *running* session's tracking
+    /// quality; without this, a failed session left `hintText` stuck on "Move your
+    /// device to find a surface" with no camera feed and no indication why.
+    var sessionError: String?
 
     func start() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal, .vertical]
         session.delegate = self
         session.run(configuration)
+    }
+
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        print("ARSession failed: \(error)")
+        if let arError = error as? ARError, arError.code == .cameraUnauthorized {
+            sessionError = "Camera access is required. Enable it in Settings > NectAr > Camera."
+        } else {
+            sessionError = error.localizedDescription
+        }
     }
 
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {

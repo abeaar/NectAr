@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentPhase: AppPhase = .preparation
+    @State private var currentPhase: AppPhase = .menu
     @State private var arViewModel = ARViewModel()
     @State private var placementController = PlacementSceneController()
     @State private var mascotController = MascotOnboardingController()
 
     var body: some View {
         switch currentPhase {
+        case .menu:
+            MenuView {
+                currentPhase = .preparation
+            }
         case .preparation:
-            PreparationView(arViewModel: arViewModel, placementController: placementController, mascotController: mascotController) { placedTopology in
+            PreparationView(arViewModel: arViewModel, placementController: placementController, mascotController: mascotController, onBack: {
+                currentPhase = .menu
+            }) { placedTopology in
                 currentPhase = .simulation(placedTopology)
             }
         case .simulation(let topology):

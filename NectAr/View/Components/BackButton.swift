@@ -6,14 +6,13 @@ struct BackButton: View {
     var body: some View {
         HStack {
             Button(action: action) {
-                Image(systemName: "chevron.left")
-                    .padding()
-                    .background(.black.opacity(0.6))
-                    .foregroundStyle(.white)
-                    .clipShape(Circle())
+                Image("BackButton")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 55)
             }
-            .padding(.leading, 31)
-            .padding(.top, 31)
+            .padding(.leading, 24)
+            .padding(.top, 16)
             Spacer()
         }
         .ignoresSafeArea(edges: .leading)
