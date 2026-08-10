@@ -83,6 +83,8 @@ def Xform "Root"
     def RealityKitTimeline "MailOpenClose"
     {
         reorder nameChildren = ["Track", "Track2", "Track2"]
+        bool isActive = 0
+
         def RealityKitTrack "Track"
         {
             def RealityKitAction "Transform_To"

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PlacementActionButton: View {
-
+    
     let placementController: PlacementSceneController
     let mascotController: MascotOnboardingController
     let onComplete: (PlacedTopology) -> Void
-
+    
     var body: some View {
         HStack {
             VStack(spacing: 16) {
@@ -23,7 +23,7 @@ struct PlacementActionButton: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 55)
-
+                
                 Button(action: {
                     placementController.undoLastPlacement()
                 }) {
@@ -35,7 +35,7 @@ struct PlacementActionButton: View {
                 .padding(.bottom, 16)
                 .disabled(!placementController.canUndo)
                 .opacity(placementController.canUndo ? 1.0 : 0.5)
-
+                
                 Button(action: {
                     if mascotController.isActive {
                         mascotController.attemptFind()
@@ -54,7 +54,7 @@ struct PlacementActionButton: View {
             }
         }
     }
-
+    
     /// Resolves to asset-catalog images rather than SF Symbols, so the artwork stays
     /// in sync with the UI branch. No separate icon for the mascot-hunt phase — the
     /// bee itself is already visible in the AR scene, so a plus here is enough.

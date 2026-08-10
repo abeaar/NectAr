@@ -8,20 +8,32 @@
 import Foundation
 import RealityKit
 import UIKit
-import Router
+import Mail_3d
 import Router_3d
 
 /// Builds the RealityKit entity for each placed node, including its floating text
-/// label. The router model is loaded from the ``Router_3d`` package bundle
-/// (`router_3dBundle`); the mail-packet model still lives in the older ``Router``
-/// package bundle (`routerBundle`). Device markers are procedural discs, not package
-/// assets.
+/// label. Device markers are procedural discs, not package assets.
 enum DeviceEntityLoader {
     private static let markerLabelHeight: Float = 0.15
     private static let routerLabelHeight: Float = 0.3
-    
+
     private static let rangeSphereFillOpacity: Float = 0.22
     private static let rangeSphereFillColor = UIColor(red: 0.8824, green: 0.7451, blue: 0.9059, alpha: 1) // #E1BEE7
+
+    private struct ModelDescriptor {
+        let entityName: String
+        let bundle: Bundle
+        let scale: SIMD3<Float>
+        let labelHeight: Float
+    }
+
+    /// Kinds with a dedicated 3D asset. A kind absent from this table falls back to the
+    /// procedural marker disc — adding a future kind with its own model is then just one
+    /// entry here, no other change in this file.
+    private static let modelDescriptors: [DeviceKind: ModelDescriptor] = [
+        // Placeholder scale, needs visual tuning against a real router-sized object.
+        .router: ModelDescriptor(entityName: "Router_3d", bundle: router_3dBundle, scale: [1.0, 1.0, 1.0], labelHeight: routerLabelHeight)
+    ]
 
     /// Loads the entity for `kind` and attaches its floating label. `includeRangeSphere`
     /// gates the ghost preview off so the sphere only shows once the router is placed.
@@ -29,17 +41,18 @@ enum DeviceEntityLoader {
         let entity: Entity
         let labelHeight: Float
 
-        switch kind {
-        case .router:
-            entity = try await Entity(named: "Router_3d", in: router_3dBundle)
-            // Placeholder scale, needs visual tuning against a real router-sized object.
-            entity.scale = [1.0, 1.0, 1.0]
-            labelHeight = routerLabelHeight
-            let attributes = RouterAttributes()
-            if includeRangeSphere && attributes.isOn {
-                attachRangeSphere(to: entity, range: attributes.range)
+        if let descriptor = modelDescriptors[kind] {
+            entity = try await Entity(named: descriptor.entityName, in: descriptor.bundle)
+            entity.scale = descriptor.scale
+            labelHeight = descriptor.labelHeight
+
+            if kind == .router {
+                let attributes = RouterAttributes()
+                if includeRangeSphere && attributes.isOn {
+                    attachRangeSphere(to: entity, range: attributes.range)
+                }
             }
-        case .deviceA, .deviceB:
+        } else {
             entity = makeDeviceMarker()
             labelHeight = markerLabelHeight
         }
@@ -49,7 +62,7 @@ enum DeviceEntityLoader {
     }
 
     static func loadMailPacket() async throws -> Entity {
-        let entity = try await Entity(named: "mail", in: routerBundle)
+        let entity = try await Entity(named: "Mail", in: mail_3dBundle)
         // Hardcode the size (scale) of the mail packet here
         entity.scale = [0.3, 0.3, 0.3]
         return entity

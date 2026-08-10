@@ -10,6 +10,7 @@
 		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
 		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
 		645740443020B31800CDEF0D /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 645740433020B31800CDEF0D /* Router */; };
+		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */,
 				645740443020B31800CDEF0D /* Router in Frameworks */,
 				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
 				642379A73024528F00CFEE71 /* Bee in Frameworks */,
@@ -77,6 +79,7 @@
 				645740433020B31800CDEF0D /* Router */,
 				642379A63024528F00CFEE71 /* Bee */,
 				642379AB3024926500CFEE71 /* Router_3d */,
+				64D3126E302A07D4007FC7DE /* Mail_3d */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -110,6 +113,7 @@
 				645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */,
 				642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */,
 				642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */,
+				64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
@@ -367,6 +371,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Router;
 		};
+		64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Mail_3d;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -381,6 +389,10 @@
 		645740433020B31800CDEF0D /* Router */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Router;
+		};
+		64D3126E302A07D4007FC7DE /* Mail_3d */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mail_3d;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
