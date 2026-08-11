@@ -1,18 +1,16 @@
 import SwiftUI
 
 struct DeviceSelectorView: View {
-    let controller: PlacementSceneController
-    let mascotController: MascotOnboardingController
+    let viewModel: PreparationViewModel
     private static let itemSize: CGFloat = 100
 
     var body: some View {
         VStack(spacing: 16) {
             ForEach(DeviceKind.allCases, id: \.self) { kind in
-                let isPlaced = controller.placedKinds.contains(kind)
+                let isPlaced = viewModel.placedKinds.contains(kind)
 
                 Button {
-                    guard !mascotController.isActive else { return }
-                    controller.selectedDeviceKind = kind
+                    viewModel.selectDevice(kind)
                 } label: {
                     // The card artwork already contains the device label, so there's
                     // no separate Text here — see DeviceKind.icon.

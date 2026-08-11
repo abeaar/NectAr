@@ -1,0 +1,107 @@
+@startuml Placement_Sequence
+title NectAr — Alur mode Placement, dari input View sampai efek di scene
+
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 170
+
+actor User
+participant "ARContainerView" as Container
+participant "DeviceSelectorView" as Selector
+participant "PlacementActionButton" as ActionBtn
+participant "PreparationView" as PrepView
+participant "PlacementSceneController" as Ctrl
+participant "PlacementPreviewCoordinator" as Preview
+participant "PlacementDistance" as Gate
+participant "PlacementLedger" as Ledger
+participant "DeviceEntityLoader" as Loader
+participant "AnchoredEntityPlacer" as Placer
+participant "ARKit\n(raycast)" as ARKit
+
+== Masuk layar: wiring arView ==
+Container -> Ctrl: arView = arView
+activate Ctrl
+Ctrl -> Preview: arView = arView
+Ctrl -> Gate: arView = arView
+Ctrl -> Ctrl: subscribeToSceneUpdates()
+
+== Loop per-frame (selama layar aktif) ==
+loop tiap SceneEvents.Update
+  Ctrl -> ARKit: raycast(tengah layar)
+  Ctrl -> Preview: update(isPlaced:)
+  activate Preview
+  Preview -> Preview: gerakkan ghost entity (lerp/slerp)
+  deactivate Preview
+  Ctrl -> Gate: update(for: kind, isPlaced:)
+  activate Gate
+  Gate -> Gate: hitung jarak kamera → titik raycast
+  Gate --> Ctrl: hint diperbarui
+  deactivate Gate
+end
+PrepView -> Ctrl: baca placementDistanceHint
+PrepView -> PrepView: HintTextView menampilkan hint
+
+== Aksi 1: pilih device ==
+User -> Selector: tap kartu device
+Selector -> Ctrl: send(.selectDevice(kind))
+Ctrl -> Ctrl: guard kind berubah?
+Ctrl -> Preview: show(kind)  [hanya jika .router]
+activate Preview
+Preview -> Preview: teardown() task lama\n(cegah anchor bocor bila\nganti device dua kali cepat)
+Preview -> Loader: load(kind, includeRangeSphere: false)
+Loader --> Preview: Entity
+Preview -> Preview: try Task.checkCancellation()\n(bail bila sudah di-supersede)
+Preview -> Preview: applyGhostMaterial + tambah ke scene
+deactivate Preview
+
+== Aksi 2: konfirmasi penempatan ==
+User -> ActionBtn: tap tombol place
+ActionBtn -> Ctrl: send(.confirmPlacement)
+Ctrl -> Ctrl: guard canPlace(kind)\n&& !placementsInFlight.contains(kind)
+Ctrl -> Ctrl: guard placementDistanceHint == nil
+Ctrl -> ARKit: raycast(tengah layar)
+ARKit --> Ctrl: worldTransform
+Ctrl -> Ctrl: placementsInFlight.insert(kind)
+Ctrl -> Loader: load(kind)
+activate Loader
+Loader --> Ctrl: Entity
+deactivate Loader
+Ctrl -> Placer: place(entity, at: worldTransform, in: scene)
+Placer --> Ctrl: AnchorEntity
+Ctrl -> Ledger: record(kind, transform, anchor)
+Ctrl -> Ctrl: placementsInFlight.remove(kind)\n(via defer, jalan juga saat gagal)
+
+== Aksi 3: undo ==
+User -> ActionBtn: tap tombol undo
+ActionBtn -> Ctrl: send(.undoLastPlacement)
+Ctrl -> Ledger: removeLast()
+Ledger --> Ctrl: (lastKind, anchor)
+Ctrl -> Placer: remove(anchor, from: scene)
+opt lastKind == selectedDeviceKind && previewable
+  Ctrl -> Preview: show(lastKind)
+end
+
+== Aksi 4a: selesai menempatkan (lanjut ke simulasi) ==
+User -> ActionBtn: tap tombol place (isComplete == true)
+ActionBtn -> Ctrl: send(.finishPlacement)
+Ctrl -> Preview: teardown()
+Ctrl -> Ctrl: batalkan updateSubscription
+ActionBtn -> Ctrl: baca placedTransforms
+ActionBtn -> ActionBtn: onComplete(PlacedTopology(transforms:))
+note right: ARExperienceView pindah phase\nke .simulation — lihat diagram lain
+
+== Aksi 4b: kembali ke menu ==
+User -> PrepView: tap tombol back
+PrepView -> Ctrl: send(.exitToMenu)
+Ctrl -> Preview: teardown()
+Ctrl -> Ledger: removeAll()
+Ledger --> Ctrl: [AnchorEntity]
+loop tiap anchor
+  Ctrl -> Placer: remove(anchor, from: scene)
+end
+Ctrl -> Gate: reset()
+Ctrl -> Ctrl: selectedDeviceKind = .deviceA
+deactivate Ctrl
+PrepView -> PrepView: mascotController.tearDown()\narViewModel.pause()\nonBack()
+
+@enduml

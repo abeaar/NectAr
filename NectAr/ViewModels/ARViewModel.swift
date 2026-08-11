@@ -7,15 +7,6 @@ import ARKit
 import RealityKit
 import Foundation
 
-/// Wraps an ``ARSessionManaging`` conformer and exposes AR tracking state as
-/// presentation-ready `hintText`. Owns the single `ARView` shared by both the
-/// placement and simulation phases.
-///
-/// Generic over the protocol (rather than concretely typed to ``ARSessionManager``)
-/// purely to honor PRD goal G5 — a fake conformer could be substituted for previews
-/// without touching a real `ARSession`. In practice, only `ARViewModel<ARSessionManager>`
-/// is ever instantiated (see the `Manager == ARSessionManager` convenience `init()`
-/// below).
 @Observable
 final class ARViewModel<Manager: ARSessionManaging> {
 
@@ -28,14 +19,7 @@ final class ARViewModel<Manager: ARSessionManaging> {
         self.arView.session = sessionManager.session
     }
 
-    var arSession: ARSession {
-        sessionManager.session
-    }
 
-    /// User-facing hint derived from the session's current tracking-failure reason —
-    /// e.g. "Move your device to find a surface" while no plane has been found yet.
-    /// Takes priority over tracking state, since a failed session never gets far
-    /// enough to have a tracking-failure reason at all.
     var hintText: String {
         if let sessionError = sessionManager.sessionError {
             return sessionError
@@ -51,13 +35,15 @@ final class ARViewModel<Manager: ARSessionManaging> {
             return "Point at a surface with more detail or light"
         case .relocalizing:
             return "Recovering tracking, move slowly"
-        case .noPlaneYet:
-            return "Move your device to find a surface"
         }
     }
 
     func start() {
         sessionManager.start()
+    }
+
+    func pause() {
+        sessionManager.pause()
     }
 }
 

@@ -1,8 +1,6 @@
 import simd
 
-/// Straight-line distance check for whether a device is within a router's range,
-/// independent of `WallObstructionChecker`'s wall-crossing test.
-enum RouterRangeChecker {
+enum SimulationRangeChecker {
     static func isInRange(device: simd_float4x4, router: simd_float4x4, range: Float) -> Bool {
         simd_distance(device.translation, router.translation) <= range
     }

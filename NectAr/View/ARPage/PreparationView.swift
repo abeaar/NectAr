@@ -2,20 +2,39 @@
 //  PreparationView.swift
 //  NectAr
 //
-//  Created by abr on 02/08/26.
+//  Created by abr on 01/08/26.
 //
 
 import Foundation
 import SwiftUI
 
 struct PreparationView: View {
-    let arViewModel: ARViewModel<ARSessionManager>
-    let placementController: PlacementSceneController
-    let mascotController: MascotOnboardingController
+    let viewModel: PreparationViewModel
     let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
 
     var body: some View {
-        ARCameraView(arViewModel: arViewModel, placementController: placementController, mascotController: mascotController, onBack: onBack, onComplete: onComplete)
+        ZStack(alignment: .top) {
+            ARContainerView(viewModel: viewModel)
+                .ignoresSafeArea()
+
+            if !viewModel.isPreviewActive {
+                CrosshairView()
+            }
+            HintTextView(hintText: viewModel.hintText)
+            BackButton {
+                viewModel.exitToMenu(then: onBack)
+            }
+        }
+        .overlay(alignment: .trailing) {
+            PreparationActionButton(viewModel: viewModel, onComplete: onComplete)
+                .padding(.trailing, 24)
+        }
+        .safeAreaInset(edge: .leading) {
+            DeviceSelectorView(viewModel: viewModel)
+        }
+        .onAppear {
+            viewModel.start()
+        }
     }
 }

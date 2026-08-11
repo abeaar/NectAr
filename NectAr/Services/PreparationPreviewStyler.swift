@@ -1,9 +1,7 @@
 import RealityKit
 import UIKit
 
-/// Recolors a preview entity into a flat, translucent grey — the "not placed
-/// yet" ghost look used by the live placement preview at the crosshair.
-enum PlacementPreviewStyler {
+enum PreparationPreviewStyler {
     private static let ghostColor = UIColor(hex: 0x999999)
     private static let ghostOpacity: PhysicallyBasedMaterial.Opacity = 0.35
 

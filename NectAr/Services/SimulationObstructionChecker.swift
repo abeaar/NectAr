@@ -1,25 +1,9 @@
 import ARKit
 import simd
 
-/// Approximates whether a real wall stands between two AR world points, using ARKit's
-/// detected vertical plane anchors (no LiDAR scene mesh required).
-///
-/// For each candidate wall, both points are transformed into the wall's local space;
-/// a sign change in local Y means the segment crosses the wall's infinite surface, and
-/// the crossing point is then checked against the wall's *measured* bounds
-/// (`planeExtent`, padded for detection noise) so a segment that merely passes beside
-/// a wall isn't counted as blocked.
-enum WallObstructionChecker {
-    /// Padding added to each detected wall's bounds to absorb noisy real-world plane edges.
+enum SimulationObstructionChecker {
     private static let boundsPadding: Float = 0.075
 
-    /// Returns whether a real detected wall lies between `from` and `to`.
-    ///
-    /// - Parameters:
-    ///   - from: World-space start point of the leg being checked.
-    ///   - to: World-space end point of the leg being checked.
-    ///   - planes: Currently-tracked ARKit plane anchors (any alignment — only
-    ///     `.vertical` ones are considered).
     static func isObstructed(from: simd_float4x4, to: simd_float4x4, planes: [ARPlaneAnchor]) -> Bool {
         let walls = planes.filter { $0.alignment == .vertical }
         return walls.contains { wall in
@@ -38,8 +22,7 @@ enum WallObstructionChecker {
         let t = localFrom.y / (localFrom.y - localTo.y)
         let intersection = localFrom + (localTo - localFrom) * t
 
-        // Ignores planeExtent.rotationOnYAxis for simplicity — the padding below absorbs
-        // the resulting slack for near-square wall patches.
+
         let extent = wall.planeExtent
         let halfWidth = extent.width / 2 + boundsPadding
         let halfHeight = extent.height / 2 + boundsPadding

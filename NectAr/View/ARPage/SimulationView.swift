@@ -1,25 +1,33 @@
 import SwiftUI
 
 struct SimulationView: View {
-    let arViewModel: ARViewModel<ARSessionManager>
     let topology: PlacedTopology
     let onExit: () -> Void
-    @State private var simulationController = SimulationSceneController()
+
+    @State private var viewModel: SimulationViewModel
+
+    init(arViewModel: ARViewModel<ARSessionManager>, topology: PlacedTopology, onExit: @escaping () -> Void) {
+        self.topology = topology
+        self.onExit = onExit
+        _viewModel = State(initialValue: SimulationViewModel(
+            arViewModel: arViewModel,
+            simulationController: SimulationSceneController()
+        ))
+    }
 
     var body: some View {
         ZStack(alignment: .top) {
-            SimulationContainerView(arView: arViewModel.arView, controller: simulationController)
+            SimulationContainerView(viewModel: viewModel)
                 .ignoresSafeArea()
 
-            if let hint = simulationController.deadzoneHint ?? simulationController.currentLegHint {
+            if let hint = viewModel.hintText {
                 HintTextView(hintText: hint)
             }
 
             HStack {
                 Spacer()
                 Button {
-                    simulationController.stopAnimating()
-                    onExit()
+                    viewModel.exit(then: onExit)
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 32))
@@ -33,7 +41,7 @@ struct SimulationView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
         }
         .onAppear {
-            simulationController.startAnimating(topology: topology)
+            viewModel.startAnimating(topology: topology)
         }
     }
 }
