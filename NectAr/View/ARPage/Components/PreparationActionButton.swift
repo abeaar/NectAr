@@ -9,20 +9,21 @@ import SwiftUI
 
 struct PreparationActionButton: View {
 
-    let viewModel: PreparationViewModel
+    let placementViewModel: PlacementViewModel
+    let mascotViewModel: MascotViewModel
     let onComplete: (PlacedTopology) -> Void
 
     var body: some View {
         HStack {
             VStack(spacing: 16) {
-        
+
                 Image("Redo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 55)
 
                 Button(action: {
-                    viewModel.undoLastPlacement()
+                    placementViewModel.undoLastPlacement()
                 }) {
                     Image("Undo")
                         .resizable()
@@ -30,11 +31,11 @@ struct PreparationActionButton: View {
                         .frame(width: 55)
                 }
                 .padding(.bottom, 16)
-                .disabled(!viewModel.canUndo)
-                .opacity(viewModel.canUndo ? 1.0 : 0.5)
+                .disabled(!placementViewModel.canUndo)
+                .opacity(placementViewModel.canUndo ? 1.0 : 0.5)
 
                 Button(action: {
-                    viewModel.tapActionButton(onComplete: onComplete)
+                    tapAction()
                 }) {
                     Image(actionAssetName)
                         .resizable()
@@ -45,18 +46,26 @@ struct PreparationActionButton: View {
         }
     }
 
+    private func tapAction() {
+        if mascotViewModel.isActive {
+            mascotViewModel.attemptFind()
+        } else if placementViewModel.isComplete {
+            placementViewModel.finishPlacement()
+            onComplete(PlacedTopology(transforms: placementViewModel.placedTransforms))
+        } else {
+            placementViewModel.confirmPlacement()
+        }
+    }
+
     private var actionAssetName: String {
-        viewModel.isComplete ? "PlayButton" : "PlusButton"
+        placementViewModel.isComplete ? "PlayButton" : "PlusButton"
     }
 }
 
 #Preview {
     PreparationActionButton(
-        viewModel: PreparationViewModel(
-            arViewModel: ARViewModel(),
-            placementController: PreparationSceneController(),
-            mascotController: MascotOnboardingController()
-        ),
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel(),
         onComplete: { _ in }
     )
 }

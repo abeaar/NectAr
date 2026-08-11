@@ -1,18 +1,15 @@
+//
+//  PlacementController.swift
+//  NectAr
+//
+
 import Foundation
 import RealityKit
 import ARKit
 import Combine
 
-enum PreparationIntent {
-    case selectDevice(DeviceKind)
-    case confirmPlacement
-    case undoLastPlacement
-    case finishPlacement
-    case exitToMenu
-}
-
 @Observable
-final class PreparationSceneController: ARSceneDriven {
+final class PlacementController: ARSceneDriven {
     private let previewCoordinator = PreparationPreviewCoordinator()
     private let distanceGate = PreparationDistance()
     private var ledger = PreparationLedger()
@@ -45,24 +42,7 @@ final class PreparationSceneController: ARSceneDriven {
         !placedKinds.contains(kind)
     }
 
-    // MARK: - Intent
-
-    func send(_ intent: PreparationIntent) {
-        switch intent {
-        case .selectDevice(let kind):
-            selectDevice(kind)
-        case .confirmPlacement:
-            confirmPlacement()
-        case .undoLastPlacement:
-            undoLastPlacement()
-        case .finishPlacement:
-            stopPreview()
-        case .exitToMenu:
-            tearDown()
-        }
-    }
-
-    private func selectDevice(_ kind: DeviceKind) {
+    func selectDevice(_ kind: DeviceKind) {
         guard selectedDeviceKind != kind else { return }
         selectedDeviceKind = kind
         if PreparationPreviewCoordinator.isPreviewable(kind) {
@@ -72,7 +52,7 @@ final class PreparationSceneController: ARSceneDriven {
         }
     }
 
-    private func confirmPlacement() {
+    func confirmPlacement() {
         guard let arView else {
             print("AR view not ready yet")
             return
@@ -107,7 +87,7 @@ final class PreparationSceneController: ARSceneDriven {
         }
     }
 
-    private func undoLastPlacement() {
+    func undoLastPlacement() {
         guard let arView, let (lastKind, anchor) = ledger.removeLast() else { return }
         AnchoredEntityPlacer.remove(anchor, from: arView.scene)
 
@@ -116,13 +96,11 @@ final class PreparationSceneController: ARSceneDriven {
         }
     }
 
-    private func stopPreview() {
-        previewCoordinator.teardown()
-        updateSubscription?.cancel()
-        updateSubscription = nil
+    func finishPlacement() {
+        stopPreview()
     }
 
-    private func tearDown() {
+    func tearDown() {
         stopPreview()
 
         let anchors = ledger.removeAll()
@@ -135,7 +113,11 @@ final class PreparationSceneController: ARSceneDriven {
         selectedDeviceKind = .deviceA
     }
 
-    // MARK: - Per-frame wiring (infrastructure, not user input)
+    private func stopPreview() {
+        previewCoordinator.teardown()
+        updateSubscription?.cancel()
+        updateSubscription = nil
+    }
 
     private func subscribeToSceneUpdates() {
         guard let arView else { return }

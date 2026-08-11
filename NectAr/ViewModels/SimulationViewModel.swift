@@ -28,7 +28,7 @@ final class SimulationViewModel {
     }
 
     // Wiring the ARView into every scene controller is infrastructure, not a user
-    // action — same reasoning as PreparationViewModel.attachARView(). SimulationContainerView
+    // action — same reasoning as PlacementViewModel.attachARView(). SimulationContainerView
     // (UIViewRepresentable) is the only caller.
     func attachARView() {
         for controller in sceneControllers {

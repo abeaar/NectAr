@@ -9,32 +9,52 @@ import Foundation
 import SwiftUI
 
 struct PreparationView: View {
-    let viewModel: PreparationViewModel
+    let arViewModel: ARViewModel<ARSessionManager>
+    
+    let placementViewModel: PlacementViewModel
+    
+    let mascotViewModel: MascotViewModel
+    
     let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
 
+    private var hintText: String {
+        mascotViewModel.hintText ?? placementViewModel.hintText ?? arViewModel.hintText
+    }
+
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(viewModel: viewModel)
-                .ignoresSafeArea()
+            ARContainerView(
+                arViewModel: arViewModel,
+                placementViewModel: placementViewModel,
+                mascotViewModel: mascotViewModel
+            )
+            .ignoresSafeArea()
 
-            if !viewModel.isPreviewActive {
+            if !placementViewModel.isPreviewActive {
                 CrosshairView()
             }
-            HintTextView(hintText: viewModel.hintText)
+            HintTextView(hintText: hintText)
             BackButton {
-                viewModel.exitToMenu(then: onBack)
+                placementViewModel.tearDown()
+                mascotViewModel.tearDown()
+                arViewModel.pause()
+                onBack()
             }
         }
         .overlay(alignment: .trailing) {
-            PreparationActionButton(viewModel: viewModel, onComplete: onComplete)
-                .padding(.trailing, 24)
+            PreparationActionButton(
+                placementViewModel: placementViewModel,
+                mascotViewModel: mascotViewModel,
+                onComplete: onComplete
+            )
+            .padding(.trailing)
         }
         .safeAreaInset(edge: .leading) {
-            DeviceSelectorView(viewModel: viewModel)
+            DeviceSelectorView(placementViewModel: placementViewModel, mascotViewModel: mascotViewModel)
         }
         .onAppear {
-            viewModel.start()
+            arViewModel.start()
         }
     }
 }

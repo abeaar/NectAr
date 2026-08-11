@@ -8,11 +8,14 @@ import RealityKit
 import ARKit
 
 struct ARContainerView: UIViewRepresentable {
-    let viewModel: PreparationViewModel
+    let arViewModel: ARViewModel<ARSessionManager>
+    let placementViewModel: PlacementViewModel
+    let mascotViewModel: MascotViewModel
 
     func makeUIView(context: Context) -> ARView {
-        viewModel.attachARView()
-        return viewModel.arView
+        placementViewModel.attachARView(arViewModel.arView)
+        mascotViewModel.attachARView(arViewModel.arView)
+        return arViewModel.arView
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {}
