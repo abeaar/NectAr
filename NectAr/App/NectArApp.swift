@@ -11,6 +11,7 @@ import SwiftUI
 struct NectArApp: App {
     var body: some Scene {
         WindowGroup {
+//            TestLoaderView()
             ContentView()
         }
     }

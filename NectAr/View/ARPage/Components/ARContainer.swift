@@ -5,7 +5,6 @@
 //
 import SwiftUI
 import RealityKit
-import ARKit
 
 struct ARContainerView: UIViewRepresentable {
     let arViewModel: ARViewModel<ARSessionManager>

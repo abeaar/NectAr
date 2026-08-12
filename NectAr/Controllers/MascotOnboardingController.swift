@@ -40,9 +40,8 @@ final class MascotOnboardingController: ARSceneDriven {
 
         Task {
             do {
-                let entity = try await Entity(named: "Bee", in: beeBundle)
+                let entity = try await DeviceEntityLoader.loadEntity(named: "Bee", in: beeBundle, scale: SIMD3<Float>(repeating: Self.beeScale))
                 entity.generateCollisionShapes(recursive: true)
-                entity.scale = SIMD3<Float>(repeating: Self.beeScale)
 
                 let transform = MascotSpawnPlacer.randomSpawnTransform(around: arView.cameraTransform)
                 let anchor = AnchoredEntityPlacer.place(entity, at: transform, in: arView.scene)

@@ -6,11 +6,17 @@ struct SimulationView: View {
 
     @State private var viewModel: SimulationViewModel
 
-    init(arViewModel: ARViewModel<ARSessionManager>, topology: PlacedTopology, onExit: @escaping () -> Void) {
+    init(
+        arViewModel: ARViewModel<ARSessionManager>,
+        mascotViewModel: MascotViewModel,
+        topology: PlacedTopology,
+        onExit: @escaping () -> Void
+    ) {
         self.topology = topology
         self.onExit = onExit
         _viewModel = State(initialValue: SimulationViewModel(
             arViewModel: arViewModel,
+            mascotViewModel: mascotViewModel,
             simulationController: SimulationSceneController()
         ))
     }
