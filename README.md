@@ -1,35 +1,68 @@
 # NectAr
 
-## 📂 Arsitektur Proyek
+Aplikasi iOS AR (ARKit + RealityKit + SwiftUI) yang membuat topologi jaringan
+terlihat di ruangan pengguna. Pengguna menempatkan tiga marker — **Device A**,
+**Router**, dan **Device B** — di permukaan nyata, lalu menonton "paket surat"
+berjalan A → Router → B → Router → A untuk menunjukkan bahwa trafik itu dirutekan
+(bukan langsung) dan tiap hop memakan waktu nyata. Detail produk lengkap ada di
+[NectAr/PRD.md](NectAr/PRD.md).
 
-Proyek ini mengadopsi arsitektur **MVVM (Model-View-ViewModel)** yang dipadukan dengan prinsip *Clean Architecture* dan *Dependency Injection* untuk memisahkan logika antarmuka (UI) dengan sistem pengenalan ruang (AR).
+## Cara jalankan
 
-### Struktur Direktori
+Build & run lewat Xcode (`NectAr.xcodeproj`, scheme `NectAr`), atau:
 
-- **`App/`**: Titik masuk utama aplikasi (Entry point).
-  - *File*: `NectArApp.swift`.
-- **`Models/`**: Definisi struktur data, entitas murni, enum, dan *state* tanpa dependensi UI.
-  - *File*: `AppPhase.swift`, `Story.swift`, `TrackingFailureReason.swift`.
-- **`Services/`**: Layer integrasi *framework* (misal: ARKit) dan *heavy-lifting* logika inti.
-  - *File*: `ARSessionManager.swift` (implementasi), `ARSessionManaging.swift` (protokol).
-- **`ViewModels/`**: Pengelola *state* UI. Menerjemahkan data dari *Services* menjadi format presentasi yang reaktif (`@Observable`).
-  - *File*: `ARViewModel.swift`.
-- **`View/`**: Lapisan presentasi berbasis SwiftUI. Menangani *layout*, warna, dan komponen visual murni.
-  - *File*: `ContentView.swift`, `ARContainer.swift`, `PreparationView.swift`, `StoryView.swift`, `ARCameraView.swift`.
-- **`Resources/`**: Aset statis aplikasi.
-  - *File*: `Assets.xcassets`.
-- **`Repository/`**: *(Future)* Layer akses data (CoreData/SwiftData atau eksternal API).
-- **`Loaders/` & `Utilities/`**: Fungsi utilitas dan pemuat model 3D (usdz).
+```bash
+xcodebuild -project NectAr.xcodeproj -scheme NectAr -destination 'platform=iOS Simulator,name=iPhone 17' build
+```
 
----
+Fitur AR (kamera passthrough, plane detection, raycasting) butuh perangkat fisik —
+simulator bisa build tapi tracking/placement tidak akan berfungsi. Tidak ada test
+target di project ini.
 
-## 🔄 Alur Data (Data Flow)
+## 📂 Struktur project
 
-Aplikasi mengimplementasikan alur data **searah (unidirectional)** yang reaktif:
+- **`App/`** — entry point (`NectArApp.swift`).
+- **`Models/`** — data murni tanpa dependensi UI: `AppPhase`, `DeviceKind`,
+  `PlacedTopology`, `TrackingFailureReason`. (`Story`/`StoryCatalog` juga ada di sini,
+  tapi belum dipakai oleh View manapun.)
+- **`Services/`** — integrasi ARKit dan logika inti: `ARSessionManager` (+ protokol
+  `ARSessionManaging`), `AnchoredEntityPlacer`, `PlacementPreviewStyler`,
+  `WallObstructionChecker`.
+- **`ViewModels/`** — state UI reaktif (`@Observable`): `ARViewModel`,
+  `PlacementSceneController` (fase preparation), `SimulationSceneController` (fase
+  simulation).
+- **`Loaders/`** — `DeviceEntityLoader`, membangun entity 3D + label mengambang.
+- **`View/`** — lapisan presentasi SwiftUI: `ContentView`, `PreparationView`,
+  `SimulationView`, `ARCameraView`, dan `View/Components/*`.
 
-1. **[Hardware] Sensor ARKit**: Kamera mendeteksi perubahan (contoh: pergerakan terlalu cepat).
-2. **[Service] `ARSessionManager`**: Menangkap *event* delegasi ARKit dan memperbarui *state* internal (misal: `trackingFailureReason = .excessiveMotion`).
-3. **[ViewModel] `ARViewModel`**: Bereaksi terhadap perubahan di *Service*, lalu memprosesnya menjadi properti siap pakai untuk UI (misal: `hintText = "Slow down, moving too fast"`).
-4. **[View] `ContentView`**: SwiftUI membaca perubahan pada *ViewModel* (berkat `@Observable`) dan melakukan *render* ulang (re-render) pada komponen teks secara otomatis.
+Tidak ada database atau persistence layer — sesuai PRD, topologi yang ditempatkan
+tidak disimpan lintas sesi.
 
-Desain pemisahan lapisan (*Separation of Concerns*) ini membuat aplikasi memiliki *testability* tinggi dan lebih mudah dipelihara (*maintainable*).
+Paket lokal `Router` (`./Router`) berisi aset 3D (`Router.usdz`, `mail.usda`/`.usdz`)
+dan dipakai lewat `import Router`. Paket `Bee`, `Mail`, `Mail_3d`, `Router_3d` ada di
+root repo tapi belum di-import oleh target `NectAr` — anggap eksperimen/belum
+terhubung, bukan bagian aktif dari arsitektur.
+
+## 🔄 Alur data
+
+Alur searah (unidirectional), dari sensor ARKit sampai render SwiftUI:
+
+1. **ARKit** — delegate callback melaporkan perubahan tracking state.
+2. **`ARSessionManager`** — menangkap callback itu, memperbarui
+   `trackingFailureReason`.
+3. **`ARViewModel`** — menerjemahkan state itu jadi `hintText` siap tampil.
+4. **View** — SwiftUI re-render otomatis lewat `@Observable`.
+
+Untuk penempatan marker dan animasi paket surat, alurnya:
+
+```
+raycast layar tengah → PlacementSceneController.confirmPlacement()
+  → DeviceEntityLoader.load(kind) → AnchoredEntityPlacer.place()
+  → placedTransforms terkumpul → PlacedTopology → ContentView pindah ke fase simulation
+  → SimulationSceneController menganimasikan mail entity mengelilingi topologi
+```
+
+`AppPhase` (`.preparation` / `.simulation(PlacedTopology)`) berperan sebagai router
+aplikasi — tidak ada `NavigationStack`.
+
+Lihat [CLAUDE.md](CLAUDE.md) untuk detail arsitektur dan keputusan desain.

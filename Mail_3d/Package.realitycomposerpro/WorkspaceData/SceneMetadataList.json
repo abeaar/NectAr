@@ -1,10 +1,51 @@
 {
+  "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2" : {
+    "objectMetadataList" : [
+      [
+        "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
+        "Root",
+        "MailOpenClose",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
+        "Root",
+        "MailOpenClose"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "81823503-55E3-4C3F-B9A3-7F022905D5BF" : {
     "objectMetadataList" : [
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root",
-        "MailClose",
+        "Cone",
+        "Candle"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "MailOpen",
         "Track"
       ],
       {
@@ -33,34 +74,17 @@
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root",
-        "MailOpenClose"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
-        "Cone",
-        "Candle"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
         "MailOpenClose",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "MailClose",
         "Track"
       ],
       {
@@ -80,8 +104,15 @@
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root",
-        "MailOpen",
-        "Track"
+        "MailOpenClose"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root"
       ],
       {
         "isExpanded" : true,

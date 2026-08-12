@@ -1,0 +1,165 @@
+@startuml Placement_ClassDiagram
+title NectAr — Struktur mode Placement (View ↔ Controller ↔ Service)
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "View" #E8FDF3 {
+  class PreparationView {
+    +body: some View
+  }
+  class ARContainerView <<UIViewRepresentable>> {
+    +makeUIView(context): ARView
+  }
+  class DeviceSelectorView {
+    +body: some View
+  }
+  class PlacementActionButton {
+    +body: some View
+  }
+  class CrosshairView
+  class HintTextView
+  class BackButton
+}
+
+package "ViewModel (bridge ke ARKit)" #E8F4FD {
+  class "ARViewModel<ARSessionManager>" as ARViewModel {
+    +arView: ARView
+    +hintText: String
+    +start()
+    +pause()
+  }
+}
+
+package "Controller" #F3E8FD {
+  enum PlacementIntent {
+    selectDevice(DeviceKind)
+    confirmPlacement
+    undoLastPlacement
+    finishPlacement
+    exitToMenu
+  }
+
+  class PlacementSceneController {
+    -previewCoordinator: PlacementPreviewCoordinator
+    -distanceGate: PlacementDistance
+    -ledger: PlacementLedger
+    -placementsInFlight: Set<DeviceKind>
+    +selectedDeviceKind: DeviceKind {get}
+    +arView: ARView? {weak}
+    +placedTransforms: [DeviceKind: simd_float4x4] {get}
+    +placedKinds: Set<DeviceKind> {get}
+    +isComplete: Bool {get}
+    +canUndo: Bool {get}
+    +placementDistanceHint: String? {get}
+    +isPreviewActive: Bool {get}
+    +canPlace(DeviceKind): Bool
+    +send(PlacementIntent)
+  }
+}
+
+package "Collaborator (satu tanggung jawab masing-masing)" #FFF8E1 {
+  class PlacementLedger <<struct>> {
+    -entries: [DeviceKind: Entry]
+    -order: [DeviceKind]
+    +kinds: Set<DeviceKind> {get}
+    +transforms: [DeviceKind: simd_float4x4] {get}
+    +isEmpty: Bool {get}
+    +record(kind, transform, anchor)
+    +removeLast(): (DeviceKind, AnchorEntity)?
+    +removeAll(): [AnchorEntity]
+  }
+
+  class PlacementPreviewCoordinator {
+    -previewAnchor: AnchorEntity?
+    -previewEntity: Entity?
+    -loadTask: Task?
+    +{static} isPreviewable(DeviceKind): Bool
+    +show(DeviceKind)
+    +teardown()
+    +update(isPlaced: Bool)
+  }
+
+  class PlacementDistance {
+    -maxPlacementDistance: Float
+    +hint: String? {get}
+    +update(for: DeviceKind, isPlaced: Bool)
+    +reset()
+  }
+}
+
+package "Service (stateless, dipakai ulang)" #ECEFF1 {
+  class DeviceEntityLoader <<enum>> {
+    +{static} load(DeviceKind, includeRangeSphere): Entity
+  }
+  class AnchoredEntityPlacer <<enum>> {
+    +{static} place(Entity, at, in): AnchorEntity
+    +{static} remove(AnchorEntity, from)
+  }
+  class PlacementPreviewStyler <<enum>> {
+    +{static} applyGhostMaterial(to: Entity)
+  }
+}
+
+package "Model" #FAFAFA {
+  enum DeviceKind {
+    deviceA
+    router
+    deviceB
+  }
+  class PlacedTopology <<struct>> {
+    +transforms: [DeviceKind: simd_float4x4]
+  }
+}
+
+' ===== View menyusun View =====
+PreparationView *-- ARContainerView
+PreparationView *-- DeviceSelectorView
+PreparationView *-- PlacementActionButton
+PreparationView *-- CrosshairView
+PreparationView *-- HintTextView
+PreparationView *-- BackButton
+
+' ===== View membaca / mengirim intent ke Controller =====
+DeviceSelectorView ..> PlacementSceneController : send(.selectDevice)\nbaca placedKinds
+PlacementActionButton ..> PlacementSceneController : send(.confirmPlacement /\n.undoLastPlacement /\n.finishPlacement)\nbaca isComplete, canUndo
+PreparationView ..> PlacementSceneController : send(.exitToMenu)\nbaca isPreviewActive,\nplacementDistanceHint
+ARContainerView ..> PlacementSceneController : arView = arView\n(infrastruktur, bukan intent)
+
+PreparationView ..> ARViewModel : start() / pause()\nbaca hintText, arView
+ARContainerView ..> ARViewModel : ambil arView
+
+' ===== Intent =====
+PlacementSceneController ..> PlacementIntent : switch atas
+
+' ===== Controller mendelegasikan ke Collaborator =====
+PlacementSceneController *-- PlacementLedger : owns
+PlacementSceneController *-- PlacementPreviewCoordinator : owns
+PlacementSceneController *-- PlacementDistance : owns
+
+' ===== Collaborator memanggil Service =====
+PlacementSceneController ..> AnchoredEntityPlacer : place saat confirmPlacement\nremove saat undo/tearDown
+PlacementSceneController ..> DeviceEntityLoader : load saat confirmPlacement
+PlacementPreviewCoordinator ..> DeviceEntityLoader : load saat show(kind)
+PlacementPreviewCoordinator ..> PlacementPreviewStyler : ghost material
+PlacementPreviewCoordinator ..> AnchoredEntityPlacer : remove saat teardown
+
+' ===== Model =====
+PlacementLedger ..> DeviceKind
+PlacementActionButton ..> PlacedTopology : build dari placedTransforms
+
+note right of PlacementSceneController
+  Satu pintu masuk: send(_:).
+  Query (placedKinds, isComplete, dst)
+  dibaca langsung oleh View —
+  bukan bagian dari kontrak intent.
+end note
+
+note bottom of PlacementLedger
+  Menyatukan transform + anchor + urutan
+  dalam satu Entry, supaya ketiganya
+  tidak bisa lagi tidak sinkron.
+end note
+
+@enduml

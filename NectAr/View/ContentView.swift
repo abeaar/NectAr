@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentPhase: AppPhase = .preparation
-    @State private var arViewModel = ARViewModel()
-    @State private var placementController = PlacementSceneController()
+    @State private var currentPhase: AppPhase = .menu
 
     var body: some View {
         switch currentPhase {
-        case .preparation:
-            PreparationView(arViewModel: arViewModel, placementController: placementController) { placedTopology in
-                currentPhase = .simulation(placedTopology)
+        case .menu:
+            MenuView {
+                currentPhase = .ar
             }
-        case .simulation(let topology):
-            SimulationView(arViewModel: arViewModel, topology: topology) {
-                currentPhase = .preparation
+        case .ar:
+            // Owns the ARView and its controllers, so switching back to .menu
+            // deallocates the whole AR stack rather than parking it in memory.
+            ARExperienceView {
+                currentPhase = .menu
             }
         }
     }

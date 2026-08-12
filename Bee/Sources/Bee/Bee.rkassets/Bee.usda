@@ -10,8 +10,10 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["AntennaR", "AntennaL", "WingLoop", "Group"]
-    def RealityKitTimeline "WingLoop"
+    reorder nameChildren = ["AntennaR", "AntennaL", "Group", "WingLoop", "WingLoopRepeat"]
+    def RealityKitTimeline "WingLoop" (
+        references = None
+    )
     {
         reorder nameChildren = ["Track", "Track2", "Track3"]
         def RealityKitTrack "Track"
@@ -764,6 +766,53 @@ def Xform "Root"
         def RealityKitComponent "AnimationLibrary"
         {
             uniform token info:id = "RealityKit.AnimationLibrary"
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnAddedToScene>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/WingLoopRepeat>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "WingLoopRepeat"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 0.5993896934766199
+                uniform token info:id = "A51C71DB-D466-4F45-BBCD-9AAADED3B7B0"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/WingLoop>
+            }
         }
     }
 }

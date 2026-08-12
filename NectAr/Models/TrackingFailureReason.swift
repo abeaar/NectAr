@@ -11,5 +11,4 @@ enum TrackingFailureReason {
     case excessiveMotion
     case insufficientFeatures
     case relocalizing
-    case noPlaneYet
 }
