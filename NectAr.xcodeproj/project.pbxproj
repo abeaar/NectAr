@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
 		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
+		645A265A302C925D00DAD738 /* MacBook in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2659302C925D00DAD738 /* MacBook */; };
 		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 				64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */,
 				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
 				642379A73024528F00CFEE71 /* Bee in Frameworks */,
+				645A265A302C925D00DAD738 /* MacBook in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +79,7 @@
 				642379A63024528F00CFEE71 /* Bee */,
 				642379AB3024926500CFEE71 /* Router_3d */,
 				64D3126E302A07D4007FC7DE /* Mail_3d */,
+				645A2659302C925D00DAD738 /* MacBook */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -111,6 +114,7 @@
 				642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */,
 				642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */,
 				64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */,
+				645A2658302C925D00DAD738 /* XCLocalSwiftPackageReference "MacBook" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
@@ -274,7 +278,8 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = NectArTest;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -286,7 +291,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abr.NectArTest;
+				PRODUCT_BUNDLE_IDENTIFIER = abr.NectAr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -308,7 +313,8 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = NectArTest;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -320,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abr.NectArTest;
+				PRODUCT_BUNDLE_IDENTIFIER = abr.NectAr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -368,6 +374,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Router;
 		};
+		645A2658302C925D00DAD738 /* XCLocalSwiftPackageReference "MacBook" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = MacBook;
+		};
 		64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Mail_3d;
@@ -382,6 +392,10 @@
 		642379AB3024926500CFEE71 /* Router_3d */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Router_3d;
+		};
+		645A2659302C925D00DAD738 /* MacBook */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MacBook;
 		};
 		64D3126E302A07D4007FC7DE /* Mail_3d */ = {
 			isa = XCSwiftPackageProductDependency;
