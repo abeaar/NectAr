@@ -9,14 +9,17 @@ import RealityKit
 @Observable
 final class SimulationViewModel {
     private let arViewModel: ARViewModel<ARSessionManager>
+    private let mascotViewModel: MascotViewModel
     private let simulationController: SimulationSceneController
     private let sceneControllers: [ARSceneDriven]
 
     init(
         arViewModel: ARViewModel<ARSessionManager>,
+        mascotViewModel: MascotViewModel,
         simulationController: SimulationSceneController
     ) {
         self.arViewModel = arViewModel
+        self.mascotViewModel = mascotViewModel
         self.simulationController = simulationController
         self.sceneControllers = [simulationController]
     }
@@ -27,13 +30,13 @@ final class SimulationViewModel {
         simulationController.deadzoneHint ?? simulationController.currentLegHint
     }
 
-    // Wiring the ARView into every scene controller is infrastructure, not a user
-    // action — same reasoning as PlacementViewModel.attachARView(). SimulationContainerView
-    // (UIViewRepresentable) is the only caller.
     func attachARView() {
         for controller in sceneControllers {
             controller.arView = arViewModel.arView
         }
+        // Bee stays alive across preparation → simulation, so it needs to be re-attached
+        // to the (shared) ARView here too — see MascotViewModel.attachARView.
+        mascotViewModel.attachARView(arViewModel.arView)
     }
 
     func startAnimating(topology: PlacedTopology) {

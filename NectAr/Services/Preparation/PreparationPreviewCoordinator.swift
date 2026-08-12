@@ -15,10 +15,38 @@ final class PreparationPreviewCoordinator {
     weak var arView: ARView?
     private var previewAnchor: AnchorEntity?
     private var previewEntity: Entity?
+    private var previewKind: DeviceKind?
+    private var originalMaterials: PreparationPreviewStyler.OriginalMaterials?
     private var loadTask: Task<Void, Never>?
 
     static func isPreviewable(_ kind: DeviceKind) -> Bool {
         previewableKinds.contains(kind)
+    }
+
+    /// Hands off the already-loaded, already-decorated preview entity for `kind` so it
+    /// can be reused as the real placement instead of loading the same asset again.
+    /// Returns nil if there's no ready preview for that kind yet (still loading, or a
+    /// different kind is being previewed) — caller should fall back to a fresh load.
+    func claimEntityForPlacement(_ kind: DeviceKind) -> Entity? {
+        guard previewKind == kind, let entity = previewEntity, let anchor = previewAnchor else { return nil }
+
+        loadTask?.cancel()
+        loadTask = nil
+
+        if let originalMaterials {
+            PreparationPreviewStyler.restoreOriginalMaterial(originalMaterials)
+        }
+        anchor.removeChild(entity)
+        if let arView, anchor.children.isEmpty {
+            arView.scene.removeAnchor(anchor)
+        }
+        entity.isEnabled = true
+
+        previewAnchor = nil
+        previewEntity = nil
+        previewKind = nil
+        self.originalMaterials = nil
+        return entity
     }
 
     func show(_ kind: DeviceKind) {
@@ -37,6 +65,8 @@ final class PreparationPreviewCoordinator {
         }
         previewAnchor = nil
         previewEntity = nil
+        previewKind = nil
+        originalMaterials = nil
     }
 
     func update(isPlaced: Bool) {
@@ -60,10 +90,11 @@ final class PreparationPreviewCoordinator {
         guard let arView else { return }
 
         do {
-            let entity = try await DeviceEntityLoader.load(kind, includeRangeSphere: false)
+            let entity = try await DeviceEntityLoader.load(kind)
             try Task.checkCancellation()
 
-            PreparationPreviewStyler.applyGhostMaterial(to: entity)
+            DeviceEntityDecorator.decorate(entity, for: kind, includeRangeSphere: false)
+            let original = PreparationPreviewStyler.applyGhostMaterial(to: entity)
             entity.isEnabled = false
 
             let anchor = AnchorEntity(world: matrix_identity_float4x4)
@@ -72,6 +103,8 @@ final class PreparationPreviewCoordinator {
 
             previewAnchor = anchor
             previewEntity = entity
+            previewKind = kind
+            originalMaterials = original
         } catch {
         }
     }

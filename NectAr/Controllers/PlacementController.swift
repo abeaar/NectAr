@@ -78,7 +78,16 @@ final class PlacementController: ARSceneDriven {
         Task {
             defer { placementsInFlight.remove(kind) }
             do {
-                let entity = try await DeviceEntityLoader.load(kind)
+                let entity: Entity
+                if let claimed = previewCoordinator.claimEntityForPlacement(kind) {
+                    // Reuse the already-loaded ghost preview instead of fetching the
+                    // same asset from its bundle a second time.
+                    entity = claimed
+                    DeviceEntityDecorator.attachRangeSphereIfNeeded(to: entity, for: kind)
+                } else {
+                    entity = try await DeviceEntityLoader.load(kind)
+                    DeviceEntityDecorator.decorate(entity, for: kind)
+                }
                 let anchor = AnchoredEntityPlacer.place(entity, at: firstResult.worldTransform, in: arView.scene)
                 ledger.record(kind, transform: firstResult.worldTransform, anchor: anchor)
             } catch {
