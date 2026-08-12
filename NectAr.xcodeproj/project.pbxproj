@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
 		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
-		645A265A302C925D00DAD738 /* MacBook in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2659302C925D00DAD738 /* MacBook */; };
+		645A2A35302C9EF600DAD738 /* MacBook in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A34302C9EF600DAD738 /* MacBook */; };
+		645A2A38302C9F5000DAD738 /* Iphone in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A37302C9F5000DAD738 /* Iphone */; };
 		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
 /* End PBXBuildFile section */
 
@@ -30,10 +31,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645A2A38302C9F5000DAD738 /* Iphone in Frameworks */,
 				64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */,
 				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
 				642379A73024528F00CFEE71 /* Bee in Frameworks */,
-				645A265A302C925D00DAD738 /* MacBook in Frameworks */,
+				645A2A35302C9EF600DAD738 /* MacBook in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +81,8 @@
 				642379A63024528F00CFEE71 /* Bee */,
 				642379AB3024926500CFEE71 /* Router_3d */,
 				64D3126E302A07D4007FC7DE /* Mail_3d */,
-				645A2659302C925D00DAD738 /* MacBook */,
+				645A2A34302C9EF600DAD738 /* MacBook */,
+				645A2A37302C9F5000DAD738 /* Iphone */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -110,11 +113,11 @@
 			mainGroup = 64B5DCF6301DD212004E2683;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */,
 				642379A53024528F00CFEE71 /* XCLocalSwiftPackageReference "Bee" */,
 				642379AA3024926500CFEE71 /* XCLocalSwiftPackageReference "Router_3d" */,
 				64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */,
-				645A2658302C925D00DAD738 /* XCLocalSwiftPackageReference "MacBook" */,
+				645A2A33302C9EF600DAD738 /* XCLocalSwiftPackageReference "MacBook" */,
+				645A2A36302C9F5000DAD738 /* XCLocalSwiftPackageReference "Iphone" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
@@ -278,7 +281,6 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -313,7 +315,6 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -370,13 +371,13 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Router_3d;
 		};
-		645740423020B31800CDEF0D /* XCLocalSwiftPackageReference "Router" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Router;
-		};
-		645A2658302C925D00DAD738 /* XCLocalSwiftPackageReference "MacBook" */ = {
+		645A2A33302C9EF600DAD738 /* XCLocalSwiftPackageReference "MacBook" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = MacBook;
+		};
+		645A2A36302C9F5000DAD738 /* XCLocalSwiftPackageReference "Iphone" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Iphone;
 		};
 		64D3126D302A07D4007FC7DE /* XCLocalSwiftPackageReference "Mail_3d" */ = {
 			isa = XCLocalSwiftPackageReference;
@@ -393,9 +394,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Router_3d;
 		};
-		645A2659302C925D00DAD738 /* MacBook */ = {
+		645A2A34302C9EF600DAD738 /* MacBook */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MacBook;
+		};
+		645A2A37302C9F5000DAD738 /* Iphone */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Iphone;
 		};
 		64D3126E302A07D4007FC7DE /* Mail_3d */ = {
 			isa = XCSwiftPackageProductDependency;
