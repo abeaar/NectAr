@@ -42,6 +42,17 @@ final class PlacementController: ARSceneDriven {
         !placedKinds.contains(kind)
     }
 
+    /// Toggled by the preparation-phase debug button, shows or hides the placed
+    /// router's range sphere independent of its other attributes.
+    func setRangeSphereVisible(_ visible: Bool) {
+        guard let arView else { return }
+        let query = EntityQuery(where: .has(DeviceIdentityComponent.self))
+        for entity in arView.scene.performQuery(query) {
+            guard entity.components[DeviceIdentityComponent.self]?.kind == .router else { continue }
+            entity.components[RangeSphereVisibilityComponent.self]?.isVisible = visible
+        }
+    }
+
     func selectDevice(_ kind: DeviceKind) {
         guard selectedDeviceKind != kind else { return }
         selectedDeviceKind = kind

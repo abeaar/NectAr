@@ -14,19 +14,24 @@ enum DeviceEntityDecorator {
         let labelHeight = kind == .router ? routerLabelHeight : markerLabelHeight
         EntityLabelAttacher.attach(labelText(for: kind), to: entity, height: labelHeight)
 
-        if includeRangeSphere {
-            attachRangeSphereIfNeeded(to: entity, for: kind)
+        entity.components.set(DeviceIdentityComponent(kind: kind))
+        entity.components.set(HighlightComponent())
+
+        if kind == .router {
+            if includeRangeSphere {
+                attachRangeSphereIfNeeded(to: entity, for: kind)
+            }
+        } else {
+            entity.components.set(DeviceAttributesComponent(attributes: DeviceAttributes()))
         }
     }
 
-    /// Adds just the range sphere, without re-attaching the label. Used when promoting
-    /// an already-decorated preview entity (label already attached) to a real placement.
+    /// Attaches the router's live attribute state without re-attaching the label.
+    /// `RangeVisualizationSystem` reacts to it, sphere hidden until the debug toggle shows it.
     static func attachRangeSphereIfNeeded(to entity: Entity, for kind: DeviceKind) {
         guard kind == .router else { return }
-        let attributes = RouterAttributes()
-        if attributes.isOn {
-            RouterRangeVisualizer.attach(to: entity, range: attributes.range)
-        }
+        entity.components.set(RouterAttributesComponent(attributes: RouterAttributes()))
+        entity.components.set(RangeSphereVisibilityComponent(isVisible: false))
     }
 
     private static func labelText(for kind: DeviceKind) -> String {

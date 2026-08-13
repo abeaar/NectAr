@@ -41,6 +41,10 @@ final class PlacementViewModel {
         controller.finishPlacement()
     }
 
+    func setRangeSphereVisible(_ visible: Bool) {
+        controller.setRangeSphereVisible(visible)
+    }
+
     func tearDown() {
         controller.tearDown()
     }

@@ -18,6 +18,8 @@ struct PreparationView: View {
     let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
 
+    @State private var isDebugModeOn = false
+
     private var hintText: String {
         mascotViewModel.hintText ?? placementViewModel.hintText ?? arViewModel.hintText
     }
@@ -35,6 +37,7 @@ struct PreparationView: View {
                 CrosshairView()
             }
             HintTextView(hintText: hintText)
+            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
             BackButton {
                 placementViewModel.tearDown()
                 mascotViewModel.tearDown()
@@ -55,6 +58,9 @@ struct PreparationView: View {
         }
         .onAppear {
             arViewModel.start()
+        }
+        .onChange(of: isDebugModeOn) { _, newValue in
+            placementViewModel.setRangeSphereVisible(newValue)
         }
     }
 }

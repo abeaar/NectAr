@@ -1,19 +1,18 @@
 import Foundation
 import RealityKit
 import ARKit
-import Bee
 
 @Observable
 final class MascotOnboardingController: ARSceneDriven {
     private static let beeScale: Float = 0.5
 
-    enum Phase {
-        case hunting
-        case animating
-        case complete
+    /// Stored so SwiftUI re-renders on change, mirrored onto the bee entity's
+    /// `MascotStateComponent` in `didSet`, using its `Phase` type directly.
+    private(set) var phase: MascotStateComponent.Phase = .hunting {
+        didSet {
+            beeEntity?.components[MascotStateComponent.self]?.phase = phase
+        }
     }
-
-    private(set) var phase: Phase = .hunting
 
     var isActive: Bool { phase != .complete }
 
@@ -21,7 +20,7 @@ final class MascotOnboardingController: ARSceneDriven {
         switch phase {
         case .hunting: "Look around to find the bee!"
         case .animating: "You found a Mythical Abee!"
-        case .complete: nil
+        case .complete, .guiding: nil
         }
     }
 
@@ -40,8 +39,10 @@ final class MascotOnboardingController: ARSceneDriven {
 
         Task {
             do {
-                let entity = try await DeviceEntityLoader.loadEntity(named: "Bee", in: beeBundle, scale: SIMD3<Float>(repeating: Self.beeScale))
+                let entity = try await DeviceEntityLoader.loadMascot()
+                entity.scale = SIMD3<Float>(repeating: Self.beeScale)
                 entity.generateCollisionShapes(recursive: true)
+                entity.components.set(MascotStateComponent(phase: .hunting))
 
                 let transform = MascotSpawnPlacer.randomSpawnTransform(around: arView.cameraTransform)
                 let anchor = AnchoredEntityPlacer.place(entity, at: transform, in: arView.scene)
