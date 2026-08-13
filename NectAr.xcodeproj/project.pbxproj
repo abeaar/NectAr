@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		642379A73024528F00CFEE71 /* Bee in Frameworks */ = {isa = PBXBuildFile; productRef = 642379A63024528F00CFEE71 /* Bee */; };
 		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
-		6443CD40302D9744009F9AC6 /* World3d in Frameworks */ = {isa = PBXBuildFile; productRef = 6443CD3F302D9744009F9AC6 /* World3d */; };
 		645A2A35302C9EF600DAD738 /* MacBook in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A34302C9EF600DAD738 /* MacBook */; };
 		645A2A38302C9F5000DAD738 /* Iphone in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A37302C9F5000DAD738 /* Iphone */; };
 		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
@@ -46,7 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6443CD40302D9744009F9AC6 /* World3d in Frameworks */,
 				645A2A38302C9F5000DAD738 /* Iphone in Frameworks */,
 				64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */,
 				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
@@ -392,10 +390,6 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Router_3d;
 		};
-		6443CD3E302D9744009F9AC6 /* XCLocalSwiftPackageReference "World3d" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = World3d;
-		};
 		645A2A33302C9EF600DAD738 /* XCLocalSwiftPackageReference "MacBook" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = MacBook;
@@ -422,10 +416,6 @@
 		642379AB3024926500CFEE71 /* Router_3d */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Router_3d;
-		};
-		6443CD3F302D9744009F9AC6 /* World3d */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = World3d;
 		};
 		645A2A34302C9EF600DAD738 /* MacBook */ = {
 			isa = XCSwiftPackageProductDependency;
