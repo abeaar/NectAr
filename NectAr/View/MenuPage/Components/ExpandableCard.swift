@@ -70,7 +70,7 @@ struct ExpandableCard: View {
                         .transition(.scale)
                         
                         Button(action: {
-                            print("Play button tapped") // test
+                            onPlay()
                         }) {
                             Image("startButton")
                                 .resizable()
