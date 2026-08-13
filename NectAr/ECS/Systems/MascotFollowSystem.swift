@@ -1,12 +1,8 @@
 import RealityKit
 
-/// Moves the mascot to trail behind the mail packet while it's guiding, reacting to
-/// the mail's live position every frame rather than being driven step by step the
-/// way its own onboarding flight is. Only the mail packet's own `Task` moves it;
-/// the mascot has no movement of its own to synchronize against, it just tracks
-/// wherever the mail currently is, so a System fits here where it didn't for the
-/// mail or the onboarding flight.
-final class MascotFollowSystem: System {
+/// Moves the mascot to trail behind the mail packet while it's guiding, reacting
+/// every frame to the mail's live position, which only its own `Task` moves.
+struct MascotFollowSystem: System {
     private static let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
     private static let mailQuery = EntityQuery(where: .has(RouteComponent.self))
     /// Placeholder offset behind and above the mail packet, needs visual tuning in Xcode.
@@ -15,10 +11,10 @@ final class MascotFollowSystem: System {
     init(scene: Scene) {}
 
     func update(context: SceneUpdateContext) {
-        guard let mascot = Array(context.scene.performQuery(Self.mascotQuery)).first(where: {
+        guard let mascot = Array(context.entities(matching: Self.mascotQuery, updatingSystemWhen: .rendering)).first(where: {
             $0.components[MascotStateComponent.self]?.phase == .guiding
         }) else { return }
-        guard let mail = Array(context.scene.performQuery(Self.mailQuery)).first else { return }
+        guard let mail = Array(context.entities(matching: Self.mailQuery, updatingSystemWhen: .rendering)).first else { return }
 
         mascot.setPosition(mail.position(relativeTo: nil) + Self.trailOffset, relativeTo: nil)
     }

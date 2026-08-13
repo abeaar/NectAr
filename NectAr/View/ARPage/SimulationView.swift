@@ -29,9 +29,8 @@ struct SimulationView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
 
-            // Fixed at the back button's usual position (simulation has no back
-            // button of its own, exiting only happens through the done action
-            // above), the sidebar opens directly below it instead of beside it.
+            // Fixed at the back button's usual position, since simulation has no
+            // back button of its own, the sidebar opens directly below it.
             VStack(alignment: .leading, spacing: 0) {
                 Button {
                     isSidebarOpen.toggle()

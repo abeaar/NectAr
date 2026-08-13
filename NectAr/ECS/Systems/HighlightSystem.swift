@@ -3,9 +3,7 @@ import UIKit
 
 /// Adds or removes a pulsing translucent highlight on any entity whose
 /// `HighlightComponent.isHighlighted` changes, mirroring `RangeVisualizationSystem`.
-/// Used by the simulation sidebar to draw attention to whichever placed entity a
-/// selected check step concerns.
-final class HighlightSystem: System {
+struct HighlightSystem: System {
     static let query = EntityQuery(where: .has(HighlightComponent.self))
 
     private static let highlightName = "StepHighlight"
@@ -18,7 +16,7 @@ final class HighlightSystem: System {
 
     init(scene: Scene) {}
 
-    func update(context: SceneUpdateContext) {
+    mutating func update(context: SceneUpdateContext) {
         for entity in context.scene.performQuery(Self.query) {
             guard let isHighlighted = entity.components[HighlightComponent.self]?.isHighlighted else { continue }
             guard lastHighlighted[entity.id] != isHighlighted else { continue }

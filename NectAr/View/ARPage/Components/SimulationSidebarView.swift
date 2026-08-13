@@ -1,8 +1,7 @@
 import SwiftUI
 
-/// Left-edge panel listing the simulation as a sequence of explained steps. The
-/// top card plays the full round trip; each step below it loops just that one
-/// step in isolation so the user can inspect it on its own.
+/// Left-edge panel listing the simulation as a sequence of explained steps. The top
+/// card plays the full round trip, each step below loops just that one in isolation.
 struct SimulationSidebarView: View {
     let controller: SimulationSceneController
 
