@@ -298,8 +298,8 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_FILE = NectAr/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -333,8 +333,8 @@
 				DEVELOPMENT_TEAM = VMKDVWCB45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_FILE = NectAr/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

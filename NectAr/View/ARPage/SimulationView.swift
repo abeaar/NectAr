@@ -1,39 +1,22 @@
 import SwiftUI
 
 struct SimulationView: View {
+    let arViewModel: ARViewModel<ARSessionManager>
     let topology: PlacedTopology
     let onExit: () -> Void
-
-    @State private var viewModel: SimulationViewModel
-
-    init(
-        arViewModel: ARViewModel<ARSessionManager>,
-        mascotViewModel: MascotViewModel,
-        topology: PlacedTopology,
-        onExit: @escaping () -> Void
-    ) {
-        self.topology = topology
-        self.onExit = onExit
-        _viewModel = State(initialValue: SimulationViewModel(
-            arViewModel: arViewModel,
-            mascotViewModel: mascotViewModel,
-            simulationController: SimulationSceneController()
-        ))
-    }
+    @State private var simulationController = SimulationSceneController()
+    @State private var isSidebarOpen = true
 
     var body: some View {
-        ZStack(alignment: .top) {
-            SimulationContainerView(viewModel: viewModel)
+        ZStack(alignment: .topLeading) {
+            SimulationContainerView(arView: arViewModel.arView, controller: simulationController)
                 .ignoresSafeArea()
-
-            if let hint = viewModel.hintText {
-                HintTextView(hintText: hint)
-            }
 
             HStack {
                 Spacer()
                 Button {
-                    viewModel.exit(then: onExit)
+                    simulationController.stopAnimating()
+                    onExit()
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 32))
@@ -45,9 +28,32 @@ struct SimulationView: View {
                 .padding(.trailing, 20)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+
+            // Fixed at the back button's usual position (simulation has no back
+            // button of its own, exiting only happens through the done action
+            // above), the sidebar opens directly below it instead of beside it.
+            VStack(alignment: .leading, spacing: 0) {
+                Button {
+                    isSidebarOpen.toggle()
+                } label: {
+                    Image(systemName: isSidebarOpen ? "list.bullet.rectangle.fill" : "list.bullet.rectangle")
+                        .padding()
+                        .background(.black.opacity(0.6))
+                        .foregroundStyle(.white)
+                        .clipShape(Circle())
+                }
+                .padding(.leading, 24)
+                .padding(.top, 16)
+
+                if isSidebarOpen {
+                    SimulationSidebarView(controller: simulationController)
+                        .padding(.top, 12)
+                }
+            }
+            .ignoresSafeArea(edges: .leading)
         }
         .onAppear {
-            viewModel.startAnimating(topology: topology)
+            simulationController.startAnimating(topology: topology)
         }
     }
 }
