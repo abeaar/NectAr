@@ -18,9 +18,22 @@
 		64B5DCFF301DD212004E2683 /* NectAr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NectAr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D2E14A5A302B570C00DA658A /* Exceptions for "NectAr" folder in "NectAr" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 64B5DCFE301DD212004E2683 /* NectAr */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		64B5DD01301DD212004E2683 /* NectAr */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D2E14A5A302B570C00DA658A /* Exceptions for "NectAr" folder in "NectAr" target */,
+			);
 			path = NectAr;
 			sourceTree = "<group>";
 		};
@@ -176,7 +189,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAM2EWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -282,6 +295,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
+				INFOPLIST_FILE = NectAr/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -316,6 +330,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = NectAr;
+				INFOPLIST_FILE = NectAr/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NectAr uses the camera to place devices in your room.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

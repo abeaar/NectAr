@@ -17,8 +17,6 @@ struct ContentView: View {
                 currentPhase = .ar
             }
         case .ar:
-            // Owns the ARView and its controllers, so switching back to .menu
-            // deallocates the whole AR stack rather than parking it in memory.
             ARExperienceView {
                 currentPhase = .menu
             }

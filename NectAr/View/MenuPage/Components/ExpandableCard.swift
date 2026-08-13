@@ -24,37 +24,68 @@ struct ExpandableCard: View {
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack (alignment: .trailing ,spacing: 14){
+                
                 HStack {
-                    Spacer()
                     if isExpanded {
                         CloseButton(action: {
                             withAnimation(easeInBack) {
                                 expandedStoryID = nil
                             }
                         })
-                        .transition(.opacity)
+                        .transition(.scale)
                     }
                 }
-                Spacer()
-                HStack {
+                
+                if isExpanded {
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text(story.title)
+                            .font(Font.custom("Fredoka-Bold", size: 62, relativeTo: .title))
+                            .frame(width: 475, height: 100, alignment: .leading)
+                            .minimumScaleFactor(0.4)
+                        
+                        Text(story.description)
+                            .font(Font.custom("Fredoka-Medium", size: 32, relativeTo: .title2))
+                            .padding(16)
+                            .frame(width: 475, height: 210)
+                            .background(Theme.cream)
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                            .minimumScaleFactor(0.4)
+                    }
+                    .padding(.bottom, 10)
+                    .transition(.scale)
+                }
+                
+                HStack (spacing: 26) {
                     Spacer()
                     if isExpanded {
-                        Button(action: onPlay) {
-                            Image("RectanglePlayButton")
+                        Button(action: {
+                            print("Quiz button tapped") // test
+                        }) {
+                            Image("quizButton")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 65)
                         }
-                        .transition(.opacity)
+                        .transition(.scale)
+                        
+                        Button(action: {
+                            onPlay()
+                        }) {
+                            Image("startButton")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 65)
+                        }
+                        .transition(.scale)
                     }
                 }
+                
             }
-            .padding(44)
-            
-            .frame(width: isExpanded ? 1100 : 300, height: isExpanded ? 750 : 200)
-            .background(Color(white: 0.9))
-            .clipShape(RoundedRectangle(cornerRadius: 32))
+            .padding(40)
+            .frame(width: isExpanded ? 1100 : 300, height: isExpanded ? 580 : 200)
+            .background(Theme.storyCardExpanded)
+            .clipShape(RoundedRectangle(cornerRadius: 39))
             
             ZStack {
                 Image("StoryCard")
@@ -65,7 +96,7 @@ struct ExpandableCard: View {
                     .padding(75)
             }
             .frame(width: 525, height: 525)
-            .offset(x: isExpanded ? -225 : 0)
+            .offset(x: isExpanded ? -260 : 0)
             .onTapGesture {
                 guard isActive else { return }
                 
@@ -86,7 +117,7 @@ struct ExpandableCard: View {
         
         var body: some View {
             ExpandableCard(
-                story: Story(id:"texting", title: "Texting", icon: "AbeeIcon"),
+                story: Story(id:"texting", title: "Streaming Youtube", icon: "AbeeIcon", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut."),
                 isActive: true,
                 onPlay: {},
                 expandedStoryID: $mockExpandedID

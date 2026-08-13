@@ -1,0 +1,240 @@
+{
+  "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C" : {
+    "objectMetadataList" : [
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "Group",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "Group",
+        "AntennaR"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoop",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoop"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoop",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoopRepeat",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "Group",
+        "AntennaL"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoopRepeat"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "Group"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90" : {
+    "objectMetadataList" : [
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingStart",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "Timeline",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "RightWing"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingStart",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop",
+        "Track_2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "Timeline",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "wing_loop",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "LeftWing"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "wing_loop",
+        "Track_2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}

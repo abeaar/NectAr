@@ -17,7 +17,7 @@ struct CloseButton: View {
                 Image("CloseButton")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 55, height: 55)
+                    .frame(width: 56, height: 56)
             }
         }
 }
