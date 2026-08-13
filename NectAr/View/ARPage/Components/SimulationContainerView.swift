@@ -3,11 +3,12 @@ import RealityKit
 import ARKit
 
 struct SimulationContainerView: UIViewRepresentable {
-    let viewModel: SimulationViewModel
+    let arView: ARView
+    let controller: SimulationSceneController
 
     func makeUIView(context: Context) -> ARView {
-        viewModel.attachARView()
-        return viewModel.arView
+        controller.arView = arView
+        return arView
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {}

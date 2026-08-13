@@ -30,7 +30,7 @@ struct ARExperienceView: View {
                 phase = .simulation(topology)
             }
         case .simulation(let topology):
-            SimulationView(arViewModel: arViewModel, mascotViewModel: mascotViewModel, topology: topology) {
+            SimulationView(arViewModel: arViewModel, topology: topology) {
                 phase = .preparation
             }
         }
