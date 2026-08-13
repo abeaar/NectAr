@@ -1,14 +1,11 @@
 import Foundation
 import RealityKit
 import ARKit
-import Bee
 
 /// Temporary find-the-bee placement intro, standing in for the full onboarding flow
 /// (guiding the user through each button group) that isn't built yet.
 @Observable
 final class MascotOnboardingController {
-    /// Placeholder scale, the asset's raw authored size reads too large on screen.
-    private static let beeScale: Float = 0.5
     private static let minSpawnDistance: Float = 1.5
     private static let maxSpawnDistance: Float = 4.0
     private static let spawnHeightJitter: Float = 0.3
@@ -24,13 +21,13 @@ final class MascotOnboardingController {
     private static let nudgeDownOffset: Float = -0.32
     private static let nudgeForwardOffset: Float = 0.5
 
-    enum Phase {
-        case hunting
-        case animating
-        case complete
+    /// Stays a stored, `@Observable`-tracked property so SwiftUI re-renders on
+    /// change, mirrored onto the bee entity's `MascotStateComponent` in `didSet`.
+    private(set) var phase: MascotStateComponent.Phase = .hunting {
+        didSet {
+            beeEntity?.components[MascotStateComponent.self]?.phase = phase
+        }
     }
-
-    private(set) var phase: Phase = .hunting
     /// True until the nudge animation finishes. Drives the place button's icon and
     /// gates the rest of the placement UI to inert while true.
     var isActive: Bool { phase != .complete }
@@ -39,7 +36,7 @@ final class MascotOnboardingController {
         switch phase {
         case .hunting: "Look around to find the bee!"
         case .animating: "You found a Mythical Abee!"
-        case .complete: nil
+        case .complete, .guiding: nil
         }
     }
 
@@ -58,10 +55,7 @@ final class MascotOnboardingController {
 
         Task {
             do {
-                let entity = try await Entity(named: "Bee", in: beeBundle)
-                entity.generateCollisionShapes(recursive: true)
-                entity.scale = SIMD3<Float>(repeating: Self.beeScale)
-
+                let entity = try await MascotEntityLoader.load()
                 let transform = Self.randomSpawnTransform(around: arView.cameraTransform)
                 let anchor = AnchoredEntityPlacer.place(entity, at: transform, in: arView.scene)
 

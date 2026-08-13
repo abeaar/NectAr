@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct NectArApp: App {
+    init() {
+        SystemRegistration.registerAll()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

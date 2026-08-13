@@ -148,7 +148,7 @@ there is no reason to re-check per frame.
         ▼
   animationTask = Task { ... }
         │
-        │  DeviceEntityLoader.loadMailPacket() ──▶ Entity (scale 0.3)
+        │  MailEntityLoader.load() ──▶ Entity (scale 0.3)
         │  AnchoredEntityPlacer.place(mail, at: deviceA, ...)
         │
         │  waypoints  = [router, deviceB, router, deviceA]

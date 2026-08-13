@@ -18,14 +18,14 @@ struct ARCameraView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(arView: arViewModel.arView, isDebugModeOn: isDebugModeOn, controller: placementController, mascotController: mascotController)
+            ARContainerView(arView: arViewModel.arView, controller: placementController, mascotController: mascotController)
                 .ignoresSafeArea()
 
             if !placementController.isPreviewActive {
                 CrosshairView()
             }
             HintTextView(hintText: mascotController.mascotHint ?? placementController.placementDistanceHint ?? arViewModel.hintText)
-//            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
+            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
             BackButton {
                 placementController.stopPreview()
                 onBack()
@@ -40,6 +40,9 @@ struct ARCameraView: View {
         }
         .onAppear {
             arViewModel.start()
+        }
+        .onChange(of: isDebugModeOn) { _, newValue in
+            placementController.setRangeSphereVisible(newValue)
         }
     }
 }

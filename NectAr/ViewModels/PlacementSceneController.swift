@@ -106,6 +106,16 @@ final class PlacementSceneController {
         }
     }
 
+    /// Toggled by the preparation-phase debug button, shows or hides the placed
+    /// router's range sphere independent of its other attributes.
+    func setRangeSphereVisible(_ visible: Bool) {
+        guard let arView else { return }
+        let query = EntityQuery(where: .has(RouterAttributesComponent.self))
+        for entity in arView.scene.performQuery(query) {
+            entity.components[RangeSphereVisibilityComponent.self]?.isVisible = visible
+        }
+    }
+
     func undoLastPlacement() {
         guard let arView, let lastKind = placementOrder.popLast() else { return }
 
