@@ -7,6 +7,7 @@ enum SystemRegistration {
         DeviceAttributesComponent.registerComponent()
         DeviceIdentityComponent.registerComponent()
         HighlightComponent.registerComponent()
+        MascotMovementComponent.registerComponent()
         MascotStateComponent.registerComponent()
         RangeSphereVisibilityComponent.registerComponent()
         RouteComponent.registerComponent()

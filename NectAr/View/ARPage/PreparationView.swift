@@ -62,5 +62,8 @@ struct PreparationView: View {
         .onChange(of: isDebugModeOn) { _, newValue in
             placementViewModel.setRangeSphereVisible(newValue)
         }
+        .onChange(of: mascotViewModel.isActive, initial: true) { _, isActive in
+            placementViewModel.setPreviewSuspended(isActive)
+        }
     }
 }

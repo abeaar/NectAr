@@ -45,6 +45,10 @@ final class PlacementViewModel {
         controller.setRangeSphereVisible(visible)
     }
 
+    func setPreviewSuspended(_ suspended: Bool) {
+        controller.setPreviewSuspended(suspended)
+    }
+
     func tearDown() {
         controller.tearDown()
     }

@@ -17,7 +17,7 @@ struct HighlightSystem: System {
     init(scene: Scene) {}
 
     mutating func update(context: SceneUpdateContext) {
-        for entity in context.scene.performQuery(Self.query) {
+        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
             guard let isHighlighted = entity.components[HighlightComponent.self]?.isHighlighted else { continue }
             guard lastHighlighted[entity.id] != isHighlighted else { continue }
             lastHighlighted[entity.id] = isHighlighted

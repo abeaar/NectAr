@@ -8,6 +8,7 @@ import ARKit
 final class SimulationSceneController {
     private static let baseLegDuration: TimeInterval = 3
     private static let obstructedMultiplier: Double = 2.0
+    private static let mascotTrailOffset = SIMD3<Float>(-0.1, 0.15, 0.15)
 
     weak var arView: ARView?
     private(set) var selection: SimulationPlaybackSelection = .full
@@ -237,6 +238,12 @@ final class SimulationSceneController {
     private func guideMascotWhileRunning(in arView: ARView, _ body: () async -> Void) async {
         let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
         let mascot = Array(arView.scene.performQuery(mascotQuery)).first
+        // The onboarding sequence leaves the bee disabled, shrunk, and faded out after
+        // flying into the camera, undo all three now that it's guiding again.
+        mascot?.isEnabled = true
+        mascot?.scale = SIMD3<Float>(repeating: MascotOnboardingController.beeScale)
+        mascot?.components[OpacityComponent.self]?.opacity = 1
+        mascot?.components[MascotMovementComponent.self]?.pattern = .followOffset(Self.mascotTrailOffset)
         mascot?.components[MascotStateComponent.self]?.phase = .guiding
 
         await body()

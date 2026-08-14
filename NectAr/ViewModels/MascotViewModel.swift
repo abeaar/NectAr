@@ -21,10 +21,6 @@ final class MascotViewModel {
         controller.arView = arView
     }
 
-    func attemptFind() {
-        controller.attemptFind()
-    }
-
     func tearDown() {
         controller.tearDown()
     }
