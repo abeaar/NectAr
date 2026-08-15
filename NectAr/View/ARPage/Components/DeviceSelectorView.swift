@@ -14,8 +14,6 @@ struct DeviceSelectorView: View {
                     guard !mascotViewModel.isActive else { return }
                     placementViewModel.selectDevice(kind)
                 } label: {
-                    // The card artwork already contains the device label, so there's
-                    // no separate Text here — see DeviceKind.icon.
                     Image(kind.icon)
                         .resizable()
                         .scaledToFit()
@@ -23,8 +21,26 @@ struct DeviceSelectorView: View {
                 }
                 .disabled(isPlaced)
                 .opacity(isPlaced ? 0.5 : 1.0)
+                .overlay {
+                    if isPlaced {
+                        Image(kind.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: Self.itemSize)
+                            .colorMultiply(.orange)
+                            .opacity(0.5)
+                            .allowsHitTesting(false)
+                    }
+                }
             }
         }
         .padding(.leading, 31)
     }
+}
+
+#Preview {
+    DeviceSelectorView(
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel()
+    )
 }

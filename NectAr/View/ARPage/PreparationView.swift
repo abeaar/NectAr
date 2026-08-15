@@ -34,27 +34,29 @@ struct PreparationView: View {
             .ignoresSafeArea()
 
             if !placementViewModel.isPreviewActive {
-                CrosshairView()
+//                CrosshairView()
             }
+
             HintTextView(hintText: hintText)
-            DebugToggleButton(isDebugModeOn: $isDebugModeOn)
+                .padding(.leading, 80)
+
             BackButton {
                 placementViewModel.tearDown()
                 mascotViewModel.tearDown()
                 arViewModel.pause()
                 onBack()
             }
-        }
-        .overlay(alignment: .trailing) {
+
             PreparationActionButton(
                 placementViewModel: placementViewModel,
                 mascotViewModel: mascotViewModel,
                 onComplete: onComplete
             )
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
             .padding(.trailing)
-        }
-        .safeAreaInset(edge: .leading) {
+
             DeviceSelectorView(placementViewModel: placementViewModel, mascotViewModel: mascotViewModel)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
         .onAppear {
             arViewModel.start()
@@ -66,4 +68,14 @@ struct PreparationView: View {
             placementViewModel.setPreviewSuspended(isActive)
         }
     }
+}
+
+#Preview {
+    PreparationView(
+        arViewModel: ARViewModel(sessionManager: ARSessionManager()),
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel(),
+        onBack: {},
+        onComplete: { _ in }
+    )
 }
