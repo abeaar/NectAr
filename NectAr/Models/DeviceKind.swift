@@ -14,17 +14,17 @@ enum DeviceKind: CaseIterable, Hashable {
 
     var label: String {
         switch self {
-        case .deviceA: return "Device A"
+        case .deviceA: return "Phone"
         case .router: return "Router"
-        case .deviceB: return "Device B"
+        case .deviceB: return "Laptop"
         }
     }
 
     var icon: String {
         switch self {
-        case .deviceA: return "DeviceA"
-        case .router: return "Router"
-        case .deviceB: return "DeviceB"
+        case .deviceA: return "Phone"
+        case .router: return "Router2"
+        case .deviceB: return "Laptop"
         }
     }
 }

@@ -16,16 +16,10 @@ struct PreparationActionButton: View {
     var body: some View {
         HStack {
             VStack(spacing: 16) {
-
-                Image("Redo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 55)
-
                 Button(action: {
                     placementViewModel.undoLastPlacement()
                 }) {
-                    Image("Undo")
+                    Image("UndoButton2")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 55)
@@ -58,7 +52,7 @@ struct PreparationActionButton: View {
     }
 
     private var actionAssetName: String {
-        placementViewModel.isComplete ? "PlayButton" : "PlusButton"
+        placementViewModel.isComplete ? "PlayButton2" : "PlusButton2"
     }
 }
 

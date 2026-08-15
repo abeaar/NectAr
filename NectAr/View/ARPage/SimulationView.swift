@@ -18,14 +18,8 @@ struct SimulationView: View {
                     simulationController.stopAnimating()
                     onExit()
                 } label: {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 32))
-                        .padding()
-                        .background(.black.opacity(0.6))
-                        .foregroundStyle(.white)
-                        .clipShape(Circle())
+                    Image("StopButton2")
                 }
-                .padding(.trailing, 20)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
 
@@ -56,4 +50,12 @@ struct SimulationView: View {
             simulationController.startAnimating(topology: topology)
         }
     }
+}
+
+#Preview {
+    SimulationView(
+        arViewModel: ARViewModel(sessionManager: ARSessionManager()),
+        topology: PlacedTopology(transforms: [:]),
+        onExit: {}
+    )
 }

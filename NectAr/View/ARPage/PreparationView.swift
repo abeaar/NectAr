@@ -32,9 +32,11 @@ struct PreparationView: View {
             .ignoresSafeArea()
 
             if !placementViewModel.isPreviewActive {
-                CrosshairView()
+//                CrosshairView()
             }
+
             HintTextView(hintText: hintText)
+            
             BackButton {
                 placementViewModel.tearDown()
                 mascotViewModel.tearDown()
@@ -57,4 +59,14 @@ struct PreparationView: View {
             arViewModel.start()
         }
     }
+}
+
+#Preview {
+    PreparationView(
+        arViewModel: ARViewModel(sessionManager: ARSessionManager()),
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel(),
+        onBack: {},
+        onComplete: { _ in }
+    )
 }

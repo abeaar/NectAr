@@ -6,7 +6,7 @@ struct BackButton: View {
     var body: some View {
         HStack {
             Button(action: action) {
-                Image("BackButton")
+                Image("BackButton2")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 55)
