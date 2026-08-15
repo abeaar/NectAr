@@ -16,12 +16,6 @@ struct PreparationActionButton: View {
     var body: some View {
         HStack {
             VStack(spacing: 16) {
-
-                Image("Redo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 55)
-
                 Button(action: {
                     placementViewModel.undoLastPlacement()
                 }) {
