@@ -21,8 +21,26 @@ struct DeviceSelectorView: View {
                 }
                 .disabled(isPlaced)
                 .opacity(isPlaced ? 0.5 : 1.0)
+                .overlay {
+                    if isPlaced {
+                        Image(kind.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: Self.itemSize)
+                            .colorMultiply(.orange)
+                            .opacity(0.5)
+                            .allowsHitTesting(false)
+                    }
+                }
             }
         }
         .padding(.leading, 31)
     }
+}
+
+#Preview {
+    DeviceSelectorView(
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel()
+    )
 }
