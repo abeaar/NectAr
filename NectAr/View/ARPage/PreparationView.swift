@@ -36,24 +36,25 @@ struct PreparationView: View {
             }
 
             HintTextView(hintText: hintText)
-            
+                .padding(.leading, 80)
+
             BackButton {
                 placementViewModel.tearDown()
                 mascotViewModel.tearDown()
                 arViewModel.pause()
                 onBack()
             }
-        }
-        .overlay(alignment: .trailing) {
+
             PreparationActionButton(
                 placementViewModel: placementViewModel,
                 mascotViewModel: mascotViewModel,
                 onComplete: onComplete
             )
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
             .padding(.trailing)
-        }
-        .safeAreaInset(edge: .leading) {
+
             DeviceSelectorView(placementViewModel: placementViewModel, mascotViewModel: mascotViewModel)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
         .onAppear {
             arViewModel.start()
