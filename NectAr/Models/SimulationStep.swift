@@ -1,9 +1,7 @@
 import Foundation
 
 /// One explained step of the deviceA-to-deviceB delivery shown in the simulation
-/// sidebar. The full round trip's return leg (deviceB back to deviceA) plays the
-/// same shape from deviceB's perspective, this list only names the representative
-/// direction the sidebar's cards explain.
+/// sidebar, the representative direction the return leg mirrors from deviceB's side.
 enum SimulationStepKind: CaseIterable, Identifiable {
     case checkSender
     case sendToRouter

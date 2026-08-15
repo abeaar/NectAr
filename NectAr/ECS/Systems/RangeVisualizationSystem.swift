@@ -2,9 +2,8 @@ import RealityKit
 import UIKit
 
 /// Keeps a placed router's range sphere in sync with its `RouterAttributesComponent`
-/// and `RangeSphereVisibilityComponent`, rebuilding it whenever either changes
-/// instead of requiring a manual call.
-final class RangeVisualizationSystem: System {
+/// and `RangeSphereVisibilityComponent`, rebuilding it whenever either changes.
+struct RangeVisualizationSystem: System {
     static let query = EntityQuery(where: .has(RouterAttributesComponent.self))
 
     private static let fillOpacity: Float = 0.22
@@ -19,8 +18,8 @@ final class RangeVisualizationSystem: System {
 
     init(scene: Scene) {}
 
-    func update(context: SceneUpdateContext) {
-        for entity in context.scene.performQuery(Self.query) {
+    mutating func update(context: SceneUpdateContext) {
+        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
             guard let attributes = entity.components[RouterAttributesComponent.self]?.attributes else { continue }
             let isVisible = entity.components[RangeSphereVisibilityComponent.self]?.isVisible ?? true
             let state = RenderedState(attributes: attributes, isVisible: isVisible)

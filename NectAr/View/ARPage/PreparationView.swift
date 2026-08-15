@@ -18,6 +18,8 @@ struct PreparationView: View {
     let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
 
+    @State private var isDebugModeOn = false
+
     private var hintText: String {
         mascotViewModel.hintText ?? placementViewModel.hintText ?? arViewModel.hintText
     }
@@ -58,6 +60,12 @@ struct PreparationView: View {
         }
         .onAppear {
             arViewModel.start()
+        }
+        .onChange(of: isDebugModeOn) { _, newValue in
+            placementViewModel.setRangeSphereVisible(newValue)
+        }
+        .onChange(of: mascotViewModel.isActive, initial: true) { _, isActive in
+            placementViewModel.setPreviewSuspended(isActive)
         }
     }
 }

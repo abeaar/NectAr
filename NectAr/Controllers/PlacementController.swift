@@ -7,6 +7,7 @@ import Foundation
 import RealityKit
 import ARKit
 import Combine
+import UIKit
 
 @Observable
 final class PlacementController: ARSceneDriven {
@@ -16,6 +17,7 @@ final class PlacementController: ARSceneDriven {
 
     private var placementsInFlight: Set<DeviceKind> = []
     private var updateSubscription: Cancellable?
+    private var isPreviewSuspended = false
 
     private(set) var selectedDeviceKind: DeviceKind = .deviceA
 
@@ -35,11 +37,35 @@ final class PlacementController: ARSceneDriven {
     var placementDistanceHint: String? { distanceGate.hint }
 
     var isPreviewActive: Bool {
-        PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
+        !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
     }
 
     func canPlace(_ kind: DeviceKind) -> Bool {
         !placedKinds.contains(kind)
+    }
+
+    /// Suspends the ghost preview entirely, used while the bee-hunt sequence is
+    /// active so the crosshair and a device ghost don't compete for the same view.
+    func setPreviewSuspended(_ suspended: Bool) {
+        guard isPreviewSuspended != suspended else { return }
+        isPreviewSuspended = suspended
+
+        if suspended {
+            previewCoordinator.teardown()
+        } else if PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind), !placedKinds.contains(selectedDeviceKind) {
+            previewCoordinator.show(selectedDeviceKind)
+        }
+    }
+
+    /// Toggled by the preparation-phase debug button, shows or hides the placed
+    /// router's range sphere independent of its other attributes.
+    func setRangeSphereVisible(_ visible: Bool) {
+        guard let arView else { return }
+        let query = EntityQuery(where: .has(DeviceIdentityComponent.self))
+        for entity in arView.scene.performQuery(query) {
+            guard entity.components[DeviceIdentityComponent.self]?.kind == .router else { continue }
+            entity.components[RangeSphereVisibilityComponent.self]?.isVisible = visible
+        }
     }
 
     func selectDevice(_ kind: DeviceKind) {

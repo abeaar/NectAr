@@ -6,6 +6,7 @@
 import Foundation
 import RealityKit
 import ARKit
+import UIKit
 
 @Observable
 final class PreparationDistance {

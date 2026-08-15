@@ -6,10 +6,11 @@
 import Foundation
 import RealityKit
 import ARKit
+import UIKit
 
 @Observable
 final class PreparationPreviewCoordinator {
-    private static let previewableKinds: Set<DeviceKind> = [.router]
+    private static let previewableKinds: Set<DeviceKind> = Set(DeviceKind.allCases)
     private static let previewSmoothingFactor: Float = 0.25
 
     weak var arView: ARView?

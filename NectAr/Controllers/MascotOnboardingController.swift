@@ -1,27 +1,34 @@
 import Foundation
 import RealityKit
 import ARKit
-import Bee
+import Combine
+import UIKit
 
 @Observable
 final class MascotOnboardingController: ARSceneDriven {
-    private static let beeScale: Float = 0.5
+    static let beeScale: Float = 0.5
+    private static let hoverDwellDuration: TimeInterval = 0.4
+    private static let introPauseDuration: TimeInterval = 2
+    private static let wanderRadius: Float = 0.4
 
-    enum Phase {
-        case hunting
-        case animating
-        case complete
+    /// Stored so SwiftUI re-renders on change, mirrored onto the bee entity's
+    /// `MascotStateComponent` in `didSet`, using its `Phase` type directly.
+    private(set) var phase: MascotStateComponent.Phase = .hunting {
+        didSet {
+            beeEntity?.components[MascotStateComponent.self]?.phase = phase
+        }
     }
-
-    private(set) var phase: Phase = .hunting
+    /// Copy shown while `phase == .animating`, changes mid sequence (found, then the
+    /// name intro), unlike the fixed per-phase text `mascotHint` otherwise returns.
+    private(set) var foundMessage: String?
 
     var isActive: Bool { phase != .complete }
 
     var mascotHint: String? {
         switch phase {
-        case .hunting: "Look around to find the bee!"
-        case .animating: "You found a Mythical Abee!"
-        case .complete: nil
+        case .hunting: "There is a bee flying around, can you find it?"
+        case .animating: foundMessage
+        case .complete, .guiding: nil
         }
     }
 
@@ -29,22 +36,44 @@ final class MascotOnboardingController: ARSceneDriven {
         didSet {
             guard arView != nil else { return }
             spawn()
+            subscribeToSceneUpdates()
         }
     }
     private var beeEntity: Entity?
     private var beeAnchor: AnchorEntity?
     private var sequenceTask: Task<Void, Never>?
+    private var updateSubscription: Cancellable?
+    private var hoverStartTime: Date?
 
     private func spawn() {
         guard let arView, beeEntity == nil else { return }
 
         Task {
             do {
-                let entity = try await DeviceEntityLoader.loadEntity(named: "Bee", in: beeBundle, scale: SIMD3<Float>(repeating: Self.beeScale))
+                let entity = try await DeviceEntityLoader.loadMascot()
+                entity.scale = SIMD3<Float>(repeating: Self.beeScale)
                 entity.generateCollisionShapes(recursive: true)
+                entity.components.set(MascotStateComponent(phase: .hunting))
+
+                var sparkles = ParticleEmitterComponent()
+                sparkles.emitterShape = .sphere
+                sparkles.emitterShapeSize = SIMD3<Float>(repeating: 0.05)
+                sparkles.speed = 0.05
+                sparkles.speedVariation = 0.02
+                sparkles.mainEmitter.birthRate = 40
+                sparkles.mainEmitter.size = 0.006
+                sparkles.mainEmitter.sizeVariation = 0.002
+                sparkles.mainEmitter.lifeSpan = 0.6
+                sparkles.mainEmitter.lifeSpanVariation = 0.2
+                sparkles.mainEmitter.acceleration = SIMD3<Float>(0, 0.05, 0)
+                sparkles.mainEmitter.color = .constant(.single(UIColor(red: 1.0, green: 0.85, blue: 0.4, alpha: 1)))
+                entity.components.set(sparkles)
 
                 let transform = MascotSpawnPlacer.randomSpawnTransform(around: arView.cameraTransform)
                 let anchor = AnchoredEntityPlacer.place(entity, at: transform, in: arView.scene)
+                entity.components.set(MascotMovementComponent(
+                    pattern: .idleWander(center: entity.position(relativeTo: nil), radius: Self.wanderRadius)
+                ))
 
                 beeEntity = entity
                 beeAnchor = anchor
@@ -54,20 +83,53 @@ final class MascotOnboardingController: ARSceneDriven {
         }
     }
 
-    func attemptFind() {
-        guard phase == .hunting, let arView, let beeEntity else { return }
+    private func subscribeToSceneUpdates() {
+        guard let arView, updateSubscription == nil else { return }
+        updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
+            self?.checkHover()
+        }
+    }
+
+    /// Runs every frame while hunting: the bee is found once the crosshair holds on
+    /// it for `hoverDwellDuration`, no tap needed.
+    private func checkHover() {
+        guard phase == .hunting, let arView, let beeEntity else {
+            hoverStartTime = nil
+            return
+        }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
         guard let hit = arView.entity(at: center), Self.isEntity(hit, containedIn: beeEntity) else {
-            print("Crosshair isn't on the bee yet")
+            hoverStartTime = nil
             return
         }
+
+        guard let startTime = hoverStartTime else {
+            hoverStartTime = Date()
+            return
+        }
+        guard Date().timeIntervalSince(startTime) >= Self.hoverDwellDuration else { return }
+
+        hoverStartTime = nil
+        beginFoundSequence()
+    }
+
+    private func beginFoundSequence() {
         phase = .animating
         sequenceTask?.cancel()
         sequenceTask = Task { [weak self] in
             guard let self, let arView = self.arView, let beeEntity = self.beeEntity else { return }
             do {
-                try await MascotFoundSequence.play(beeEntity, before: arView)
+                foundMessage = "Yay! You found the bee!"
+                try await MascotFoundSequence.approachCamera(beeEntity, before: arView)
+
+                foundMessage = "Hello, my name is Phoebe. I am your bee guide."
+                try await Task.sleep(nanoseconds: UInt64(Self.introPauseDuration * 1_000_000_000))
+
+                foundMessage = nil
+                try await MascotFoundSequence.enterCamera(beeEntity, before: arView)
+
+                beeEntity.isEnabled = false
                 self.phase = .complete
             } catch {
             }
@@ -86,6 +148,10 @@ final class MascotOnboardingController: ARSceneDriven {
     func tearDown() {
         sequenceTask?.cancel()
         sequenceTask = nil
+        updateSubscription?.cancel()
+        updateSubscription = nil
+        hoverStartTime = nil
+        foundMessage = nil
 
         if let arView, let beeAnchor {
             AnchoredEntityPlacer.remove(beeAnchor, from: arView.scene)

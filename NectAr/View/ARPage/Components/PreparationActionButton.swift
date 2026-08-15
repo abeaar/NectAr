@@ -41,9 +41,9 @@ struct PreparationActionButton: View {
     }
 
     private func tapAction() {
-        if mascotViewModel.isActive {
-            mascotViewModel.attemptFind()
-        } else if placementViewModel.isComplete {
+        guard !mascotViewModel.isActive else { return }
+
+        if placementViewModel.isComplete {
             placementViewModel.finishPlacement()
             onComplete(PlacedTopology(transforms: placementViewModel.placedTransforms))
         } else {

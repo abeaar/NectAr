@@ -7,10 +7,10 @@ import RealityKit
 import simd
 
 enum MascotSpawnPlacer {
-    private static let minSpawnDistance: Float = 1.5
-    private static let maxSpawnDistance: Float = 4.0
+    private static let minSpawnDistance: Float = 2.5
+    private static let maxSpawnDistance: Float = 4.5
     private static let spawnHeightJitter: Float = 0.3
-    private static let spawnArcHalfAngle: Float = .pi / 3
+    private static let spawnArcHalfAngle: Float = .pi / 9
 
     static func randomSpawnTransform(around cameraTransform: Transform) -> simd_float4x4 {
         let cameraForward = -cameraTransform.matrix.columns.2.xyz

@@ -22,11 +22,49 @@ def Xform "Root"
 
     def "Iphone" (
         active = true
+        customData = {
+            float3 rotationEulerHint = (4.7123885, 0, 0)
+        }
         prepend references = @Iphone/Sources/Iphone/Iphone.rkassets/Iphone.usda@
     )
     {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
         float3 xformOp:scale = (0.1, 0.1, 0.1)
-        float3 xformOp:translate = (-0.22713648, 0, -0.4549967)
+        float3 xformOp:translate = (-0.22558202, 0, 0.009902641)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "MacBook" (
+        active = true
+        prepend references = @MacBook/Sources/MacBook/MacBook.rkassets/MacBook.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.44590455, 0.013673909, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Router_3d" (
+        active = true
+        prepend references = @Router_3d/Sources/Router_3d/Router_3d.rkassets/Router_3d.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.6589644, 0, 0.006605625)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Mail" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 4.712389, 0)
+        }
+        prepend references = @Mail_3d/Sources/Mail_3d/Mail_3d.rkassets/Mail.usda@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (1.1426052, 0, -0.10310064)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
