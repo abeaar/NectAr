@@ -14,8 +14,6 @@ struct DeviceSelectorView: View {
                     guard !mascotViewModel.isActive else { return }
                     placementViewModel.selectDevice(kind)
                 } label: {
-                    // The card artwork already contains the device label, so there's
-                    // no separate Text here — see DeviceKind.icon.
                     Image(kind.icon)
                         .resizable()
                         .scaledToFit()

@@ -19,7 +19,7 @@ struct PreparationActionButton: View {
                 Button(action: {
                     placementViewModel.undoLastPlacement()
                 }) {
-                    Image("Undo")
+                    Image("UndoButton2")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 55)
@@ -52,7 +52,7 @@ struct PreparationActionButton: View {
     }
 
     private var actionAssetName: String {
-        placementViewModel.isComplete ? "PlayButton" : "PlusButton"
+        placementViewModel.isComplete ? "PlayButton2" : "PlusButton2"
     }
 }
 
