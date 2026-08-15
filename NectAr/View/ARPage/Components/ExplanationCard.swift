@@ -16,19 +16,19 @@ struct ExplanationCard: View {
         ZStack {
             Image("ExplanationCard")
             
-            VStack(alignment: .leading, spacing: 10){
+            VStack(alignment: .leading, spacing: 6){
                 Text(title)
-                    .font(Font.custom("Fredoka-Bold", size: 34, relativeTo: .title2))
+                    .font(Font.custom("Fredoka-Bold", size: 28, relativeTo: .title2))
                     .foregroundStyle(Theme.brown)
-                    .minimumScaleFactor(0.4)
+                    .minimumScaleFactor(0.3)
                 
                 Text(description)
-                    .font(Font.custom("Fredoka-Medium", size: 26, relativeTo: .body))
+                    .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .body))
                     .foregroundStyle(Theme.brown)
-                    .minimumScaleFactor(0.4)
+                    .minimumScaleFactor(0.3)
             }
-            .frame(width: 390, height: 160)
-                
+            .frame(width:285, height: 150)
+//            .background(Color.black.opacity(0.3))
         }
     }
 }
