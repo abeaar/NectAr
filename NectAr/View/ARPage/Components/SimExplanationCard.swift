@@ -7,32 +7,33 @@
 
 import SwiftUI
 
-struct ExplanationCard: View {
+struct SimExplanationCard: View {
 
     var title: String
     var description: String
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             Image("ExplanationCard")
-            
-            VStack(alignment: .leading, spacing: 6){
+            VStack(alignment: .leading, spacing: 6) {
                 Text(title)
-                    .font(Font.custom("Fredoka-Bold", size: 28, relativeTo: .title2))
+                    .font(Font.custom("Fredoka-Bold", size: 22, relativeTo: .title2))
                     .foregroundStyle(Theme.brown)
                     .minimumScaleFactor(0.3)
-                
+                    .multilineTextAlignment(.leading)
                 Text(description)
-                    .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .body))
+                    .font(Font.custom("Fredoka-Medium", size: 22, relativeTo: .title2))
                     .foregroundStyle(Theme.brown)
                     .minimumScaleFactor(0.3)
+                    .multilineTextAlignment(.leading)
             }
-            .frame(width:285, height: 150)
-//            .background(Color.black.opacity(0.3))
+            .frame(width: 285, height: 150, alignment: .topLeading)   
+            .padding(.top, 30)
+            .padding(.leading, 30)
         }
     }
 }
 
 #Preview {
-    ExplanationCard(title: "Lorem Ipsum", description: "Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut. Woakwoakw awokawok")
+    SimExplanationCard(title: "Lorem Ipsum", description: "cape jir CAPE JIR")
 }

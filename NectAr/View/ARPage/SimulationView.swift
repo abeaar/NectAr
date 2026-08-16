@@ -9,23 +9,17 @@ struct SimulationView: View {
     let onExit: () -> Void
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            HStack {
-                Spacer()
-                Button {
-                    simulationController.stopAnimating()
-                    placementViewModel.tearDown()
-                    mascotViewModel.tearDown()
-                    arViewModel.pause()
-                    onExit()
-                } label: {
-                    Image("StopButton2")
-                }
+        HStack(alignment: .center) {
+            SideExplanationView(controller: simulationController)
+            Spacer()
+            StopButton {
+                simulationController.stopAnimating()
+                placementViewModel.tearDown()
+                mascotViewModel.tearDown()
+                arViewModel.pause()
+                onExit()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-
-            SimulationSidebarView(controller: simulationController)
-                .ignoresSafeArea(edges: .leading)
+            .padding(.trailing)
         }
         .onAppear {
             simulationController.startAnimating(topology: topology)

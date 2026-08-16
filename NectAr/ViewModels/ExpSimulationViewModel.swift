@@ -5,33 +5,39 @@
 //  Created by Putri Aziza Mufva on 14/08/26.
 //
 
-import SwiftUI
+import Foundation
 
 @Observable
-class ExpSimulationViewModel {
+final class ExpSimulationViewModel {
 
     var isListVisible: Bool = true
-    var activeCardID: UUID? = nil
-    var cards: [ExpSimulation] = []
-    
+    var activeCardID: String?
+
+    let cards: [ExpSimulationCard]
+
     init() {
-        // placeholder
-        cards = [
-            ExpSimulation(title: "Title", description: "Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut. Woakwoakw awokawok"),
-            ExpSimulation(title: "Lorem Ipsum", description: "Lorem ipsum Dolor si amet aowkoakwoawk abe diarak phoebe wokwo"),
-            ExpSimulation(title: "Moew Meow mEOW", description: "orem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut. Woakwoakw awokawok"),
-            ExpSimulation(title: "Awwrrrrrrr", description: "Lorem ipsum Dolor si amet aowkoakwoawk abe diarak phoebe wokwo wow keren"),
-            ExpSimulation(title: "Saya ngantuk", description: "orem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut. Woakwoakw awokwk wow keren")
+        var list: [ExpSimulationCard] = [
+            .init(id: "full", source: .full,
+                  title: SimulationFullCard.default.title,
+                  description: SimulationFullCard.default.explanation)
         ]
-        
-        activeCardID = cards.first?.id
+        list.append(contentsOf: SimulationStepKind.allCases.map { step in
+            .init(id: "step.\(step.title)", source: .step(step),
+                  title: step.title, description: step.explanation)
+        })
+        self.cards = list
+        self.activeCardID = list.first?.id
     }
-    
+
     func toggleVisibility() {
         isListVisible.toggle()
     }
-    
-    func setActiveCard(id: UUID) {
+
+    func setActiveCard(id: String) {
         activeCardID = id
+    }
+
+    func source(for id: String) -> ExpSimulationCard.Source? {
+        cards.first(where: { $0.id == id })?.source
     }
 }

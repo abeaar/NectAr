@@ -7,57 +7,65 @@
 
 import SwiftUI
 
-struct ExplanationView: View {
-    
+/// Left-edge carousel listing the simulation as a sequence of explained steps. The top
+/// card plays the full round trip, each step below loops just that one in isolation.
+struct SideExplanationView: View {
+
+    let controller: SimulationSceneController
     @State private var viewModel = ExpSimulationViewModel()
-    
+
     var body: some View {
+        @Bindable var controller = controller
+
         HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 14) {
-                if viewModel.isListVisible {
-                    ScrollView(.vertical, showsIndicators: false){
-                        VStack(spacing: 14) {
-                            ForEach(viewModel.cards) { card in
-                                ExplanationCard(title: card.title, description: card.description)
-                                    .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.4)
-                                    .id(card.id)
-                                    .onTapGesture {
-                                        withAnimation(.easeInOut) {
-                                            viewModel.setActiveCard(id: card.id)
-                                        }
+            if viewModel.isListVisible {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 45) {
+                        ForEach(viewModel.cards) { card in
+                            SimExplanationCard(title: card.title, description: card.description)
+                                .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.4)
+                                .id(card.id)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut) {
+                                        viewModel.setActiveCard(id: card.id)
                                     }
-                            }
+                                }
                         }
-                        .padding(.leading, 30)
-                        .scrollTargetLayout()
                     }
-                    .frame(width: 350)
-                    .scrollPosition(id: $viewModel.activeCardID, anchor: .center)
-                    .contentMargins(.bottom, 700, for: .scrollContent)
-                    .scrollTargetBehavior(.viewAligned)
-                    .transition(.move(edge: .leading).combined(with: .opacity))
+                    .padding(.leading)
+                    .scrollTargetLayout()
+                }
+//                .frame(width: 350)
+                .scrollPosition(id: $viewModel.activeCardID, anchor: .center)
+                .contentMargins(.bottom, 400, for: .scrollContent)
+                .scrollTargetBehavior(.viewAligned)
+                .transition(.move(edge: .leading).combined(with: .opacity))
+                .onChange(of: viewModel.activeCardID) { _, newID in
+                    guard let newID, let source = viewModel.source(for: newID) else { return }
+                    switch source {
+                    case .full: controller.select(.full)
+                    case .step(let step): controller.select(.step(step))
+                    }
                 }
             }
-            
-            Button(action: {
+
+            Button {
                 withAnimation(.easeInOut) {
                     viewModel.toggleVisibility()
                 }
-            }) {
+            } label: {
                 Image("LibraryButton")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 64)
+                    .frame(width: 44)
             }
-            .padding(.leading, 20)
-            .padding(.top, 10)
-
+            .padding(.leading)
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
 #Preview {
-    ExplanationView()
+    SideExplanationView(controller: SimulationSceneController())
 }
