@@ -10,7 +10,7 @@ struct SimulationView: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            SideExplanationView(controller: simulationController)
+            SidebarSimulation(controller: simulationController)
             Spacer()
             StopButton {
                 simulationController.stopAnimating()

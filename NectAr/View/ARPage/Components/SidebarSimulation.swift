@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Left-edge carousel listing the simulation as a sequence of explained steps. The top
 /// card plays the full round trip, each step below loops just that one in isolation.
-struct SideExplanationView: View {
+struct SidebarSimulation: View {
 
     let controller: SimulationSceneController
     @State private var viewModel = ExpSimulationViewModel()
@@ -20,10 +20,10 @@ struct SideExplanationView: View {
         HStack(alignment: .top) {
             if viewModel.isListVisible {
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 45) {
+                    VStack(spacing: 35) {
                         ForEach(viewModel.cards) { card in
                             SimExplanationCard(title: card.title, description: card.description)
-                                .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.4)
+                                .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.3)
                                 .id(card.id)
                                 .onTapGesture {
                                     withAnimation(.easeInOut) {
@@ -67,5 +67,5 @@ struct SideExplanationView: View {
 }
 
 #Preview {
-    SideExplanationView(controller: SimulationSceneController())
+    SidebarSimulation(controller: SimulationSceneController())
 }
