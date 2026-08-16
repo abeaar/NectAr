@@ -13,17 +13,9 @@ struct SplashScreenView: View {
             Theme.background
                 .ignoresSafeArea()
             
-            //placeholder
-            VStack(spacing: 10) {
-                Image("nectar-logo-2")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 225)
-                
-                Text("hello world")
-                    .font(Font.custom("Fredoka-Medium", size: 46, relativeTo: .title))
-                    .foregroundStyle(Theme.brown)
-            }
+            Image("SplashScreen")
+                .ignoresSafeArea()
+                .scaledToFit()
         }
     }
 }
