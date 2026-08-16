@@ -1,21 +1,23 @@
 import SwiftUI
 
 struct SimulationView: View {
+    let simulationController: SimulationSceneController
     let arViewModel: ARViewModel<ARSessionManager>
+    let placementViewModel: PlacementViewModel
+    let mascotViewModel: MascotViewModel
     let topology: PlacedTopology
     let onExit: () -> Void
-    @State private var simulationController = SimulationSceneController()
     @State private var isSidebarOpen = true
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            SimulationContainerView(arView: arViewModel.arView, controller: simulationController)
-                .ignoresSafeArea()
-
             HStack {
                 Spacer()
                 Button {
                     simulationController.stopAnimating()
+                    placementViewModel.tearDown()
+                    mascotViewModel.tearDown()
+                    arViewModel.pause()
                     onExit()
                 } label: {
                     Image("StopButton2")
@@ -53,7 +55,10 @@ struct SimulationView: View {
 
 #Preview {
     SimulationView(
+        simulationController: SimulationSceneController(),
         arViewModel: ARViewModel(sessionManager: ARSessionManager()),
+        placementViewModel: PlacementViewModel(),
+        mascotViewModel: MascotViewModel(),
         topology: PlacedTopology(transforms: [:]),
         onExit: {}
     )

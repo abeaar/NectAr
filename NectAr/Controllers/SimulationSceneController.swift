@@ -11,6 +11,10 @@ final class SimulationSceneController {
     private static let mascotTrailOffset = SIMD3<Float>(-0.1, 0.15, 0.15)
 
     weak var arView: ARView?
+
+    func attachARView(_ arView: ARView) {
+        self.arView = arView
+    }
     private(set) var selection: SimulationPlaybackSelection = .full
     /// Persistent for the whole simulation, unlike `stepStatusText`, since it
     /// describes a placement fact rather than the currently selected step.
