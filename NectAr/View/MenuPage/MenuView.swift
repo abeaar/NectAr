@@ -25,13 +25,13 @@ struct MenuView: View {
                 
                 Image("MenuPageBG")
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .ignoresSafeArea()
                 
-                VStack {
+                VStack (spacing: 70) {
                     // carousel
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing:-10) {
+                        HStack {
                             ForEach(StoryCatalog.all) { story in
                                 
                                 ExpandableCard(
@@ -51,7 +51,7 @@ struct MenuView: View {
                         }
                         .scrollTargetLayout()
                     }
-                    .frame(height: 750)
+                    .frame(height: 500)
                     .scrollClipDisabled()
                     .safeAreaPadding(.horizontal, horizontalPadding)
                     .scrollTargetBehavior(.viewAligned)
@@ -62,12 +62,14 @@ struct MenuView: View {
                         }
                         
                     }
+                    .padding(.top, 100)
+                    
                     // pagination dots
                     HStack(spacing: 12) {
                         ForEach(StoryCatalog.all) { story in
                             Circle()
                                 .fill(activeStoryID == story.id ? Theme.brown : Theme.brown.opacity(0.3))
-                                .frame(width: 16, height: 16)
+                                .frame(width: 12, height: 12)
                                 .animation(.easeInOut, value: activeStoryID)
                         }
                     }
@@ -85,9 +87,9 @@ struct MenuView: View {
                     Image("SettingsButton")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 72)
+                        .frame(height: 62)
                 }
-                .padding(.trailing, 64)
+                .padding(.trailing, 24)
             }
         }
     }

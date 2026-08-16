@@ -25,7 +25,7 @@ struct ExpandableCard: View {
     var body: some View {
         VStack(spacing: 26) {
             ZStack {
-                VStack (alignment: .trailing ,spacing: 14){
+                VStack (alignment: .trailing ,spacing: 8){
                     HStack {
                         if isExpanded {
                             CloseButton(action: {
@@ -38,23 +38,23 @@ struct ExpandableCard: View {
                     }
                     
                     if isExpanded {
-                        VStack(alignment: .leading, spacing: 14) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text(story.title)
-                                .font(Font.custom("Fredoka-Bold", size: 62, relativeTo: .title))
+                                .font(Font.custom("Fredoka-Bold", size: 48, relativeTo: .title))
                                 .foregroundStyle(Theme.brown)
-                                .frame(width: 475, height: 100, alignment: .leading)
+                                .frame(width: 385, height: 100, alignment: .leading)
                                 .minimumScaleFactor(0.4)
                             
                             Text(story.description)
-                                .font(Font.custom("Fredoka-Medium", size: 32, relativeTo: .title2))
+                                .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .title2))
                                 .foregroundStyle(Theme.brown)
                                 .padding(16)
-                                .frame(width: 475, height: 210)
+                                .frame(width: 385, height: 175)
                                 .background(Theme.cream)
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                                 .minimumScaleFactor(0.4)
                         }
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 12)
                         .transition(.scale)
                     }
                     
@@ -67,7 +67,7 @@ struct ExpandableCard: View {
                                 Image("quizButton")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(height: 65)
+                                    .frame(height: 46)
                             }
                             .transition(.scale)
                             
@@ -77,32 +77,30 @@ struct ExpandableCard: View {
                                 Image("startButton")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(height: 65)
+                                    .frame(height: 46)
                             }
                             .transition(.scale)
                         }
                     }
                     
                 }
-                .padding(.trailing, 48)
-                .frame(width: isExpanded ? 1070 : 525, height: isExpanded ? 580 : 525)
+                .padding(.trailing, 38)
+                .frame(width: isExpanded ? 930 : 420, height: isExpanded ? 520 : 420)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 0)
                 
                 VStack {
                     ZStack {
                         
-                        //                    Rectangle()
-                        //                        .foregroundStyle(Theme.yellow)
-                        
                         Image(story.icon)
                             .resizable()
-                            .frame(width: 445, height: 445)
-                            .clipShape(.rect(cornerRadius: 20))
+                            .scaledToFit()
+                            .frame(width: isExpanded ? 415 : 350)
+                            .clipShape(.rect(cornerRadius: 15))
                     }
-                    .frame(width: 500, height: 500)
-                    .cornerRadius(35)
-                    .offset(x: isExpanded ? -260 : 0)
+                    .cornerRadius(30)
+                    .offset(x: isExpanded ? -210 : 0)
                 }
             }
             .onTapGesture {
