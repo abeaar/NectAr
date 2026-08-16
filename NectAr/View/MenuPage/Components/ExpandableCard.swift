@@ -85,7 +85,7 @@ struct ExpandableCard: View {
                     
                 }
                 .padding(.trailing, 48)
-                .frame(width: isExpanded ? 1070 : 500, height: isExpanded ? 580 : 500)
+                .frame(width: isExpanded ? 1070 : 525, height: isExpanded ? 580 : 525)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
                 
