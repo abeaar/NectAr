@@ -14,7 +14,7 @@ struct CloseButton: View {
             Button(action: {
                 action()
             }) {
-                Image("BackButton2")
+                Image("CloseButton")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 56, height: 56)
