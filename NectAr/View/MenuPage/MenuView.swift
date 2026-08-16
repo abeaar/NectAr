@@ -31,7 +31,7 @@ struct MenuView: View {
                 VStack (spacing: 70) {
                     // carousel
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
+                        HStack(spacing: -50) {
                             ForEach(StoryCatalog.all) { story in
                                 
                                 ExpandableCard(

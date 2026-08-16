@@ -85,7 +85,7 @@ struct ExpandableCard: View {
                     
                 }
                 .padding(.trailing, 38)
-                .frame(width: isExpanded ? 930 : 420, height: isExpanded ? 520 : 420)
+                .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 520 : 515)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
                 .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 0)
@@ -96,11 +96,20 @@ struct ExpandableCard: View {
                         Image(story.icon)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: isExpanded ? 415 : 350)
+                            .frame(width: isExpanded ? 415 : 400)
                             .clipShape(.rect(cornerRadius: 15))
                     }
-                    .cornerRadius(30)
+                    .cornerRadius(28)
                     .offset(x: isExpanded ? -210 : 0)
+                    
+                    if !isExpanded {
+                        Text(story.title)
+                            .font(Font.custom("Fredoka-SemiBold", size: 36, relativeTo: .title))
+                            .padding(.top, 10)
+                            .foregroundStyle(Theme.brown)
+                            .minimumScaleFactor(0.4)
+                            .transition(.opacity)
+                    }
                 }
             }
             .onTapGesture {
@@ -111,13 +120,6 @@ struct ExpandableCard: View {
                         expandedStoryID = story.id
                     }
                 }
-            }
-            if !isExpanded {
-                Text(story.title)
-                    .font(Font.custom("Fredoka-bold", size: 38, relativeTo: .title))
-                    .foregroundStyle(Theme.brown)
-                    .minimumScaleFactor(0.4)
-                    .transition(.opacity)
             }
         }
     }
