@@ -18,9 +18,6 @@ struct SimulationView: View {
             Spacer()
             StopButton {
                 simulationController.stopAnimating()
-                placementViewModel.tearDown()
-                mascotViewModel.tearDown()
-                arViewModel.pause()
                 onExit()
             }
             .padding(.trailing)
