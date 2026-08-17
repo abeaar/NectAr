@@ -25,7 +25,6 @@ struct MenuView: View {
                 
                 Image("MenuPageBG")
                     .resizable()
-                    .scaledToFit()
                     .ignoresSafeArea()
                 
                 VStack (spacing: 70) {
