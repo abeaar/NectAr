@@ -2,9 +2,13 @@ import SwiftUI
 
 struct SimulationView: View {
     let simulationController: SimulationSceneController
+    
     let arViewModel: ARViewModel<ARSessionManager>
+    
     let placementViewModel: PlacementViewModel
+    
     let mascotViewModel: MascotViewModel
+    
     let topology: PlacedTopology
     let onExit: () -> Void
 

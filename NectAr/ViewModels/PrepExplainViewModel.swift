@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class PrepExplainVM {
+final class PrepExplainViewModel {
     let service: PrepExplainService
 
     init(service: PrepExplainService) {

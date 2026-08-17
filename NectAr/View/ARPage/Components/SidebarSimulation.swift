@@ -20,7 +20,7 @@ struct SidebarSimulation: View {
         HStack(alignment: .top) {
             if viewModel.isListVisible {
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 35) {
+                    VStack(spacing: 14) {
                         ForEach(viewModel.cards) { card in
                             SimExplanationCard(title: card.title, description: card.description)
                                 .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.3)
@@ -32,21 +32,21 @@ struct SidebarSimulation: View {
                                 }
                         }
                     }
-                    .padding(.leading)
+                    .padding(.leading, 30)
                     .scrollTargetLayout()
                 }
-//                .frame(width: 350)
+                .frame(width: 350)
                 .scrollPosition(id: $viewModel.activeCardID, anchor: .center)
-                .contentMargins(.bottom, 400, for: .scrollContent)
+                .contentMargins(.bottom, 700, for: .scrollContent)
                 .scrollTargetBehavior(.viewAligned)
                 .transition(.move(edge: .leading).combined(with: .opacity))
-                .onChange(of: viewModel.activeCardID) { _, newID in
-                    guard let newID, let source = viewModel.source(for: newID) else { return }
-                    switch source {
-                    case .full: controller.select(.full)
-                    case .step(let step): controller.select(.step(step))
-                    }
-                }
+//                .onChange(of: viewModel.activeCardID) { _, newID in
+//                    guard let newID, let source = viewModel.source(for: newID) else { return }
+//                    switch source {
+//                    case .full: controller.select(.full)
+//                    case .step(let step): controller.select(.step(step))
+//                    }
+//                }
             }
 
             Button {
@@ -59,10 +59,11 @@ struct SidebarSimulation: View {
                     .scaledToFit()
                     .frame(width: 44)
             }
-            .padding(.leading)
+            .padding(.leading, 20)
+            .padding(.top, 10)
             Spacer()
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
