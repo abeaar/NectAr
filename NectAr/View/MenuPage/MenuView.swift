@@ -80,16 +80,6 @@ struct MenuView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                Button(action: {
-                    print("Settings button tapped") // testing
-                }) {
-                    Image("SettingsButton")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 62)
-                }
-                .padding(.trailing, 24)
             }
         }
     }
