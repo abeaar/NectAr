@@ -34,7 +34,6 @@ struct ARExperienceView: View {
                 prepExplainVM: prepExplainVM,
                 onBack: onExitToMenu
             ) { topology in
-                prepExplainVM.markSimulationVisited()
                 phase = .simulation(topology)
             }
         case .simulation(let topology):

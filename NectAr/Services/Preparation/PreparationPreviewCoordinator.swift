@@ -91,8 +91,7 @@ final class PreparationPreviewCoordinator {
         let isInRange = !isTooFar
         if isInRange != isShowingInRangeGhost {
             isShowingInRangeGhost = isInRange
-            let opacity = isInRange ? PreparationPreviewStyler.ghostOpacityInRange : PreparationPreviewStyler.ghostOpacityOutOfRange
-            PreparationPreviewStyler.updateGhostOpacity(on: previewEntity, opacity: opacity)
+            PreparationPreviewStyler.updateGhostColor(on: previewEntity, isInRange: isInRange)
         }
     }
 

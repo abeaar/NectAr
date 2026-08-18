@@ -19,7 +19,9 @@ final class PlacementController: ARSceneDriven {
     private var updateSubscription: Cancellable?
     private var isPreviewSuspended = false
 
-    private(set) var selectedDeviceKind: DeviceKind = .deviceA
+    /// Nil until the user picks something from the device list, so the ghost
+    /// preview and action button have nothing to act on by default.
+    private(set) var selectedDeviceKind: DeviceKind?
     private(set) var prepExplainService: PrepExplainService?
 
     func attachPrepExplainService(_ service: PrepExplainService) {
@@ -47,7 +49,8 @@ final class PlacementController: ARSceneDriven {
     }
 
     var isPreviewActive: Bool {
-        !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
+        guard let selectedDeviceKind else { return false }
+        return !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
     }
 
     func canPlace(_ kind: DeviceKind) -> Bool {
@@ -62,7 +65,7 @@ final class PlacementController: ARSceneDriven {
 
         if suspended {
             previewCoordinator.teardown()
-        } else if PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind), !placedKinds.contains(selectedDeviceKind) {
+        } else if let selectedDeviceKind, PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind), !placedKinds.contains(selectedDeviceKind) {
             previewCoordinator.show(selectedDeviceKind)
         }
     }
@@ -79,13 +82,8 @@ final class PlacementController: ARSceneDriven {
     }
 
     func selectDevice(_ kind: DeviceKind) {
-        switch prepExplainService?.currentEntry?.id {
-        case "9" where kind != .router:
-            prepExplainService?.step(to: "10")
-        case "14" where kind == .router:
-            prepExplainService?.step(to: "15")
-        default:
-            break
+        if prepExplainService?.currentEntry?.id == "4" {
+            prepExplainService?.step(to: "5")
         }
 
         guard selectedDeviceKind != kind else { return }
@@ -98,16 +96,15 @@ final class PlacementController: ARSceneDriven {
     }
 
     func confirmPlacement() {
-        if prepExplainService?.currentEntry?.id == "10" {
-            prepExplainService?.step(to: "11")
-        }
-
         guard let arView else {
             print("AR view not ready yet")
             return
         }
 
-        let kind = selectedDeviceKind
+        guard let kind = selectedDeviceKind else {
+            print("No device selected yet")
+            return
+        }
         guard canPlace(kind), !placementsInFlight.contains(kind) else {
             print("\(kind.label) has already been placed, or is being placed")
             return
@@ -140,19 +137,10 @@ final class PlacementController: ARSceneDriven {
                 let anchor = AnchoredEntityPlacer.place(entity, at: firstResult.worldTransform, in: arView.scene)
                 ledger.record(kind, transform: firstResult.worldTransform, anchor: anchor)
 
-                if let service = prepExplainService {
-                    switch service.currentEntry?.id {
-                    case "11" where placedKinds.contains(.deviceA) && placedKinds.contains(.deviceB):
-                        service.step(to: "12")
-                    case "15" where placedKinds.contains(.router):
-                        service.markEligibleForFinalStep()
-                        service.step(to: "16")
-                    default:
-                        break
-                    }
-                    service.refreshFinalStep(isComplete: isComplete)
-                    service.refreshSkipComplete(isComplete: isComplete)
+                if prepExplainService?.currentEntry?.id == "5" {
+                    prepExplainService?.step(to: "6")
                 }
+                prepExplainService?.refreshFinalStep(isComplete: isComplete)
             } catch {
                 print("Failed to load \(kind) entity: \(error)")
             }
@@ -168,7 +156,6 @@ final class PlacementController: ARSceneDriven {
         }
 
         prepExplainService?.refreshFinalStep(isComplete: isComplete)
-        prepExplainService?.refreshSkipComplete(isComplete: isComplete)
     }
 
     func finishPlacement() {
@@ -185,7 +172,7 @@ final class PlacementController: ARSceneDriven {
 
         placementsInFlight.removeAll()
         distanceGate.reset()
-        selectedDeviceKind = .deviceA
+        selectedDeviceKind = nil
     }
 
     private func stopPreview() {
@@ -197,7 +184,7 @@ final class PlacementController: ARSceneDriven {
     private func subscribeToSceneUpdates() {
         guard let arView else { return }
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
-            guard let self else { return }
+            guard let self, let selectedDeviceKind else { return }
             let isPlaced = placedKinds.contains(selectedDeviceKind)
             distanceGate.update(for: selectedDeviceKind, isPlaced: isPlaced)
             previewCoordinator.update(isPlaced: isPlaced, isTooFar: distanceGate.isTooFar)

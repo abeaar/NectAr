@@ -11,7 +11,7 @@ import UIKit
 @Observable
 final class PreparationDistance {
     private static let maxPlacementDistance: Float = 3.0
-    private static var hintHoldDuration: TimeInterval { 2 }
+    private static var hintHoldDuration: TimeInterval { 1 }
 
     weak var arView: ARView?
     /// Live, ungated, used to gate `PlacementController.confirmPlacement()` so

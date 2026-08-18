@@ -9,6 +9,4 @@ import Foundation
 enum PrepExplainHighlightTarget {
     case deviceSelector
     case actionButton
-    /// Just the Router icon within the device list, not the whole list.
-    case routerOnly
 }
