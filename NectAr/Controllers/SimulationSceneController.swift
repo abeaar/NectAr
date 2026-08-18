@@ -6,7 +6,7 @@ import ARKit
 /// single sidebar step in isolation. See ``deadzoneHint``/``stepStatusText``.
 @Observable
 final class SimulationSceneController {
-    private static let baseLegDuration: TimeInterval = 3
+    private static let baseLegDuration: TimeInterval = 6
     private static let obstructedMultiplier: Double = 2.0
     private static let mascotTrailOffset = SIMD3<Float>(-0.1, 0.15, 0.15)
 
@@ -205,6 +205,7 @@ final class SimulationSceneController {
     private func runMailLoop(origin: simd_float4x4, waypoints: [simd_float4x4], waypointsObstructed: [Bool], arView: ARView) async {
         do {
             let mail = try await DeviceEntityLoader.loadMailPacket()
+            mail.scale = SIMD3<Float>(repeating: 0.3)
             let anchor = AnchoredEntityPlacer.place(mail, at: origin, in: arView.scene)
             defer { AnchoredEntityPlacer.remove(anchor, from: arView.scene) }
             mail.components.set(RouteComponent(waypoints: waypoints))
