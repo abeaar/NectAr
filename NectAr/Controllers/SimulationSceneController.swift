@@ -38,6 +38,7 @@ final class SimulationSceneController {
     /// the simulation phase begins.
     func startAnimating(topology: PlacedTopology) {
         self.topology = topology
+        hideStandaloneMascot()
         select(.full)
     }
 
@@ -258,6 +259,28 @@ final class SimulationSceneController {
     private func entity(for kind: DeviceKind, in arView: ARView) -> Entity? {
         let query = EntityQuery(where: .has(DeviceIdentityComponent.self))
         return Array(arView.scene.performQuery(query)).first { $0.components[DeviceIdentityComponent.self]?.kind == kind }
+    }
+
+    // Despawns the standalone mascot bee anchor while simulation is running, so
+    // only the bee nested inside the mail packet is visible. The anchor is
+    // saved so it can be re-added when the user leaves simulation.
+    private var storedMascotAnchor: AnchorEntity?
+
+    private func hideStandaloneMascot() {
+        guard let arView else { return }
+        let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
+        guard let mascot = Array(arView.scene.performQuery(mascotQuery)).first,
+              let anchor = mascot.parent as? AnchorEntity else { return }
+        storedMascotAnchor = anchor
+        arView.scene.removeAnchor(anchor)
+    }
+
+    /// Re-spawns the standalone mascot bee anchor, called when the user leaves
+    /// the simulation phase and returns to preparation.
+    func showStandaloneMascot() {
+        guard let arView, let anchor = storedMascotAnchor else { return }
+        arView.scene.addAnchor(anchor)
+        storedMascotAnchor = nil
     }
 
     private func clearHighlights() {
