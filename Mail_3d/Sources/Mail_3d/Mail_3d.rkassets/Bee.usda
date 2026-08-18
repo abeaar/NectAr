@@ -261,13 +261,12 @@ def Xform "Root"
                 )
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    float inputs:clearcoat = 0.01
-                    color3f inputs:diffuseColor = (1, 0.7745887, 0.23197332) (
+                    float inputs:clearcoat = 0.5
+                    color3f inputs:diffuseColor = (1, 0.8532114, 0.2615822) (
                         colorSpace = "srgb_displayp3"
                     )
-                    float inputs:metallic = 0
-                    normal3f inputs:normal = (0, 0, 0)
-                    float inputs:roughness = 0.075
+                    float inputs:metallic = 1
+                    float inputs:roughness = 1
                     token outputs:surface
                 }
 

@@ -5,7 +5,7 @@
         "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
         "Root",
         "Group",
-        "Body"
+        "AntennaL"
       ],
       {
         "isExpanded" : true,
@@ -15,7 +15,8 @@
         "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
         "Root",
         "Group",
-        "AntennaR"
+        "Body",
+        "Capsule_1"
       ],
       {
         "isExpanded" : true,
@@ -61,6 +62,25 @@
       [
         "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
         "Root",
+        "Group",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
+        "WingLoopRepeat"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
+        "Root",
         "WingLoopRepeat",
         "Track"
       ],
@@ -72,16 +92,7 @@
         "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
         "Root",
         "Group",
-        "AntennaL"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C",
-        "Root",
-        "WingLoopRepeat"
+        "AntennaR"
       ],
       {
         "isExpanded" : true,
@@ -104,7 +115,45 @@
       [
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
-        "WingStart",
+        "LeftWing"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "wing_loop",
+        "Track_2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop",
+        "Track_2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop",
         "Track"
       ],
       {
@@ -115,7 +164,7 @@
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
         "Timeline",
-        "Track"
+        "Track2"
       ],
       {
         "isExpanded" : true,
@@ -141,6 +190,25 @@
       [
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
+        "WingStart",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
+        "WingLoop"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+        "Root",
         "WingLoop",
         "Track2"
       ],
@@ -152,7 +220,7 @@
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
         "WingStart",
-        "Track2"
+        "Track"
       ],
       {
         "isExpanded" : true,
@@ -161,8 +229,8 @@
       [
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
-        "WingLoop",
-        "Track_2"
+        "wing_loop",
+        "Track"
       ],
       {
         "isExpanded" : true,
@@ -172,64 +240,7 @@
         "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
         "Root",
         "Timeline",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "WingLoop",
         "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "wing_loop",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "LeftWing"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "wing_loop",
-        "Track_2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "Body"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
-        "Root",
-        "WingLoop"
       ],
       {
         "isExpanded" : true,

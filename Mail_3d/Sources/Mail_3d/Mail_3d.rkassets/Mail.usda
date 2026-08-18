@@ -10,13 +10,13 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Body", "MailOpenClose", "Cylinder"]
+    reorder nameChildren = ["Cylinder_1", "Body", "MailOpenClose", "Cylinder", "RCP_BehaviorsContainer", "OnAddedToScene", "Bee"]
     def Cube "Body" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
-        reorder nameChildren = ["DefaultMaterial", "InnerCone", "Cylinder"]
+        reorder nameChildren = ["DefaultMaterial", "InnerCone", "Cylinder", "Cylinder_1"]
         rel material:binding = </Root/Body/DefaultMaterial>
         double size = 0.2
         quatf xformOp:orient = (1, 0, 0, 0)
@@ -78,6 +78,210 @@ def Xform "Root"
                 }
             }
         }
+
+        def Cylinder "Cylinder" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (1.570795, -8.9406946e-8, 7.105428e-15)
+            }
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "Cone"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Body/Cylinder/DefaultMaterial>
+            double radius = 0.1
+            quatf xformOp:orient = (0.70710737, 0.7071062, -1.5805077e-9, 1.5804102e-9)
+            float3 xformOp:scale = (0.09999996, 0.7499997, 0.006666664)
+            float3 xformOp:translate = (0, 0.09866669, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Body/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cone "Cone" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (1.5707964, -1.490116e-7, 0)
+                }
+            )
+            {
+                reorder nameChildren = ["Candle", "DefaultMaterial"]
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Body/Cylinder/Cone/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (0.70710677, 0.70710677, -1.4838585e-7, 1.4838581e-7)
+                float3 xformOp:scale = (10, 80, 1.3333334)
+                float3 xformOp:translate = (1.0000002, 3.589939e-9, 7.800004)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Body/Cylinder/Cone/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 0.95686275, 0.8509804) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        token outputs:surface
+                    }
+                }
+
+                def Sphere "Candle" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Body/Cylinder/Cone/Candle/DefaultMaterial>
+                    double radius = 0.1
+                    quatf xformOp:orient = (1.748456e-8, 1, 0, 0)
+                    float3 xformOp:scale = (0.99999994, 0.37499997, 0.15)
+                    float3 xformOp:translate = (0.02176138, 0.0625, -2.1855688e-9)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Material "DefaultMaterial"
+                    {
+                        token outputs:mtlx:surface
+                        token outputs:realitykit:vertex
+                        token outputs:surface.connect = </Root/Body/Cylinder/Cone/Candle/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                        def Shader "DefaultSurfaceShader"
+                        {
+                            uniform token info:id = "UsdPreviewSurface"
+                            color3f inputs:diffuseColor = (1, 0.69411767, 0) (
+                                colorSpace = "srgb_displayp3"
+                            )
+                            float inputs:roughness = 0.75
+                            token outputs:surface
+                        }
+                    }
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (1.570795, -8.9406946e-8, 7.105428e-15)
+            }
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "Cone"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Body/Cylinder_1/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (0.7071075, 0.70710605, -1.580508e-9, 1.5803415e-9)
+            float3 xformOp:scale = (0.099999934, 0.7499994, 0.0066666617)
+            float3 xformOp:translate = (-0.19464296, 0.09866668, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Body/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cone "Cone" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (1.5707964, -1.490116e-7, 0)
+                }
+            )
+            {
+                reorder nameChildren = ["Candle", "DefaultMaterial"]
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Body/Cylinder_1/Cone/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (0.70710677, 0.70710677, -1.4838585e-7, 1.4838581e-7)
+                float3 xformOp:scale = (10, 80, 1.3333334)
+                float3 xformOp:translate = (1.0000002, 3.589939e-9, 7.800004)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Body/Cylinder_1/Cone/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 0.95686275, 0.8509804) (
+                            colorSpace = "srgb_displayp3"
+                        )
+                        token outputs:surface
+                    }
+                }
+
+                def Sphere "Candle" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Body/Cylinder_1/Cone/Candle/DefaultMaterial>
+                    double radius = 0.1
+                    quatf xformOp:orient = (1.748456e-8, 1, 0, 0)
+                    float3 xformOp:scale = (0.99999994, 0.37499997, 0.15)
+                    float3 xformOp:translate = (0.02176138, 0.0625, -2.1855688e-9)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Material "DefaultMaterial"
+                    {
+                        token outputs:mtlx:surface
+                        token outputs:realitykit:vertex
+                        token outputs:surface.connect = </Root/Body/Cylinder_1/Cone/Candle/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                        def Shader "DefaultSurfaceShader"
+                        {
+                            uniform token info:id = "UsdPreviewSurface"
+                            color3f inputs:diffuseColor = (1, 0.69411767, 0) (
+                                colorSpace = "srgb_displayp3"
+                            )
+                            float inputs:roughness = 0.75
+                            token outputs:surface
+                        }
+                    }
+                }
+            }
+        }
     }
 
     def RealityKitTimeline "MailOpenClose"
@@ -97,7 +301,7 @@ def Xform "Root"
                 quatf rotation = (0.2988364, 0.29883605, 0.64085597, 0.64085686)
                 float3 scale = (0.009999997, 1.4999995, 0.009999997)
                 double startTime = 0
-                rel target = </Root/Cylinder>
+                rel target = </Root/Body/Cylinder>
 
                 def RealityKitStruct "transformMode"
                 {
@@ -120,7 +324,7 @@ def Xform "Root"
                 quatf rotation = (0.7071073, 0.70710623, -3.1610156e-8, 3.1610114e-8)
                 float3 scale = (0.009999997, 1.4999995, 0.009999997)
                 double startTime = 3.998989456724395
-                rel target = </Root/Cylinder>
+                rel target = </Root/Body/Cylinder>
                 float2 ui:nodegraph:node:pos = (40, 40)
                 int ui:nodegraph:node:stackingOrder = 2
 
@@ -132,107 +336,6 @@ def Xform "Root"
 
                 def RealityKitStruct "timingFunction"
                 {
-                }
-            }
-        }
-    }
-
-    def Cylinder "Cylinder" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-        customData = {
-            float3 rotationEulerHint = (1.570795, -8.9406946e-8, 7.105428e-15)
-        }
-    )
-    {
-        reorder nameChildren = ["DefaultMaterial", "Cone"]
-        uniform token axis = "Y"
-        double height = 0.2
-        rel material:binding = </Root/Cylinder/DefaultMaterial>
-        double radius = 0.1
-        quatf xformOp:orient = (0.7071072, 0.7071063, -3.1609986e-8, 3.1608998e-8)
-        float3 xformOp:scale = (0.009999998, 1.4999996, 0.009999998)
-        float3 xformOp:translate = (0, 0.14799999, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def Material "DefaultMaterial"
-        {
-            token outputs:mtlx:surface
-            token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-            def Shader "DefaultSurfaceShader"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (1, 1, 1)
-                float inputs:roughness = 0.75
-                token outputs:surface
-            }
-        }
-
-        def Cone "Cone" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-            customData = {
-                float3 rotationEulerHint = (1.5707964, -1.490116e-7, 0)
-            }
-        )
-        {
-            reorder nameChildren = ["Candle", "DefaultMaterial"]
-            uniform token axis = "Y"
-            double height = 0.2
-            rel material:binding = </Root/Cylinder/Cone/DefaultMaterial>
-            double radius = 0.1
-            quatf xformOp:orient = (0.70710677, 0.70710677, -1.4838585e-7, 1.4838581e-7)
-            float3 xformOp:scale = (10, 80, 1.3333334)
-            float3 xformOp:translate = (1.0000002, 3.589939e-9, 7.800004)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:mtlx:surface
-                token outputs:realitykit:vertex
-                token outputs:surface.connect = </Root/Cylinder/Cone/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 0.95686275, 0.8509804) (
-                        colorSpace = "srgb_displayp3"
-                    )
-                    token outputs:surface
-                }
-            }
-
-            def Sphere "Candle" (
-                active = true
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </Root/Cylinder/Cone/Candle/DefaultMaterial>
-                double radius = 0.1
-                quatf xformOp:orient = (1.748456e-8, 1, 0, 0)
-                float3 xformOp:scale = (0.99999994, 0.37499997, 0.15)
-                float3 xformOp:translate = (0.02176138, 0.0625, -2.1855688e-9)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:mtlx:surface
-                    token outputs:realitykit:vertex
-                    token outputs:surface.connect = </Root/Cylinder/Cone/Candle/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 0.69411767, 0) (
-                            colorSpace = "srgb_displayp3"
-                        )
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
                 }
             }
         }
@@ -266,6 +369,16 @@ def Xform "Root"
             int performCount = 1
             token type = "serial"
         }
+    }
+
+    def "Bee" (
+        active = true
+        prepend references = @Bee.usda@
+    )
+    {
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0, 0.19239533, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 

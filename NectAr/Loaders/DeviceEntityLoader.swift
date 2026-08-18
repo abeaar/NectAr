@@ -8,6 +8,9 @@
 import Foundation
 import RealityKit
 import ARWolrd
+import Bee
+import Mail_3d
+import Router_3d
 
 /// Loads every placeable entity from `ARWolrd`'s composed scene, authored in Reality
 /// Composer Pro with all five entities referenced together in one `Scene.usda`.
@@ -27,11 +30,19 @@ enum DeviceEntityLoader {
     }
 
     static func loadMailPacket() async throws -> Entity {
-        try await loadFromComposedScene(named: "Mail")
+        guard let scene = try? await Entity(named: "Mail", in: mail_3dBundle),
+              let mail = scene.findEntity(named: "Root") else {
+            throw LoadError.entityNotFound("Mail")
+        }
+        return mail.clone(recursive: true)
     }
 
     static func loadMascot() async throws -> Entity {
-        try await loadFromComposedScene(named: "Bee")
+        guard let asset = try? await Entity(named: "Bee", in: beeBundle),
+              let bee = asset.findEntity(named: "Root") else {
+            throw LoadError.entityNotFound("Bee")
+        }
+        return bee.clone(recursive: true)
     }
 
     /// Hands back a clone of the named child, not the cached entity itself, since

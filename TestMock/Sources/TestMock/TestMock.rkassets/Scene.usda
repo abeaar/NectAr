@@ -1,2 +1,91 @@
 #usda 1.0
+(
+    defaultPrim = "Bee"
+)
+
+reorder rootPrims = ["Bee", "MacBook", "Iphone", "BeeMail"]
+
+def "Bee" (
+    active = true
+    references = @Bee.usda@
+)
+{
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (100, 99.999985, 99.99999)
+    float3 xformOp:translate = (4.32117, 0, 12.393034)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def RealityKitComponent "AnimationLibrary"
+    {
+        token info:id = "RealityKit.AnimationLibrary"
+    }
+
+    over "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Bee/OnAddedToScene>
+    }
+
+    over "Group"
+    {
+        over "Body"
+        {
+            over "DefaultMaterial"
+            {
+                over "DefaultSurfaceShader"
+                {
+                    float inputs:clearcoat = 0.3
+                    float inputs:metallic = 0.7
+                }
+            }
+        }
+    }
+}
+
+def "MacBook" (
+    active = true
+    references = @MacBook.usda@
+)
+{
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (100, 100, 100)
+    float3 xformOp:translate = (-60.726387, 0, 2.9993176)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+
+def "Iphone" (
+    active = true
+    references = @Iphone.usda@
+)
+{
+    quatf xformOp:orient = (0.99999994, 0, 0, 0)
+    float3 xformOp:scale = (9.999999, 9.999999, 9.999999)
+    float3 xformOp:translate = (65.32296, 0.0000059604645, 2.1412015)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+
+def "BeeMail" (
+    active = true
+    references = @Bee.usda@
+)
+{
+    reorder nameChildren = ["Group", "RCP_BehaviorsContainer", "OnAddedToScene", "WingLoop", "WingLoopRepeat", "Mail"]
+    float2 ui:nodegraph:node:pos = (20, 20)
+    int ui:nodegraph:node:stackingOrder = 1
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (100, 100, 100)
+    float3 xformOp:translate = (109.95749, 25.281637, 4.289408)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "Mail" (
+        active = true
+        references = @Mail.usda@
+    )
+    {
+        reorder nameChildren = ["Bee", "Body", "MailOpenClose", "Cylinder", "RCP_BehaviorsContainer", "OnAddedToScene"]
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.014387846, -0.25281644, -0.015836552)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
 
