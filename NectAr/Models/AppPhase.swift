@@ -9,5 +9,5 @@ import Foundation
 
 enum AppPhase {
     case menu
-    case ar
+    case ar(Story.ID)
 }

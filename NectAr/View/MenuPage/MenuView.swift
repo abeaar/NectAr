@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    let onStart: () -> Void
+    let onStart: (Story.ID) -> Void
 
     @State private var activeStoryID: Story.ID?
     @State private var expandedStoryID: Story.ID?
@@ -25,7 +25,7 @@ struct MenuView: View {
                 
                 Image("MenuPageBG")
                     .resizable()
-                    .scaledToFill()
+                    //.scaledToFill()
                     .ignoresSafeArea()
                 
                 VStack {
@@ -37,7 +37,7 @@ struct MenuView: View {
                                 ExpandableCard(
                                     story: story,
                                     isActive: activeStoryID == story.id,
-                                    onPlay: onStart,
+                                    onPlay: { onStart(story.id) },
                                     expandedStoryID: $expandedStoryID
                                 )
                                 .frame(width: cardWidth)
@@ -94,5 +94,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(onStart: {})
+    MenuView(onStart: { _ in })
 }

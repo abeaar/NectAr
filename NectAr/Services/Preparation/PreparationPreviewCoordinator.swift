@@ -19,6 +19,7 @@ final class PreparationPreviewCoordinator {
     private var previewKind: DeviceKind?
     private var originalMaterials: PreparationPreviewStyler.OriginalMaterials?
     private var loadTask: Task<Void, Never>?
+    private var isShowingInRangeGhost = false
 
     static func isPreviewable(_ kind: DeviceKind) -> Bool {
         previewableKinds.contains(kind)
@@ -68,9 +69,10 @@ final class PreparationPreviewCoordinator {
         previewEntity = nil
         previewKind = nil
         originalMaterials = nil
+        isShowingInRangeGhost = false
     }
 
-    func update(isPlaced: Bool) {
+    func update(isPlaced: Bool, isTooFar: Bool) {
         guard let arView, let previewEntity else { return }
 
         guard !isPlaced else {
@@ -85,6 +87,13 @@ final class PreparationPreviewCoordinator {
 
         movePreviewEntity(previewEntity, to: hit.worldTransform)
         previewEntity.isEnabled = true
+
+        let isInRange = !isTooFar
+        if isInRange != isShowingInRangeGhost {
+            isShowingInRangeGhost = isInRange
+            let opacity = isInRange ? PreparationPreviewStyler.ghostOpacityInRange : PreparationPreviewStyler.ghostOpacityOutOfRange
+            PreparationPreviewStyler.updateGhostOpacity(on: previewEntity, opacity: opacity)
+        }
     }
 
     private func load(_ kind: DeviceKind) async {

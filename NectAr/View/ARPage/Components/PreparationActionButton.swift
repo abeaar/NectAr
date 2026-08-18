@@ -11,6 +11,7 @@ struct PreparationActionButton: View {
 
     let placementViewModel: PlacementViewModel
     let mascotViewModel: MascotViewModel
+    var isActionHighlighted = false
     let onComplete: (PlacedTopology) -> Void
 
     var body: some View {
@@ -36,6 +37,7 @@ struct PreparationActionButton: View {
                         .scaledToFit()
                         .frame(width: 100)
                 }
+                .explanationHighlight(isActive: isActionHighlighted)
             }
         }
     }

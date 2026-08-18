@@ -18,17 +18,16 @@ final class MascotOnboardingController: ARSceneDriven {
             beeEntity?.components[MascotStateComponent.self]?.phase = phase
         }
     }
-    /// Copy shown while `phase == .animating`, changes mid sequence (found, then the
-    /// name intro), unlike the fixed per-phase text `mascotHint` otherwise returns.
-    private(set) var foundMessage: String?
-
     var isActive: Bool { phase != .complete }
 
-    var mascotHint: String? {
-        switch phase {
-        case .hunting: "There is a bee flying around, can you find it?"
-        case .animating: foundMessage
-        case .complete, .guiding: nil
+    /// Narration source for the hunt/found beats, shared with `PlacementController`
+    /// so the explanation card reads as one continuous sequence across both.
+    private(set) var prepExplainService: PrepExplainService?
+
+    func attachPrepExplainService(_ service: PrepExplainService) {
+        prepExplainService = service
+        if phase == .hunting {
+            service.step(to: "1")
         }
     }
 
@@ -114,23 +113,33 @@ final class MascotOnboardingController: ARSceneDriven {
         beginFoundSequence()
     }
 
+    /// Lets a direct tap on the bee find it immediately, without waiting on the
+    /// hover dwell, forwarded here from `ARContainerView`'s tap gesture.
+    func handleTap(at location: CGPoint, in arView: ARView) {
+        guard phase == .hunting, let beeEntity else { return }
+        guard let hit = arView.entity(at: location), Self.isEntity(hit, containedIn: beeEntity) else { return }
+
+        hoverStartTime = nil
+        beginFoundSequence()
+    }
+
     private func beginFoundSequence() {
         phase = .animating
         sequenceTask?.cancel()
         sequenceTask = Task { [weak self] in
             guard let self, let arView = self.arView, let beeEntity = self.beeEntity else { return }
             do {
-                foundMessage = "Yay! You found the bee!"
+                prepExplainService?.step(to: "2")
                 try await MascotFoundSequence.approachCamera(beeEntity, before: arView)
 
-                foundMessage = "Hello, my name is Phoebe. I am your bee guide."
                 try await Task.sleep(nanoseconds: UInt64(Self.introPauseDuration * 1_000_000_000))
 
-                foundMessage = nil
+                prepExplainService?.clear()
                 try await MascotFoundSequence.enterCamera(beeEntity, before: arView)
 
                 beeEntity.isEnabled = false
                 self.phase = .complete
+                prepExplainService?.step(to: "3")
             } catch {
             }
         }
@@ -151,7 +160,6 @@ final class MascotOnboardingController: ARSceneDriven {
         updateSubscription?.cancel()
         updateSubscription = nil
         hoverStartTime = nil
-        foundMessage = nil
 
         if let arView, let beeAnchor {
             AnchoredEntityPlacer.remove(beeAnchor, from: arView.scene)

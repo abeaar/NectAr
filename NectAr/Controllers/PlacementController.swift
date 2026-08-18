@@ -20,6 +20,11 @@ final class PlacementController: ARSceneDriven {
     private var isPreviewSuspended = false
 
     private(set) var selectedDeviceKind: DeviceKind = .deviceA
+    private(set) var prepExplainService: PrepExplainService?
+
+    func attachPrepExplainService(_ service: PrepExplainService) {
+        prepExplainService = service
+    }
 
     weak var arView: ARView? {
         didSet {
@@ -35,6 +40,11 @@ final class PlacementController: ARSceneDriven {
     var isComplete: Bool { placedKinds.count == DeviceKind.allCases.count }
     var canUndo: Bool { !ledger.isEmpty }
     var placementDistanceHint: String? { distanceGate.hint }
+    var isPlacementTooFar: Bool { distanceGate.isTooFar }
+
+    func advanceDistanceHintNow() {
+        distanceGate.advanceNow()
+    }
 
     var isPreviewActive: Bool {
         !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
@@ -69,6 +79,15 @@ final class PlacementController: ARSceneDriven {
     }
 
     func selectDevice(_ kind: DeviceKind) {
+        switch prepExplainService?.currentEntry?.id {
+        case "9" where kind != .router:
+            prepExplainService?.step(to: "10")
+        case "14" where kind == .router:
+            prepExplainService?.step(to: "15")
+        default:
+            break
+        }
+
         guard selectedDeviceKind != kind else { return }
         selectedDeviceKind = kind
         if PreparationPreviewCoordinator.isPreviewable(kind) {
@@ -79,6 +98,10 @@ final class PlacementController: ARSceneDriven {
     }
 
     func confirmPlacement() {
+        if prepExplainService?.currentEntry?.id == "10" {
+            prepExplainService?.step(to: "11")
+        }
+
         guard let arView else {
             print("AR view not ready yet")
             return
@@ -89,7 +112,7 @@ final class PlacementController: ARSceneDriven {
             print("\(kind.label) has already been placed, or is being placed")
             return
         }
-        guard placementDistanceHint == nil else {
+        guard !isPlacementTooFar else {
             print("Too far to place \(kind.label), move closer")
             return
         }
@@ -116,6 +139,20 @@ final class PlacementController: ARSceneDriven {
                 }
                 let anchor = AnchoredEntityPlacer.place(entity, at: firstResult.worldTransform, in: arView.scene)
                 ledger.record(kind, transform: firstResult.worldTransform, anchor: anchor)
+
+                if let service = prepExplainService {
+                    switch service.currentEntry?.id {
+                    case "11" where placedKinds.contains(.deviceA) && placedKinds.contains(.deviceB):
+                        service.step(to: "12")
+                    case "15" where placedKinds.contains(.router):
+                        service.markEligibleForFinalStep()
+                        service.step(to: "16")
+                    default:
+                        break
+                    }
+                    service.refreshFinalStep(isComplete: isComplete)
+                    service.refreshSkipComplete(isComplete: isComplete)
+                }
             } catch {
                 print("Failed to load \(kind) entity: \(error)")
             }
@@ -129,6 +166,9 @@ final class PlacementController: ARSceneDriven {
         if lastKind == selectedDeviceKind, PreparationPreviewCoordinator.isPreviewable(lastKind) {
             previewCoordinator.show(lastKind)
         }
+
+        prepExplainService?.refreshFinalStep(isComplete: isComplete)
+        prepExplainService?.refreshSkipComplete(isComplete: isComplete)
     }
 
     func finishPlacement() {
@@ -159,8 +199,8 @@ final class PlacementController: ARSceneDriven {
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
             guard let self else { return }
             let isPlaced = placedKinds.contains(selectedDeviceKind)
-            previewCoordinator.update(isPlaced: isPlaced)
             distanceGate.update(for: selectedDeviceKind, isPlaced: isPlaced)
+            previewCoordinator.update(isPlaced: isPlaced, isTooFar: distanceGate.isTooFar)
         }
     }
 }
