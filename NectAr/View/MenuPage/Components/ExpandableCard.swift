@@ -38,18 +38,18 @@ struct ExpandableCard: View {
                     }
                     
                     if isExpanded {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text(story.title)
-                                .font(Font.custom("Fredoka-Bold", size: 48, relativeTo: .title))
+                                .font(Font.custom("Fredoka-Bold", size: 64, relativeTo: .title))
                                 .foregroundStyle(Theme.brown)
-                                .frame(width: 385, height: 100, alignment: .leading)
+                                .frame(width: 385, height: 70, alignment: .leading)
                                 .minimumScaleFactor(0.4)
                             
                             Text(story.description)
-                                .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .title2))
+                                .font(Font.custom("Fredoka-Medium", size: 22, relativeTo: .title2))
                                 .foregroundStyle(Theme.brown)
-                                .padding(16)
-                                .frame(width: 385, height: 175)
+                                .padding(20)
+                                .frame(width: 385, height: 215, alignment: .topLeading)
                                 .background(Theme.cream)
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                                 .minimumScaleFactor(0.4)
@@ -85,7 +85,7 @@ struct ExpandableCard: View {
                     
                 }
                 .padding(.trailing, 38)
-                .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 520 : 515)
+                .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 500 : 515)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
                 .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 0)
@@ -100,12 +100,12 @@ struct ExpandableCard: View {
                             .clipShape(.rect(cornerRadius: 15))
                     }
                     .cornerRadius(28)
-                    .offset(x: isExpanded ? -210 : 0)
+                    .offset(x: isExpanded ? -215 : 0)
                     
                     if !isExpanded {
                         Text(story.title)
-                            .font(Font.custom("Fredoka-SemiBold", size: 36, relativeTo: .title))
-                            .padding(.top, 10)
+                            .font(Font.custom("Fredoka-SemiBold", size: 34, relativeTo: .title))
+                            .padding(.top, 12)
                             .foregroundStyle(Theme.brown)
                             .minimumScaleFactor(0.4)
                             .transition(.opacity)
@@ -132,7 +132,7 @@ struct ExpandableCard: View {
         
         var body: some View {
             ExpandableCard(
-                story: Story(id:"texting", title: "Streaming Youtube", icon: "StoryCard-2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut."),
+                story: Story(id:"texting", title: "WiFi", icon: "StoryCard-2", description: "Ever wonder how a text message from a phone reaches a laptop without any wires? It’s all thanks to Wi-Fi!\n\nJump in to see the invisible data packages flying around your own room!"),
                 isActive: true,
                 onPlay: {},
                 expandedStoryID: $mockExpandedID

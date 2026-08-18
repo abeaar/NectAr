@@ -9,7 +9,7 @@ struct BackButton: View {
                 Image("BackButton2")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 55)
+                    .frame(width: 44)
             }
             .padding(.leading, 24)
             .padding(.top, 16)
