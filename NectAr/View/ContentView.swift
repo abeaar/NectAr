@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentPhase: AppPhase = .menu
+    @State private var currentPhase: AppPhase = .ar
 
     var body: some View {
         switch currentPhase {

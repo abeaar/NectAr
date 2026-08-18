@@ -26,13 +26,6 @@ struct PreparationView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(
-                arViewModel: arViewModel,
-                placementViewModel: placementViewModel,
-                mascotViewModel: mascotViewModel
-            )
-            .ignoresSafeArea()
-
             if !placementViewModel.isPreviewActive {
 //                CrosshairView()
             }
