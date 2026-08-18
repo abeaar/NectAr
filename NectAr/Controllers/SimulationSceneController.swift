@@ -9,6 +9,7 @@ final class SimulationSceneController {
     private static let baseLegDuration: TimeInterval = 6
     private static let obstructedMultiplier: Double = 2.0
     private static let mascotTrailOffset = SIMD3<Float>(-0.1, 0.15, 0.15)
+    private static let minLegLookAtDistance: Float = 0.05
 
     weak var arView: ARView?
 
@@ -210,9 +211,9 @@ final class SimulationSceneController {
             defer { AnchoredEntityPlacer.remove(anchor, from: arView.scene) }
             mail.components.set(RouteComponent(waypoints: waypoints))
 
-            // Keep the mail's orientation fixed instead of inheriting each
-            // waypoint's surface rotation, so it doesn't spin as it travels.
-            let fixedRotation = mail.transform.rotation
+            // Track the last-known translation so the next leg's look-at starts from
+            // where the mail actually is, not from a static origin reference.
+            var currentTranslation = Transform(matrix: origin).translation
 
             while !Task.isCancelled {
                 for (index, (waypoint, isObstructed)) in zip(waypoints, waypointsObstructed).enumerated() {
@@ -224,15 +225,25 @@ final class SimulationSceneController {
                         ? Self.baseLegDuration * Self.obstructedMultiplier
                         : Self.baseLegDuration
 
+                    let targetTranslation = Transform(matrix: waypoint).translation
+                    // Skip the rotation recompute on tiny legs so the mail doesn't
+                    // snap direction between bouncing back to the origin.
+                    let targetRotation = simd_distance(currentTranslation, targetTranslation) > Self.minLegLookAtDistance
+                        ? MailFacing.rotation(from: currentTranslation, to: targetTranslation, up: SIMD3(0, 1, 0))
+                        : mail.transform.rotation
+
                     var targetTransform = Transform(matrix: waypoint)
-                    targetTransform.rotation = fixedRotation
+                    targetTransform.rotation = targetRotation
                     targetTransform.scale = mail.scale // Preserve custom scale during animation
-                    mail.move(to: targetTransform, relativeTo: nil, duration: legDuration)
+                    mail.move(to: targetTransform, relativeTo: nil, duration: legDuration, timingFunction: .easeInOut)
+
+                    currentTranslation = targetTranslation
                     try await Task.sleep(nanoseconds: UInt64(legDuration * 1_000_000_000))
                 }
 
                 try Task.checkCancellation()
                 mail.transform.translation = Transform(matrix: origin).translation
+                currentTranslation = Transform(matrix: origin).translation
             }
         } catch {
             // Cancelled (selection changed or simulation exited) or failed to load, stop quietly.

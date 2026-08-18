@@ -22,7 +22,7 @@ final class PreparationDistance {
         }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let raycastHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
+        guard let raycastHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: kind.placementAlignment).first else {
             hint = nil
             return
         }

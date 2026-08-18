@@ -71,7 +71,7 @@ final class PreparationPreviewCoordinator {
     }
 
     func update(isPlaced: Bool) {
-        guard let arView, let previewEntity else { return }
+        guard let arView, let previewEntity, let previewKind else { return }
 
         guard !isPlaced else {
             teardown()
@@ -79,7 +79,11 @@ final class PreparationPreviewCoordinator {
         }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
+        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: previewKind.placementAlignment).first else {
+            // No surface of the required alignment under the crosshair (e.g. aiming
+            // at a wall while Phone/Laptop is selected). Hide the ghost so the user
+            // doesn't see a preview they can't place.
+            previewEntity.isEnabled = false
             return
         }
 
@@ -118,3 +122,4 @@ final class PreparationPreviewCoordinator {
         entity.transform = transform
     }
 }
+ 
