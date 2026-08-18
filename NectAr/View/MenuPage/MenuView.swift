@@ -61,7 +61,7 @@ struct MenuView: View {
                         }
                         
                     }
-                    .padding(.top, 100)
+                    .padding(.top, 85)
                     
                     // pagination dots
                     HStack(spacing: 12) {

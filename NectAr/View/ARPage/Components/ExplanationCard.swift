@@ -23,12 +23,11 @@ struct ExplanationCard: View {
                     .minimumScaleFactor(0.3)
                 
                 Text(description)
-                    .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .body))
+                    .font(Font.custom("Fredoka-Medium", size: 22, relativeTo: .body))
                     .foregroundStyle(Theme.brown)
                     .minimumScaleFactor(0.3)
             }
             .frame(width:285, height: 150)
-//            .background(Color.black.opacity(0.3))
         }
     }
 }

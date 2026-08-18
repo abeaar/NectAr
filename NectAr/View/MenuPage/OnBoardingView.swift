@@ -45,9 +45,9 @@ struct OnBoardingView: View {
                             .padding(.bottom, 100)
                         
                         // placeholder
-                        Text("Lorem ipsum dolor sit amet aowk awokaowkaowk bjir cuy gatau ngantuk\n\nbzzzz bzz bzzz")
+                        Text("Hello Explorers!\n\nMy name is Phoebe, your bee buddy!")
                             .font(Font.custom("Fredoka-Medium", size: 36, relativeTo: .title))
-                            .frame(width: 480, height: 240, alignment: .leading)
+                            .frame(width: 475, height: 225, alignment: .topLeading)
                             .foregroundStyle(Theme.brown)
                             .minimumScaleFactor(0.4)
                             .offset(x: 27, y: -55)
@@ -63,8 +63,8 @@ struct OnBoardingView: View {
                     Text("Tap to continue")
                         .font(Font.custom("Fredoka-SemiBold", size: 34, relativeTo: .title2))
                         .foregroundStyle(Theme.brown)
-                        .padding(.trailing, 46)
-                        .padding(.bottom, 46)
+                        .padding(.trailing, 44)
+                        .padding(.bottom, 44)
                 }
             }
         }

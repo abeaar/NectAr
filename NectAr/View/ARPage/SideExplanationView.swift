@@ -47,7 +47,7 @@ struct ExplanationView: View {
                 Image("LibraryButton")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 64)
+                    .frame(width: 44)
             }
             .padding(.leading, 20)
             .padding(.top, 10)
