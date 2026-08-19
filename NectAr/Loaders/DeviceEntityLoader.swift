@@ -8,9 +8,10 @@
 import Foundation
 import RealityKit
 import ARWolrd
+import Bee
 
-/// Loads every placeable entity from `ARWolrd`'s composed scene, authored in Reality
-/// Composer Pro with all five entities referenced together in one `Scene.usda`.
+/// Loads every placeable entity plus the mail packet from `ARWolrd`'s composed
+/// scene, except the mascot, which loads from its own package, see `loadMascot()`.
 enum DeviceEntityLoader {
     /// The composed scene, loaded once and cached. Each entity's authored scale in
     /// `Scene.usda` is its real placed size, since `AnchoredEntityPlacer` keeps it.
@@ -30,8 +31,10 @@ enum DeviceEntityLoader {
         try await loadFromComposedScene(named: "Mail")
     }
 
+    /// Loads from the standalone `Bee` package, not `ARWolrd`'s composed scene,
+    /// since its wing-flap Behavior never fires when reached through a reference arc.
     static func loadMascot() async throws -> Entity {
-        try await loadFromComposedScene(named: "Bee")
+        try await Entity(named: "Bee", in: beeBundle)
     }
 
     /// Hands back a clone of the named child, not the cached entity itself, since

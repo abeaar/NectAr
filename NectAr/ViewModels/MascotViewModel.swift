@@ -15,10 +15,17 @@ final class MascotViewModel {
     }
 
     var isActive: Bool { controller.isActive }
-    var hintText: String? { controller.mascotHint }
 
     func attachARView(_ arView: ARView) {
         controller.arView = arView
+    }
+
+    func attachPrepExplainService(_ service: PrepExplainService) {
+        controller.attachPrepExplainService(service)
+    }
+
+    func handleTap(at location: CGPoint, in arView: ARView) {
+        controller.handleTap(at: location, in: arView)
     }
 
     func tearDown() {

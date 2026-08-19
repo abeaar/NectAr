@@ -11,8 +11,8 @@ struct HintTextView: View {
 
             Text(hintText)
                 .font(.custom("Fredoka-Medium", size: 22, relativeTo: .title2))
-                .frame(width: 570, height: 80, alignment: .topLeading)
-                .offset(x: 110, y: 10)
+                .frame(width: 510, height: 80, alignment: .topLeading)
+                .offset(x: 90, y: 10)
         }
         .frame(maxWidth: .infinity, alignment: .top)
     }
