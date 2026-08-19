@@ -14,8 +14,6 @@ struct ExpandableCard: View {
 
     @Binding var expandedStoryID: Story.ID?
 
-    @State private var playTrigger: Bool = false
-
     var isExpanded: Bool {
         expandedStoryID == story.id
     }
@@ -74,7 +72,6 @@ struct ExpandableCard: View {
                             .transition(.scale)
                             
                             Button(action: {
-                                playTrigger.toggle()
                                 onPlay()
                             }) {
                                 Image("startButton")
@@ -82,7 +79,6 @@ struct ExpandableCard: View {
                                     .scaledToFit()
                                     .frame(height: 46)
                             }
-                            .sensoryFeedback(.impact(weight: .medium), trigger: playTrigger)
                             .transition(.scale)
                         }
                     }
