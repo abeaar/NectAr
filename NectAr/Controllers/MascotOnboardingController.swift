@@ -7,7 +7,7 @@ import UIKit
 @Observable
 final class MascotOnboardingController: ARSceneDriven {
     static let beeScale: Float = 0.5
-    private static let hoverDwellDuration: TimeInterval = 0.4
+    private static let hoverDwellDuration: TimeInterval = 0.45
     private static let introPauseDuration: TimeInterval = 2
     private static let wanderRadius: Float = 0.4
 

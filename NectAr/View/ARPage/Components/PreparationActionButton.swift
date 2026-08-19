@@ -23,11 +23,11 @@ struct PreparationActionButton: View {
                     Image("UndoButton2")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 44)
+                        .frame(width: 52)
                 }
-                .padding(.bottom, 16)
+//                .padding(.bottom, 16)
                 .disabled(!placementViewModel.canUndo)
-                .opacity(placementViewModel.canUndo ? 1.0 : 0.5)
+                .opacity(placementViewModel.canUndo ? 1.0 : 0.7)
 
                 Button(action: {
                     tapAction()
@@ -35,7 +35,7 @@ struct PreparationActionButton: View {
                     Image(actionAssetName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 64)
+                        .frame(width: 80)
                 }
                 .explanationHighlight(isActive: isActionHighlighted)
             }

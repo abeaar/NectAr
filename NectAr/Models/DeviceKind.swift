@@ -24,7 +24,7 @@ enum DeviceKind: CaseIterable, Hashable {
     var icon: String {
         switch self {
         case .deviceA: return "Phone"
-        case .router: return "Router2"
+        case .router: return "Router"
         case .deviceB: return "Laptop"
         }
     }
