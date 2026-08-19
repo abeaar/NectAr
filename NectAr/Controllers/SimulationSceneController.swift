@@ -9,6 +9,10 @@ final class SimulationSceneController {
     private static let baseLegDuration: TimeInterval = 4
     private static let obstructedMultiplier: Double = 2.0
     private static let minLegLookAtDistance: Float = 0.05
+    /// How long each non-movement phase (introduction, check steps, target
+    /// receives) holds before the next phase begins. Movement phases use the
+    /// mail leg duration instead.
+    private static let phaseAnchorDuration: TimeInterval = 2.5
 
     weak var arView: ARView?
 
@@ -22,9 +26,18 @@ final class SimulationSceneController {
     /// Explains what the currently selected step is doing right now, a wall
     /// slowing a leg or a device being out of range.
     private(set) var stepStatusText: String?
+    /// The phase the simulation is currently playing, published so the sidebar
+    /// can auto-scroll the matching step card. Final value stays set after the
+    /// sequence ends so the last card stays highlighted.
+    private(set) var currentPhase: SimulationStepKind?
+    /// True while the phase sequence is actively advancing through the 6 cards.
+    /// Flips to false after the final card is highlighted, so the sidebar can
+    /// distinguish "still ticking" from "landed on the last card."
+    private(set) var phaseSequenceActive: Bool = false
 
     private var topology: PlacedTopology?
     private var animationTask: Task<Void, Never>?
+    private var phaseSequenceTask: Task<Void, Never>?
     /// The router's range sphere visibility as the preparation-phase debug
     /// toggle left it, captured once before `select` forces it on for the
     /// simulation, restored by `stopAnimating`.
@@ -47,6 +60,9 @@ final class SimulationSceneController {
             rangeSphereVisibilityBeforeSimulation = routerEntity.components[RangeSphereVisibilityComponent.self]?.isVisible ?? false
         }
         select(.full)
+        phaseSequenceTask = Task { [weak self] in
+            await self?.runPhaseSequence()
+        }
     }
 
     /// Switches playback to `selection`, called by the sidebar whenever the user
@@ -112,6 +128,10 @@ final class SimulationSceneController {
     }
 
     func stopAnimating() {
+        phaseSequenceTask?.cancel()
+        phaseSequenceTask = nil
+        phaseSequenceActive = false
+        currentPhase = nil
         animationTask?.cancel()
         animationTask = nil
         clearHighlights()
@@ -195,6 +215,30 @@ final class SimulationSceneController {
             let obstructed = SimulationObstructionChecker.isObstructed(from: plan.router, to: plan.deviceB, planes: planes)
             await self.runMailLoop(origin: plan.router, waypoints: [plan.deviceB], waypointsObstructed: [obstructed], arView: arView)
         }
+    }
+
+    /// Walks the 6 simulation phases once, publishing `currentPhase` as each
+    /// one becomes active. The sidebar auto-scrolls the matching card. The
+    /// mail animation runs independently in `runFullLoop` and keeps looping.
+    private func runPhaseSequence() async {
+        let phases: [SimulationStepKind] = [
+            .introduction,
+            .checkSender,
+            .sendToRouter,
+            .checkTarget,
+            .sendToTarget,
+            .targetReceives
+        ]
+        phaseSequenceActive = true
+        defer { phaseSequenceActive = false }
+
+        for step in phases {
+            if Task.isCancelled { return }
+            currentPhase = step
+            let duration = step.involvesMovement ? Self.baseLegDuration : Self.phaseAnchorDuration
+            try? await Task.sleep(nanoseconds: UInt64(duration * 1_000_000_000))
+        }
+        // Final phase stays set so the sidebar's last card stays highlighted.
     }
 
     /// Pulses a highlight on the placed entity for `kind` until this task is cancelled.

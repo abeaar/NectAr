@@ -26,6 +26,7 @@ struct SidebarSimulation: View {
                                 .opacity(viewModel.activeCardID == card.id ? 1.0 : 0.3)
                                 .id(card.id)
                                 .onTapGesture {
+                                    guard !controller.phaseSequenceActive else { return }
                                     withAnimation(.easeInOut) {
                                         viewModel.setActiveCard(id: card.id)
                                     }
@@ -40,13 +41,13 @@ struct SidebarSimulation: View {
                 .contentMargins(.bottom, 700, for: .scrollContent)
                 .scrollTargetBehavior(.viewAligned)
                 .transition(.move(edge: .leading).combined(with: .opacity))
-//                .onChange(of: viewModel.activeCardID) { _, newID in
-//                    guard let newID, let source = viewModel.source(for: newID) else { return }
-//                    switch source {
-//                    case .full: controller.select(.full)
-//                    case .step(let step): controller.select(.step(step))
-//                    }
-//                }
+                .onChange(of: controller.currentPhase) { _, newPhase in
+                    guard let newPhase,
+                          let cardID = viewModel.cardID(forStep: newPhase) else { return }
+                    withAnimation(.easeInOut) {
+                        viewModel.setActiveCard(id: cardID)
+                    }
+                }
             }
 
             Button {
