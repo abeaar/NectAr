@@ -14,31 +14,48 @@ struct ARExperienceView: View {
     @State private var arViewModel: ARViewModel<ARSessionManager>
     @State private var placementViewModel = PlacementViewModel()
     @State private var mascotViewModel = MascotViewModel()
-    @State private var prepExplainVM: PrepExplainVM
+    @State private var prepExplainVM: PrepExplainViewModel
+    @State private var simulationController = SimulationSceneController()
     @State private var phase: ARPhase = .preparation
 
     init(storyID: Story.ID, prepExplainService: PrepExplainService, onExitToMenu: @escaping () -> Void) {
         self.storyID = storyID
         self.onExitToMenu = onExitToMenu
         _arViewModel = State(initialValue: ARViewModel())
-        _prepExplainVM = State(initialValue: PrepExplainVM(service: prepExplainService))
+        _prepExplainVM = State(initialValue: PrepExplainViewModel(service: prepExplainService))
     }
 
     var body: some View {
-        switch phase {
-        case .preparation:
-            PreparationView(
+        ZStack {
+            ARContainerView(
                 arViewModel: arViewModel,
                 placementViewModel: placementViewModel,
                 mascotViewModel: mascotViewModel,
-                prepExplainVM: prepExplainVM,
-                onBack: onExitToMenu
-            ) { topology in
-                phase = .simulation(topology)
-            }
-        case .simulation(let topology):
-            SimulationView(arViewModel: arViewModel, topology: topology) {
-                phase = .preparation
+                simulationController: simulationController
+            )
+            .ignoresSafeArea()
+
+            switch phase {
+            case .preparation:
+                PreparationView(
+                    arViewModel: arViewModel,
+                    placementViewModel: placementViewModel,
+                    mascotViewModel: mascotViewModel,
+                    prepExplainVM: prepExplainVM,
+                    onBack: onExitToMenu
+                ) { topology in
+                    phase = .simulation(topology)
+                }
+            case .simulation(let topology):
+                SimulationView(
+                    simulationController: simulationController,
+                    arViewModel: arViewModel,
+                    placementViewModel: placementViewModel,
+                    mascotViewModel: mascotViewModel,
+                    topology: topology
+                ) {
+                    phase = .preparation
+                }
             }
         }
     }

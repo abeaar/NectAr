@@ -4,7 +4,7 @@
       [
         "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
         "Root",
-        "Bee"
+        "Iphone"
       ],
       {
         "isExpanded" : true,
@@ -13,7 +13,9 @@
       [
         "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
         "Root",
-        "Mail"
+        "Iphone",
+        "Iphone",
+        "Meshes"
       ],
       {
         "isExpanded" : true,
@@ -30,8 +32,17 @@
       [
         "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
         "Root",
-        "Bee",
-        "Group"
+        "Mail"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
+        "Iphone",
+        "Iphone"
       ],
       {
         "isExpanded" : true,
@@ -64,8 +75,7 @@
     "objectMetadataList" : [
       [
         "E856B96E-FCA1-4D5E-ACFD-51BF53900C03",
-        "Root",
-        "Bee"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -73,7 +83,8 @@
       },
       [
         "E856B96E-FCA1-4D5E-ACFD-51BF53900C03",
-        "Root"
+        "Root",
+        "Bee"
       ],
       {
         "isExpanded" : true,

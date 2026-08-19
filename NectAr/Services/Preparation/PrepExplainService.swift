@@ -10,7 +10,7 @@ import Foundation
 /// Single source of truth for the narration string shown in `HintTextView`.
 /// Owned by `ARExperienceView`, attached to controllers that want to advance
 /// the text (currently `MascotOnboardingController` and `PlacementController`),
-/// and read by `PrepExplainVM` so component views stay passive.
+/// and read by `PrepExplainViewModel` so component views stay passive.
 @Observable
 final class PrepExplainService {
     /// Terminal step, shown once every device is placed.

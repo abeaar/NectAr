@@ -15,7 +15,7 @@ struct PreparationView: View {
 
     let mascotViewModel: MascotViewModel
 
-    let prepExplainVM: PrepExplainVM
+    let prepExplainVM: PrepExplainViewModel
 
     let onBack: () -> Void
     let onComplete: (PlacedTopology) -> Void
@@ -60,13 +60,6 @@ struct PreparationView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            ARContainerView(
-                arViewModel: arViewModel,
-                placementViewModel: placementViewModel,
-                mascotViewModel: mascotViewModel
-            )
-            .ignoresSafeArea()
-
             if prepExplainVM.usesSpotlightOverlay {
                 Color.black.opacity(0.75)
                     .ignoresSafeArea()
@@ -170,7 +163,7 @@ struct PreparationView: View {
         arViewModel: ARViewModel(sessionManager: ARSessionManager()),
         placementViewModel: PlacementViewModel(),
         mascotViewModel: MascotViewModel(),
-        prepExplainVM: PrepExplainVM(service: PrepExplainService()),
+        prepExplainVM: PrepExplainViewModel(service: PrepExplainService()),
         onBack: {},
         onComplete: { _ in }
     )

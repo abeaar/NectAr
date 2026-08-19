@@ -11,10 +11,12 @@ struct ARContainerView: UIViewRepresentable {
     let arViewModel: ARViewModel<ARSessionManager>
     let placementViewModel: PlacementViewModel
     let mascotViewModel: MascotViewModel
+    let simulationController: SimulationSceneController
 
     func makeUIView(context: Context) -> ARView {
         placementViewModel.attachARView(arViewModel.arView)
         mascotViewModel.attachARView(arViewModel.arView)
+        simulationController.attachARView(arViewModel.arView)
 
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         arViewModel.arView.addGestureRecognizer(tapGesture)
