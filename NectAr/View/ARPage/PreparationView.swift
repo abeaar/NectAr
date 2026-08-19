@@ -29,12 +29,7 @@ struct PreparationView: View {
     private var isActionButtonTheSpotlightTarget: Bool {
         prepExplainVM.currentHighlightTarget == .actionButton
     }
-
-    /// True while a narration beat that isn't tied to the mascot's own phase
-    /// (an intro beat, a fully locked beat, or the spotlight overlay step)
-    /// should hold off the ghost preview the same way the bee hunt already
-    /// does. Excludes the device-placement steps, where the preview is
-    /// exactly the point.
+    
     private var isTutorialBlocking: Bool {
         mascotViewModel.isActive || prepExplainVM.hidesPlacementUI
             || prepExplainVM.locksPlacementUI || prepExplainVM.usesSpotlightOverlay
@@ -143,13 +138,13 @@ struct PreparationView: View {
                 HintTextView(hintText: text)
             }
         } else if prepExplainVM.isInFreeWindow, let distanceHint = placementViewModel.hintText {
-            HintTextView(hintText: distanceHint)
+            HintTextView(hintText: distanceHint, showsArrow: false)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     placementViewModel.advanceDistanceHintNow()
                 }
         } else if prepExplainVM.isInFreeWindow, let trackingHint = arViewModel.hintText {
-            HintTextView(hintText: trackingHint)
+            HintTextView(hintText: trackingHint, showsArrow: false)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     arViewModel.advanceHintNow()
