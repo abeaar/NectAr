@@ -3,6 +3,7 @@ import Foundation
 /// One explained step of the deviceA-to-deviceB delivery shown in the simulation
 /// sidebar, the representative direction the return leg mirrors from deviceB's side.
 enum SimulationStepKind: CaseIterable, Identifiable {
+    case introduction
     case checkSender
     case sendToRouter
     case checkTarget
@@ -13,6 +14,7 @@ enum SimulationStepKind: CaseIterable, Identifiable {
 
     var title: String {
         switch self {
+        case .introduction: "introduction"
         case .checkSender: "Form The Data Packet"
         case .sendToRouter: "Send To Router"
         case .checkTarget: "Router Reads The Address"
@@ -23,6 +25,7 @@ enum SimulationStepKind: CaseIterable, Identifiable {
 
     var explanation: String {
         switch self {
+        case .introduction: "Let's learn how a text message travels from one device to another!"
         case .checkSender: "When you send a text, your message turns into a tiny piece of information called a Data Packet."
         case .sendToRouter: "The packet travels straight to your router."
         case .checkTarget: "The router is like a digital post office. It reads the packet's address to know exactly where it needs to go!"
@@ -35,6 +38,7 @@ enum SimulationStepKind: CaseIterable, Identifiable {
     /// editing UI concerns.
     var focusDeviceKind: DeviceKind {
         switch self {
+        case .introduction: .deviceA
         case .checkSender: .deviceA
         case .sendToRouter, .sendToTarget: .router
         case .checkTarget, .targetReceives: .deviceB

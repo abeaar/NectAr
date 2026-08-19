@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct OnBoardingView: View {
+    let onContinue: () -> Void
+
     // for bee animation
     @State private var isUp = false
-    
+
     var body: some View {
         ZStack {
             Theme.background
@@ -68,9 +70,11 @@ struct OnBoardingView: View {
                 }
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture { onContinue() }
     }
 }
 
 #Preview {
-    OnBoardingView()
+    OnBoardingView(onContinue: {})
 }

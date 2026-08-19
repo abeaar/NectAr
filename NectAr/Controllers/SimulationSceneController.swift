@@ -155,6 +155,11 @@ final class SimulationSceneController {
 
     private func runStep(_ step: SimulationStepKind, plan: RoundTripPlan, arView: ARView) async {
         switch step {
+        case .introduction:
+            stepStatusText = plan.deviceAInRange
+                ? "Device A is inside the router's WiFi zone"
+                : "Device A is outside the router's WiFi zone"
+            await runHighlightLoop(kind: .deviceA, arView: arView)
         case .checkSender:
             stepStatusText = plan.deviceAInRange
                 ? "Device A is inside the router's WiFi zone"
