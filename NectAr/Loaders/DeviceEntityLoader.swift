@@ -12,8 +12,8 @@ import Bee
 import Mail_3d
 import Router_3d
 
-/// Loads every placeable entity from `ARWolrd`'s composed scene, authored in Reality
-/// Composer Pro with all five entities referenced together in one `Scene.usda`.
+/// Loads every placeable entity plus the mail packet from `ARWolrd`'s composed
+/// scene, except the mascot, which loads from its own package, see `loadMascot()`.
 enum DeviceEntityLoader {
     /// The composed scene, loaded once and cached. Each entity's authored scale in
     /// `Scene.usda` is its real placed size, since `AnchoredEntityPlacer` keeps it.
@@ -37,6 +37,8 @@ enum DeviceEntityLoader {
         return mail.clone(recursive: true)
     }
 
+    /// Loads from the standalone `Bee` package, not `ARWolrd`'s composed scene,
+    /// since its wing-flap Behavior never fires when reached through a reference arc.
     static func loadMascot() async throws -> Entity {
         guard let asset = try? await Entity(named: "Bee", in: beeBundle),
               let bee = asset.findEntity(named: "Root") else {

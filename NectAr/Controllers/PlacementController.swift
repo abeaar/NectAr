@@ -19,7 +19,14 @@ final class PlacementController: ARSceneDriven {
     private var updateSubscription: Cancellable?
     private var isPreviewSuspended = false
 
-    private(set) var selectedDeviceKind: DeviceKind = .deviceA
+    /// Nil until the user picks something from the device list, so the ghost
+    /// preview and action button have nothing to act on by default.
+    private(set) var selectedDeviceKind: DeviceKind?
+    private(set) var prepExplainService: PrepExplainService?
+
+    func attachPrepExplainService(_ service: PrepExplainService) {
+        prepExplainService = service
+    }
 
     weak var arView: ARView? {
         didSet {
@@ -35,9 +42,15 @@ final class PlacementController: ARSceneDriven {
     var isComplete: Bool { placedKinds.count == DeviceKind.allCases.count }
     var canUndo: Bool { !ledger.isEmpty }
     var placementDistanceHint: String? { distanceGate.hint }
+    var isPlacementTooFar: Bool { distanceGate.isTooFar }
+
+    func advanceDistanceHintNow() {
+        distanceGate.advanceNow()
+    }
 
     var isPreviewActive: Bool {
-        !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
+        guard let selectedDeviceKind else { return false }
+        return !isPreviewSuspended && PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind) && !placedKinds.contains(selectedDeviceKind)
     }
 
     func canPlace(_ kind: DeviceKind) -> Bool {
@@ -52,7 +65,7 @@ final class PlacementController: ARSceneDriven {
 
         if suspended {
             previewCoordinator.teardown()
-        } else if PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind), !placedKinds.contains(selectedDeviceKind) {
+        } else if let selectedDeviceKind, PreparationPreviewCoordinator.isPreviewable(selectedDeviceKind), !placedKinds.contains(selectedDeviceKind) {
             previewCoordinator.show(selectedDeviceKind)
         }
     }
@@ -69,6 +82,10 @@ final class PlacementController: ARSceneDriven {
     }
 
     func selectDevice(_ kind: DeviceKind) {
+        if prepExplainService?.currentEntry?.id == "4" {
+            prepExplainService?.step(to: "5")
+        }
+
         guard selectedDeviceKind != kind else { return }
         selectedDeviceKind = kind
         if PreparationPreviewCoordinator.isPreviewable(kind) {
@@ -84,12 +101,15 @@ final class PlacementController: ARSceneDriven {
             return
         }
 
-        let kind = selectedDeviceKind
+        guard let kind = selectedDeviceKind else {
+            print("No device selected yet")
+            return
+        }
         guard canPlace(kind), !placementsInFlight.contains(kind) else {
             print("\(kind.label) has already been placed, or is being placed")
             return
         }
-        guard placementDistanceHint == nil else {
+        guard !isPlacementTooFar else {
             print("Too far to place \(kind.label), move closer")
             return
         }
@@ -116,6 +136,11 @@ final class PlacementController: ARSceneDriven {
                 }
                 let anchor = AnchoredEntityPlacer.place(entity, at: firstResult.worldTransform, in: arView.scene)
                 ledger.record(kind, transform: firstResult.worldTransform, anchor: anchor)
+
+                if prepExplainService?.currentEntry?.id == "5" {
+                    prepExplainService?.step(to: "6")
+                }
+                prepExplainService?.refreshFinalStep(isComplete: isComplete)
             } catch {
                 print("Failed to load \(kind) entity: \(error)")
             }
@@ -129,6 +154,8 @@ final class PlacementController: ARSceneDriven {
         if lastKind == selectedDeviceKind, PreparationPreviewCoordinator.isPreviewable(lastKind) {
             previewCoordinator.show(lastKind)
         }
+
+        prepExplainService?.refreshFinalStep(isComplete: isComplete)
     }
 
     func finishPlacement() {
@@ -145,7 +172,7 @@ final class PlacementController: ARSceneDriven {
 
         placementsInFlight.removeAll()
         distanceGate.reset()
-        selectedDeviceKind = .deviceA
+        selectedDeviceKind = nil
     }
 
     private func stopPreview() {
@@ -157,10 +184,10 @@ final class PlacementController: ARSceneDriven {
     private func subscribeToSceneUpdates() {
         guard let arView else { return }
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
-            guard let self else { return }
+            guard let self, let selectedDeviceKind else { return }
             let isPlaced = placedKinds.contains(selectedDeviceKind)
-            previewCoordinator.update(isPlaced: isPlaced)
             distanceGate.update(for: selectedDeviceKind, isPlaced: isPlaced)
+            previewCoordinator.update(isPlaced: isPlaced, isTooFar: distanceGate.isTooFar)
         }
     }
 }

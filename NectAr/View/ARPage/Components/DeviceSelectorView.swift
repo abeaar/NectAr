@@ -3,6 +3,8 @@ import SwiftUI
 struct DeviceSelectorView: View {
     let placementViewModel: PlacementViewModel
     let mascotViewModel: MascotViewModel
+    /// Pulses a highlight ring around the whole list.
+    var isListHighlighted = false
     private static let itemSize: CGFloat = 100
 
     var body: some View {
@@ -21,19 +23,9 @@ struct DeviceSelectorView: View {
                 }
                 .disabled(isPlaced)
                 .opacity(isPlaced ? 0.5 : 1.0)
-                .overlay {
-                    if isPlaced {
-                        Image(kind.icon)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: Self.itemSize)
-                            .colorMultiply(.orange)
-                            .opacity(0.5)
-                            .allowsHitTesting(false)
-                    }
-                }
             }
         }
+        .explanationHighlight(isActive: isListHighlighted)
         .padding(.leading, 31)
     }
 }

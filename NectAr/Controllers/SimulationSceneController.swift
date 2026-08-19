@@ -26,6 +26,10 @@ final class SimulationSceneController {
 
     private var topology: PlacedTopology?
     private var animationTask: Task<Void, Never>?
+    /// The router's range sphere visibility as the preparation-phase debug
+    /// toggle left it, captured once before `select` forces it on for the
+    /// simulation, restored by `stopAnimating`.
+    private var rangeSphereVisibilityBeforeSimulation = false
 
     private struct RoundTripPlan {
         let deviceA: simd_float4x4
@@ -39,7 +43,9 @@ final class SimulationSceneController {
     /// the simulation phase begins.
     func startAnimating(topology: PlacedTopology) {
         self.topology = topology
-        hideStandaloneMascot()
+        if let arView, let routerEntity = entity(for: .router, in: arView) {
+            rangeSphereVisibilityBeforeSimulation = routerEntity.components[RangeSphereVisibilityComponent.self]?.isVisible ?? false
+        }
         select(.full)
     }
 
@@ -66,7 +72,7 @@ final class SimulationSceneController {
 
         let routerEntity = entity(for: .router, in: arView)
         // The range sphere stays visible for the whole simulation regardless of the
-        // preparation-phase debug toggle it was last left at.
+        // preparation-phase debug toggle it was last left at, restored by stopAnimating.
         routerEntity?.components[RangeSphereVisibilityComponent.self]?.isVisible = true
         let attributes = routerEntity?.components[RouterAttributesComponent.self]?.attributes ?? RouterAttributes()
 
@@ -111,6 +117,8 @@ final class SimulationSceneController {
         clearHighlights()
         deadzoneHint = nil
         stepStatusText = nil
+        hideMascot()
+        restoreRangeSphereVisibility()
     }
 
     // MARK: - Full round trip
@@ -264,6 +272,24 @@ final class SimulationSceneController {
         mascot?.components[MascotStateComponent.self]?.phase = .guiding
 
         await body()
+    }
+
+    /// Undoes `guideMascotWhileRunning`'s setup, called on `stopAnimating` so
+    /// stopping mid-animation doesn't leave the bee visible and still trying
+    /// to follow the now-removed mail packet back in preparation.
+    private func hideMascot() {
+        guard let arView else { return }
+        let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
+        guard let mascot = Array(arView.scene.performQuery(mascotQuery)).first else { return }
+        mascot.isEnabled = false
+        mascot.components[MascotStateComponent.self]?.phase = .complete
+    }
+
+    /// Undoes `select`'s forced-visible range sphere, restoring whatever the
+    /// preparation-phase debug toggle had it set to before simulation started.
+    private func restoreRangeSphereVisibility() {
+        guard let arView, let routerEntity = entity(for: .router, in: arView) else { return }
+        routerEntity.components[RangeSphereVisibilityComponent.self]?.isVisible = rangeSphereVisibilityBeforeSimulation
     }
 
     // MARK: - Scene lookups

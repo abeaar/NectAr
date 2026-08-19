@@ -25,12 +25,20 @@ final class PlacementViewModel {
         controller.arView = arView
     }
 
+    func attachPrepExplainService(_ service: PrepExplainService) {
+        controller.attachPrepExplainService(service)
+    }
+
     func selectDevice(_ kind: DeviceKind) {
         controller.selectDevice(kind)
     }
 
     func confirmPlacement() {
         controller.confirmPlacement()
+    }
+
+    func advanceDistanceHintNow() {
+        controller.advanceDistanceHintNow()
     }
 
     func undoLastPlacement() {

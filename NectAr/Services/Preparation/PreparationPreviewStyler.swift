@@ -2,8 +2,11 @@ import RealityKit
 import UIKit
 
 enum PreparationPreviewStyler {
-    private static let ghostColor = UIColor(hex: 0x999999)
-    private static let ghostOpacity: PhysicallyBasedMaterial.Opacity = 0.35
+    /// In and out of placement range, so the ghost itself hints whether the
+    /// current spot is actually placeable.
+    private static let ghostColorInRange = UIColor(hex: 0x1EFF00)
+    private static let ghostColorOutOfRange = UIColor(hex: 0xFF383C)
+    static let ghostOpacity: PhysicallyBasedMaterial.Opacity = 0.5
 
     /// The materials each model entity had before ghosting, so a preview entity can
     /// later be promoted to a real placement without reloading it from scratch.
@@ -12,18 +15,26 @@ enum PreparationPreviewStyler {
     }
 
     @discardableResult
-    static func applyGhostMaterial(to entity: Entity) -> OriginalMaterials {
-        var ghostMaterial = UnlitMaterial(color: ghostColor)
-        ghostMaterial.blending = .transparent(opacity: ghostOpacity)
-
+    static func applyGhostMaterial(to entity: Entity, isInRange: Bool = false) -> OriginalMaterials {
         var saved: [(ModelEntity, [Material])] = []
         for modelEntity in modelEntities(in: entity) {
             let materials = modelEntity.model?.materials ?? []
             saved.append((modelEntity, materials))
-            let materialCount = max(materials.count, 1)
+        }
+        updateGhostColor(on: entity, isInRange: isInRange)
+        return OriginalMaterials(entries: saved)
+    }
+
+    /// Re-tints just the ghost color, leaving `OriginalMaterials` already
+    /// captured by `applyGhostMaterial` untouched.
+    static func updateGhostColor(on entity: Entity, isInRange: Bool) {
+        var ghostMaterial = UnlitMaterial(color: isInRange ? ghostColorInRange : ghostColorOutOfRange)
+        ghostMaterial.blending = .transparent(opacity: ghostOpacity)
+
+        for modelEntity in modelEntities(in: entity) {
+            let materialCount = max(modelEntity.model?.materials.count ?? 0, 1)
             modelEntity.model?.materials = Array(repeating: ghostMaterial, count: materialCount)
         }
-        return OriginalMaterials(entries: saved)
     }
 
     static func restoreOriginalMaterial(_ original: OriginalMaterials) {
