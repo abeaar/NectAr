@@ -10,8 +10,6 @@ struct StopButton: View {
                 .scaledToFit()
                 .frame(width: 80)
         }
+        .accessibilityLabel(Text("Stop Simulation Button"))
     }
-}
-
-
-
+})

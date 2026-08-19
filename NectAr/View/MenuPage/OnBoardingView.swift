@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct OnBoardingView: View {
-    let onContinue: () -> Void
-
     // for bee animation
     @State private var isUp = false
+    @State private var textIndex = 0
+
+    let onContinue: () -> Void
 
     var body: some View {
         ZStack {
             Theme.background
                 .ignoresSafeArea()
-            
+
             Image("Honeycomb")
+                .resizable()
                 .ignoresSafeArea()
-            
+
             VStack {
-                
+
                 HStack(spacing: 20) {
                     Image("AbeeIcon")
                         .resizable()
@@ -38,40 +40,49 @@ struct OnBoardingView: View {
                                 isUp.toggle()
                             }
                         }
-                    
+
                     ZStack {
                         Image("OnBoardingCard")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 630)
                             .padding(.bottom, 100)
-                        
-                        // placeholder
-                        Text("Hello Explorers!\n\nMy name is Phoebe, your bee buddy!")
-                            .font(Font.custom("Fredoka-Medium", size: 36, relativeTo: .title))
-                            .frame(width: 475, height: 225, alignment: .topLeading)
+
+                        Text(OnBoarding.onboardingTexts[textIndex])
+                            .font(Font.custom("Fredoka-Medium", size: 38, relativeTo: .title))
+                            .frame(width: 480, height: 240, alignment: .leading)
                             .foregroundStyle(Theme.brown)
                             .minimumScaleFactor(0.4)
                             .offset(x: 27, y: -55)
+                            .id(textIndex)
+                             .transition(.opacity)
                     }
                 }
             }
             VStack {
                 Spacer()
-                
+
                 HStack {
                     Spacer()
-                    
+
                     Text("Tap to continue")
                         .font(Font.custom("Fredoka-SemiBold", size: 34, relativeTo: .title2))
                         .foregroundStyle(Theme.brown)
-                        .padding(.trailing, 44)
-                        .padding(.bottom, 44)
+                        .padding(.trailing, 70)
+                        .padding(.bottom, 36)
                 }
             }
         }
         .contentShape(Rectangle())
-        .onTapGesture { onContinue() }
+        .onTapGesture {
+            withAnimation {
+                if textIndex < OnBoarding.onboardingTexts.count - 1 {
+                    textIndex += 1
+                } else {
+                    onContinue()
+                }
+            }
+        }
     }
 }
 
