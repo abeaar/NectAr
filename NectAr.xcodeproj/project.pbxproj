@@ -11,12 +11,14 @@
 		642379AC3024926500CFEE71 /* Router_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 642379AB3024926500CFEE71 /* Router_3d */; };
 		645A2A35302C9EF600DAD738 /* MacBook in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A34302C9EF600DAD738 /* MacBook */; };
 		645A2A38302C9F5000DAD738 /* Iphone in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A37302C9F5000DAD738 /* Iphone */; };
+		645C1D733035E07E00B0A228 /* nectARIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 645C1D723035E07E00B0A228 /* nectARIcon.icon */; };
 		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
 		64D31271302A07D7007FC7DE /* ARWolrd in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126F302A07D5007FC7DE /* ARWolrd */; };
 		64D32BA23034412600624D80 /* TestMock in Frameworks */ = {isa = PBXBuildFile; productRef = 64D32BA13034412600624D80 /* TestMock */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		645C1D723035E07E00B0A228 /* nectARIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = nectARIcon.icon; sourceTree = "<group>"; };
 		64B5DCFF301DD212004E2683 /* NectAr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NectAr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 			children = (
 				64B5DD01301DD212004E2683 /* NectAr */,
 				64B5DD00301DD212004E2683 /* Products */,
+				645C1D723035E07E00B0A228 /* nectARIcon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645C1D733035E07E00B0A228 /* nectARIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,8 +299,9 @@
 		64B5DD0B301DD213004E2683 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = nectARIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMKDVWCB45;
@@ -308,7 +313,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,8 +335,9 @@
 		64B5DD0C301DD213004E2683 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = nectARIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMKDVWCB45;
@@ -343,7 +349,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
