@@ -60,7 +60,7 @@ struct MenuView: View {
                         withAnimation(.easeInOut(duration: 0.3)) {
                             expandedStoryID = nil
                         }
-                        
+                        HapticEngine.shared.impact()
                     }
                     .padding(.top, 85)
                     
