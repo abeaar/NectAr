@@ -7,5 +7,6 @@ struct StopButton: View {
         Button(action: action) {
             Image("StopButton2")
         }
+        .accessibilityLabel(Text("Stop Simulation Button"))
     }
 }

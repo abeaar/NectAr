@@ -10,6 +10,9 @@ import SwiftUI
 struct OnBoardingView: View {
     // for bee animation
     @State private var isUp = false
+    @State private var textIndex = 0
+    
+    let onFinished: () -> Void
     
     var body: some View {
         ZStack {
@@ -17,6 +20,7 @@ struct OnBoardingView: View {
                 .ignoresSafeArea()
             
             Image("Honeycomb")
+                .resizable()
                 .ignoresSafeArea()
             
             VStack {
@@ -44,13 +48,14 @@ struct OnBoardingView: View {
                             .frame(width: 630)
                             .padding(.bottom, 100)
                         
-                        // placeholder
-                        Text("Lorem ipsum dolor sit amet aowk awokaowkaowk bjir cuy gatau ngantuk\n\nbzzzz bzz bzzz")
-                            .font(Font.custom("Fredoka-Medium", size: 36, relativeTo: .title))
+                        Text(OnBoarding.onboardingTexts[textIndex])
+                            .font(Font.custom("Fredoka-Medium", size: 38, relativeTo: .title))
                             .frame(width: 480, height: 240, alignment: .leading)
                             .foregroundStyle(Theme.brown)
                             .minimumScaleFactor(0.4)
                             .offset(x: 27, y: -55)
+                            .id(textIndex)
+                             .transition(.opacity)
                     }
                 }
             }
@@ -63,8 +68,18 @@ struct OnBoardingView: View {
                     Text("Tap to continue")
                         .font(Font.custom("Fredoka-SemiBold", size: 34, relativeTo: .title2))
                         .foregroundStyle(Theme.brown)
-                        .padding(.trailing, 46)
-                        .padding(.bottom, 46)
+                        .padding(.trailing, 70)
+                        .padding(.bottom, 36)
+                }
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation {
+                if textIndex < OnBoarding.onboardingTexts.count - 1 {
+                    textIndex += 1
+                } else {
+                    onFinished()
                 }
             }
         }
@@ -72,5 +87,7 @@ struct OnBoardingView: View {
 }
 
 #Preview {
-    OnBoardingView()
+    OnBoardingView(
+        onFinished: {}
+    )
 }

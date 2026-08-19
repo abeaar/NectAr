@@ -38,7 +38,7 @@ struct ExpandableCard: View {
                     }
                     
                     if isExpanded {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading) {
                             Text(story.title)
                                 .font(Font.custom("Fredoka-Bold", size: 48, relativeTo: .title))
                                 .foregroundStyle(Theme.brown)
@@ -50,41 +50,37 @@ struct ExpandableCard: View {
                                 .foregroundStyle(Theme.brown)
                                 .padding(16)
                                 .frame(width: 385, height: 175)
-                                .background(Theme.cream)
+                                .background(Theme.cream2)
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                                 .minimumScaleFactor(0.4)
                         }
-                        .padding(.bottom, 12)
+                        .padding(.bottom, 20)
                         .transition(.scale)
                     }
                     
-                    HStack (spacing: 26) {
+                    HStack (spacing: 20) {
                         Spacer()
                         if isExpanded {
-                            Button(action: {
-                                print("Quiz button tapped") // test
-                            }) {
-                                Image("quizButton")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 46)
-                            }
+                            ButtonStyle(
+                                action: {},
+                                backgroundColor: Theme.cream2,
+                                textColor: Theme.brown,
+                                text: "Quiz"
+                            )
                             .transition(.scale)
                             
-                            Button(action: {
-                                onPlay()
-                            }) {
-                                Image("startButton")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 46)
-                            }
+                            ButtonStyle(
+                                action: {onPlay()},
+                                backgroundColor: Theme.brown,
+                                textColor: Theme.cream2,
+                                text: "Start"
+                            )
                             .transition(.scale)
                         }
                     }
                     
                 }
-                .padding(.trailing, 38)
+                .padding(.trailing, 40)
                 .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 520 : 515)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
