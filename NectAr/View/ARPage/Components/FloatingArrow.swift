@@ -10,7 +10,7 @@ struct FloatingArrow: View {
         Image("arrow")
             .resizable()
             .scaledToFit()
-            .frame(width: 25, height: 21)
+            .frame(width: 15, height: 21)
             .offset(y: isUp ? -8 : 0)
             .onAppear {
                 withAnimation(
