@@ -6,9 +6,8 @@ import ARKit
 /// single sidebar step in isolation. See ``deadzoneHint``/``stepStatusText``.
 @Observable
 final class SimulationSceneController {
-    private static let baseLegDuration: TimeInterval = 6
+    private static let baseLegDuration: TimeInterval = 4
     private static let obstructedMultiplier: Double = 2.0
-    private static let mascotTrailOffset = SIMD3<Float>(-0.1, 0.15, 0.15)
     private static let minLegLookAtDistance: Float = 0.05
 
     weak var arView: ARView?
@@ -43,6 +42,7 @@ final class SimulationSceneController {
     /// the simulation phase begins.
     func startAnimating(topology: PlacedTopology) {
         self.topology = topology
+        hideStandaloneMascot()
         if let arView, let routerEntity = entity(for: .router, in: arView) {
             rangeSphereVisibilityBeforeSimulation = routerEntity.components[RangeSphereVisibilityComponent.self]?.isVisible ?? false
         }
@@ -117,7 +117,7 @@ final class SimulationSceneController {
         clearHighlights()
         deadzoneHint = nil
         stepStatusText = nil
-        hideMascot()
+        showStandaloneMascot()
         restoreRangeSphereVisibility()
     }
 
@@ -148,9 +148,7 @@ final class SimulationSceneController {
             waypointsObstructed = [obstructed, obstructed]
         }
 
-        await guideMascotWhileRunning(in: arView) {
-            await self.runMailLoop(origin: origin, waypoints: waypoints, waypointsObstructed: waypointsObstructed, arView: arView)
-        }
+        await self.runMailLoop(origin: origin, waypoints: waypoints, waypointsObstructed: waypointsObstructed, arView: arView)
     }
 
     // MARK: - Single step
@@ -181,9 +179,7 @@ final class SimulationSceneController {
             }
             let planes = arView.session.currentFrame?.anchors.compactMap { $0 as? ARPlaneAnchor } ?? []
             let obstructed = SimulationObstructionChecker.isObstructed(from: plan.deviceA, to: plan.router, planes: planes)
-            await guideMascotWhileRunning(in: arView) {
-                await self.runMailLoop(origin: plan.deviceA, waypoints: [plan.router], waypointsObstructed: [obstructed], arView: arView)
-            }
+            await self.runMailLoop(origin: plan.deviceA, waypoints: [plan.router], waypointsObstructed: [obstructed], arView: arView)
 
         case .sendToTarget:
             guard plan.deviceBInRange else {
@@ -192,9 +188,7 @@ final class SimulationSceneController {
             }
             let planes = arView.session.currentFrame?.anchors.compactMap { $0 as? ARPlaneAnchor } ?? []
             let obstructed = SimulationObstructionChecker.isObstructed(from: plan.router, to: plan.deviceB, planes: planes)
-            await guideMascotWhileRunning(in: arView) {
-                await self.runMailLoop(origin: plan.router, waypoints: [plan.deviceB], waypointsObstructed: [obstructed], arView: arView)
-            }
+            await self.runMailLoop(origin: plan.router, waypoints: [plan.deviceB], waypointsObstructed: [obstructed], arView: arView)
         }
     }
 
@@ -256,33 +250,6 @@ final class SimulationSceneController {
         } catch {
             // Cancelled (selection changed or simulation exited) or failed to load, stop quietly.
         }
-    }
-
-    /// Marks the mascot as guiding for the duration of `body`, so `MascotFollowSystem`
-    /// trails it behind the mail packet only while a movement step is actually playing.
-    private func guideMascotWhileRunning(in arView: ARView, _ body: () async -> Void) async {
-        let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
-        let mascot = Array(arView.scene.performQuery(mascotQuery)).first
-        // The onboarding sequence leaves the bee disabled, shrunk, and faded out after
-        // flying into the camera, undo all three now that it's guiding again.
-        mascot?.isEnabled = true
-        mascot?.scale = SIMD3<Float>(repeating: MascotOnboardingController.beeScale)
-        mascot?.components[OpacityComponent.self]?.opacity = 1
-        mascot?.components[MascotMovementComponent.self]?.pattern = .followOffset(Self.mascotTrailOffset)
-        mascot?.components[MascotStateComponent.self]?.phase = .guiding
-
-        await body()
-    }
-
-    /// Undoes `guideMascotWhileRunning`'s setup, called on `stopAnimating` so
-    /// stopping mid-animation doesn't leave the bee visible and still trying
-    /// to follow the now-removed mail packet back in preparation.
-    private func hideMascot() {
-        guard let arView else { return }
-        let mascotQuery = EntityQuery(where: .has(MascotStateComponent.self))
-        guard let mascot = Array(arView.scene.performQuery(mascotQuery)).first else { return }
-        mascot.isEnabled = false
-        mascot.components[MascotStateComponent.self]?.phase = .complete
     }
 
     /// Undoes `select`'s forced-visible range sphere, restoring whatever the

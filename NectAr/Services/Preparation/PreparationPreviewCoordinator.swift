@@ -73,31 +73,28 @@ final class PreparationPreviewCoordinator {
     }
 
     func update(isPlaced: Bool, isTooFar: Bool) {
-        guard let arView, let previewEntity else { return }
+            guard let arView, let previewEntity, let previewKind else { return }
 
-        guard !isPlaced else {
-            teardown()
-            return
-        }
+            guard !isPlaced else {
+                teardown()
+                return
+            }
 
-        let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
+            let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
         guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: previewKind.placementAlignment).first else {
-            // No surface of the required alignment under the crosshair (e.g. aiming
-            // at a wall while Phone/Laptop is selected). Hide the ghost so the user
-            // doesn't see a preview they can't place.
-            previewEntity.isEnabled = false
-            return
-        }
+                previewEntity.isEnabled = false
+                return
+            }
 
-        movePreviewEntity(previewEntity, to: hit.worldTransform)
-        previewEntity.isEnabled = true
+            movePreviewEntity(previewEntity, to: hit.worldTransform)
+            previewEntity.isEnabled = true
 
-        let isInRange = !isTooFar
-        if isInRange != isShowingInRangeGhost {
-            isShowingInRangeGhost = isInRange
-            PreparationPreviewStyler.updateGhostColor(on: previewEntity, isInRange: isInRange)
+            let isInRange = !isTooFar
+            if isInRange != isShowingInRangeGhost {
+                isShowingInRangeGhost = isInRange
+                PreparationPreviewStyler.updateGhostColor(on: previewEntity, isInRange: isInRange)
+            }
         }
-    }
 
     private func load(_ kind: DeviceKind) async {
         guard let arView else { return }
