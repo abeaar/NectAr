@@ -12,7 +12,7 @@ struct BeeMailPreview: View {
     var body: some View {
         RealityView { content in
             if entity == nil {
-                let loaded = try? await Entity(named: "Mail", in: mail_3dBundle)
+                let loaded = try? await Entity(named: "Bee", in: mail_3dBundle)
                 loaded?.scale = SIMD3<Float>(repeating: 1)
                 if let loaded {
                     content.add(loaded)
