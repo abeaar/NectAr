@@ -80,7 +80,6 @@ struct PreparationView: View {
             }
 
             explanationCardView
-                .padding(.leading, 80)
 
             BackButton {
                 placementViewModel.tearDown()
@@ -112,6 +111,7 @@ struct PreparationView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {
             arViewModel.start()
             mascotViewModel.attachPrepExplainService(prepExplainVM.service)
@@ -137,8 +137,8 @@ struct PreparationView: View {
     @ViewBuilder
     private var explanationCardView: some View {
         if let text = prepExplainVM.currentText {
-            if prepExplainVM.currentCardStyle == .explanationCard {
-                ExplanationCard(title: "", description: text)
+            if prepExplainVM.currentCardStyle == .prepOnboardCard {
+                PrepOnboardExplanationCard(description: text)
             } else {
                 HintTextView(hintText: text)
             }

@@ -12,13 +12,13 @@ enum PrepExplainCatalog {
         PrepExplain(
             id: "1",
             description: "Move your iPad around and find Phoebe.",
-            cardStyle: .explanationCard,
+            cardStyle: .prepOnboardCard,
             hidesPlacementUI: true
         ),
         PrepExplain(
             id: "2",
             description: "Yay! You found Phoebe.",
-            cardStyle: .explanationCard,
+            cardStyle: .prepOnboardCard,
             hidesPlacementUI: true
         ),
         PrepExplain(

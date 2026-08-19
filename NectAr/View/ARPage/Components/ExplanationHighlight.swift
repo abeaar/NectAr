@@ -17,8 +17,8 @@ private struct ExplanationHighlight: ViewModifier {
             .overlay {
                 if isActive {
                     RoundedRectangle(cornerRadius: 24)
-                        .stroke(Theme.yellow, lineWidth: 4)
-                        .scaleEffect(isPulsing ? 1.12 : 1.0)
+                        .stroke(Theme.yellow, lineWidth: 7)
+                        .scaleEffect(isPulsing ? 1.25 : 1.0)
                         .opacity(isPulsing ? 0.0 : 0.8)
                         .allowsHitTesting(false)
                         .onAppear {
