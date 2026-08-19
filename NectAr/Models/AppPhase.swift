@@ -8,6 +8,8 @@
 import Foundation
 
 enum AppPhase {
+    case splash
+    case onboarding
     case menu
     case ar(Story.ID)
 }

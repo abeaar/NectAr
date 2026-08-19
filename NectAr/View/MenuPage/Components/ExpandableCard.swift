@@ -13,7 +13,7 @@ struct ExpandableCard: View {
     let onPlay: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
-    
+
     var isExpanded: Bool {
         expandedStoryID == story.id
     }

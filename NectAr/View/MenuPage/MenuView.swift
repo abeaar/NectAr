@@ -60,7 +60,7 @@ struct MenuView: View {
                         withAnimation(.easeInOut(duration: 0.3)) {
                             expandedStoryID = nil
                         }
-                        
+
                     }
                     .padding(.top, 85)
                     

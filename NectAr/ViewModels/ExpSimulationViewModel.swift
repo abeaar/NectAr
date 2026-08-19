@@ -16,15 +16,10 @@ final class ExpSimulationViewModel {
     let cards: [ExpSimulationCard]
 
     init() {
-        var list: [ExpSimulationCard] = [
-            .init(id: "full", source: .full,
-                  title: SimulationFullCard.default.title,
-                  description: SimulationFullCard.default.explanation)
-        ]
-        list.append(contentsOf: SimulationStepKind.allCases.map { step in
+        let list: [ExpSimulationCard] = SimulationStepKind.allCases.map { step in
             .init(id: "step.\(step.title)", source: .step(step),
                   title: step.title, description: step.explanation)
-        })
+        }
         self.cards = list
         self.activeCardID = list.first?.id
     }
@@ -37,7 +32,12 @@ final class ExpSimulationViewModel {
         activeCardID = id
     }
 
-    func source(for id: String) -> ExpSimulationCard.Source? {
-        cards.first(where: { $0.id == id })?.source
+    /// Returns the sidebar card id matching a simulation phase, or nil if there
+    /// is no dedicated card for the phase.
+    func cardID(forStep step: SimulationStepKind) -> String? {
+        cards.first(where: { card in
+            if case .step(let s) = card.source { return s == step }
+            return false
+        })?.id
     }
 }
