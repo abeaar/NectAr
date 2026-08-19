@@ -9,6 +9,8 @@ import Foundation
 import RealityKit
 import ARWolrd
 import Bee
+import Mail_3d
+import Router_3d
 
 /// Loads every placeable entity plus the mail packet from `ARWolrd`'s composed
 /// scene, except the mascot, which loads from its own package, see `loadMascot()`.
@@ -28,13 +30,21 @@ enum DeviceEntityLoader {
     }
 
     static func loadMailPacket() async throws -> Entity {
-        try await loadFromComposedScene(named: "Mail")
+        guard let scene = try? await Entity(named: "Mail", in: mail_3dBundle),
+              let mail = scene.findEntity(named: "Root") else {
+            throw LoadError.entityNotFound("Mail")
+        }
+        return mail.clone(recursive: true)
     }
 
     /// Loads from the standalone `Bee` package, not `ARWolrd`'s composed scene,
     /// since its wing-flap Behavior never fires when reached through a reference arc.
     static func loadMascot() async throws -> Entity {
-        try await Entity(named: "Bee", in: beeBundle)
+        guard let asset = try? await Entity(named: "Bee", in: beeBundle),
+              let bee = asset.findEntity(named: "Root") else {
+            throw LoadError.entityNotFound("Bee")
+        }
+        return bee.clone(recursive: true)
     }
 
     /// Hands back a clone of the named child, not the cached entity itself, since

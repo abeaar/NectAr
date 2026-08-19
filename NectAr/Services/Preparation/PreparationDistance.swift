@@ -34,8 +34,9 @@ final class PreparationDistance {
         guard let arView, !isPlaced else { return nil }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let raycastHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
-            return nil
+        guard let raycastHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: kind.placementAlignment).first else {
+            hint = nil
+            return
         }
 
         let hitPosition = Transform(matrix: raycastHit.worldTransform).translation

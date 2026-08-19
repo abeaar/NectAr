@@ -15,7 +15,7 @@ struct NectArApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            TestLoaderView()
+//            BeeMailPreview()
             ContentView()
         }
     }

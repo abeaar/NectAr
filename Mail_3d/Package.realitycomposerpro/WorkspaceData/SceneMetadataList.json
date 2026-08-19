@@ -3,6 +3,15 @@
     "objectMetadataList" : [
       [
         "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
+        "Root",
+        "MailOpenClose"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
         "Root"
       ],
       {
@@ -18,15 +27,6 @@
       {
         "isExpanded" : true,
         "isLocked" : false
-      },
-      [
-        "2EBB1D0A-52AA-418D-9BF3-744B61A3F5C2",
-        "Root",
-        "MailOpenClose"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
       }
     ]
   },
@@ -35,46 +35,7 @@
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root",
-        "Cone",
-        "Candle"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
         "MailOpen",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
-        "Body"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
-        "MailAnimation",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
-        "Root",
-        "MailOpenClose",
         "Track"
       ],
       {
@@ -94,7 +55,26 @@
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root",
-        "MailOpenCLose",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "MailOpenClose",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "MailAnimation",
         "Track"
       ],
       {
@@ -112,7 +92,27 @@
       },
       [
         "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "Cone",
+        "Candle"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "81823503-55E3-4C3F-B9A3-7F022905D5BF",
+        "Root",
+        "MailOpenCLose",
+        "Track"
       ],
       {
         "isExpanded" : true,

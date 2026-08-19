@@ -13,9 +13,17 @@
       [
         "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
         "Root",
+        "Mail"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
         "Iphone",
-        "Iphone",
-        "Meshes"
+        "Iphone"
       ],
       {
         "isExpanded" : true,
@@ -32,17 +40,9 @@
       [
         "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
         "Root",
-        "Mail"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
-        "Root",
         "Iphone",
-        "Iphone"
+        "Iphone",
+        "Meshes"
       ],
       {
         "isExpanded" : true,

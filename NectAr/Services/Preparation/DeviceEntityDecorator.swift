@@ -20,8 +20,8 @@ enum DeviceEntityDecorator {
         }
     }
 
-    /// Attaches the router's live attribute state. `RangeVisualizationSystem`
-    /// reacts to it, sphere hidden until the debug toggle shows it.
+    /// Attaches the router's live attribute state, sphere hidden until the debug
+    /// toggle shows it. `RangeVisualizationSystem` reacts to the components.
     static func attachRangeSphereIfNeeded(to entity: Entity, for kind: DeviceKind) {
         guard kind == .router else { return }
         entity.components.set(RouterAttributesComponent(attributes: RouterAttributes()))

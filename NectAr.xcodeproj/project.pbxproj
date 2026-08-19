@@ -13,6 +13,7 @@
 		645A2A38302C9F5000DAD738 /* Iphone in Frameworks */ = {isa = PBXBuildFile; productRef = 645A2A37302C9F5000DAD738 /* Iphone */; };
 		64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126E302A07D4007FC7DE /* Mail_3d */; };
 		64D31271302A07D7007FC7DE /* ARWolrd in Frameworks */ = {isa = PBXBuildFile; productRef = 64D3126F302A07D5007FC7DE /* ARWolrd */; };
+		64D32BA23034412600624D80 /* TestMock in Frameworks */ = {isa = PBXBuildFile; productRef = 64D32BA13034412600624D80 /* TestMock */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 				645A2A38302C9F5000DAD738 /* Iphone in Frameworks */,
 				64D3126F302A07D4007FC7DE /* Mail_3d in Frameworks */,
 				642379AC3024926500CFEE71 /* Router_3d in Frameworks */,
+				64D32BA23034412600624D80 /* TestMock in Frameworks */,
 				642379A73024528F00CFEE71 /* Bee in Frameworks */,
 				645A2A35302C9EF600DAD738 /* MacBook in Frameworks */,
 				64D31271302A07D7007FC7DE /* ARWolrd in Frameworks */,
@@ -99,6 +101,7 @@
 				645A2A34302C9EF600DAD738 /* MacBook */,
 				645A2A37302C9F5000DAD738 /* Iphone */,
 				64D3126F302A07D5007FC7DE /* ARWolrd */,
+				64D32BA13034412600624D80 /* TestMock */,
 			);
 			productName = NectAr;
 			productReference = 64B5DCFF301DD212004E2683 /* NectAr.app */;
@@ -135,6 +138,7 @@
 				645A2A33302C9EF600DAD738 /* XCLocalSwiftPackageReference "MacBook" */,
 				645A2A36302C9F5000DAD738 /* XCLocalSwiftPackageReference "Iphone" */,
 				64D31270302A07D6007FC7DE /* XCLocalSwiftPackageReference "ARWolrd" */,
+				64D32BA03034412600624D80 /* XCLocalSwiftPackageReference "TestMock" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64B5DD00301DD212004E2683 /* Products */;
@@ -406,6 +410,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ARWolrd;
 		};
+		64D32BA03034412600624D80 /* XCLocalSwiftPackageReference "TestMock" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TestMock;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -432,6 +440,10 @@
 		64D3126F302A07D5007FC7DE /* ARWolrd */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ARWolrd;
+		};
+		64D32BA13034412600624D80 /* TestMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TestMock;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

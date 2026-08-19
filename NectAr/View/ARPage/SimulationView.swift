@@ -18,6 +18,7 @@ struct SimulationView: View {
             Spacer()
             StopButton {
                 simulationController.stopAnimating()
+                simulationController.showStandaloneMascot()
                 onExit()
             }
             .padding(.trailing)
