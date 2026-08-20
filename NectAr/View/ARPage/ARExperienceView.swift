@@ -6,9 +6,11 @@
 import SwiftUI
 
 struct ARExperienceView: View {
-    /// Not yet consumed beyond seeding `prepExplainVM`'s narration, groundwork for
-    /// a future story-driven device catalog.
+    /// Seeds `prepExplainVM`'s narration and marks the story unlocked in
+    /// `quizUnlockService` on a successful simulation. Otherwise not yet
+    /// consumed, groundwork for a future story-driven device catalog.
     let storyID: Story.ID
+    let quizUnlockService: QuizUnlockService
     let onExitToMenu: () -> Void
     let onQuiz: () -> Void
 
@@ -19,8 +21,9 @@ struct ARExperienceView: View {
     @State private var simulationController = SimulationSceneController()
     @State private var phase: ARPhase = .preparation
 
-    init(storyID: Story.ID, prepExplainService: PrepExplainService, onExitToMenu: @escaping () -> Void, onQuiz: @escaping () -> Void) {
+    init(storyID: Story.ID, prepExplainService: PrepExplainService, quizUnlockService: QuizUnlockService, onExitToMenu: @escaping () -> Void, onQuiz: @escaping () -> Void) {
         self.storyID = storyID
+        self.quizUnlockService = quizUnlockService
         self.onExitToMenu = onExitToMenu
         self.onQuiz = onQuiz
         _arViewModel = State(initialValue: ARViewModel())
@@ -36,6 +39,10 @@ struct ARExperienceView: View {
                 simulationController: simulationController
             )
             .ignoresSafeArea()
+            .onChange(of: simulationController.isQuizPromptActive) { _, isActive in
+                guard isActive else { return }
+                quizUnlockService.markUnlocked(storyID)
+            }
 
             switch phase {
             case .preparation:

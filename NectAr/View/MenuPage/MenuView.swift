@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
     let onStart: (Story.ID) -> Void
     let onQuiz: () -> Void
+    let quizUnlockService: QuizUnlockService
 
     @State private var activeStoryID: Story.ID?
     @State private var expandedStoryID: Story.ID?
@@ -45,6 +46,7 @@ struct MenuView: View {
                                         isActive: activeStoryID == story.id,
                                         onPlay: { onStart(story.id) },
                                         onQuiz: onQuiz,
+                                        quizUnlockService: quizUnlockService,
                                         expandedStoryID: $expandedStoryID
                                     )
                                     .frame(width: cardWidth)
@@ -95,5 +97,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(onStart: { _ in }, onQuiz: {})
+    MenuView(onStart: { _ in }, onQuiz: {}, quizUnlockService: QuizUnlockService())
 }

@@ -12,6 +12,7 @@ struct ExpandableCard: View {
     let isActive: Bool
     let onPlay: () -> Void
     let onQuiz: () -> Void
+    let quizUnlockService: QuizUnlockService
 
     @Binding var expandedStoryID: Story.ID?
     @StateObject private var sound = SoundViewModel()
@@ -64,13 +65,21 @@ struct ExpandableCard: View {
                         Spacer()
                         if isExpanded {
                             if story.id == "wifi" {
-                                ButtonStyle(
-                                    action: onQuiz,
-                                    backgroundColor: Theme.cream2,
-                                    textColor: Theme.brown,
-                                    text: "Quiz"
-                                )
-                                .transition(.scale)
+                                if quizUnlockService.isUnlocked(story.id) {
+                                    ButtonStyle(
+                                        action: onQuiz,
+                                        backgroundColor: Theme.cream2,
+                                        textColor: Theme.brown,
+                                        text: "Quiz"
+                                    )
+                                    .transition(.scale)
+                                } else {
+                                    Image("LockedButton")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 48)
+                                        .transition(.scale)
+                                }
                             }
 
                             ButtonStyle(
@@ -140,6 +149,7 @@ struct ExpandableCard: View {
                 isActive: true,
                 onPlay: {},
                 onQuiz: {},
+                quizUnlockService: QuizUnlockService(),
                 expandedStoryID: $mockExpandedID
             )
         }
