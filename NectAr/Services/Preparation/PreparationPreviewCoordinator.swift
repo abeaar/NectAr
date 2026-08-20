@@ -81,7 +81,7 @@ final class PreparationPreviewCoordinator {
             }
 
             let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: previewKind.placementAlignment).first else {
+        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
                 previewEntity.isEnabled = false
                 return
             }

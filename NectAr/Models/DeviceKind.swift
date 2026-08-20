@@ -31,7 +31,5 @@ enum DeviceKind: CaseIterable, Hashable {
 
     /// The raycast alignment this device requires for placement. Router can be
     /// wall-mounted (G3); clients stay on horizontal surfaces.
-    var placementAlignment: ARRaycastQuery.TargetAlignment {
-        self == .router ? .any : .horizontal
-    }
+   
 }

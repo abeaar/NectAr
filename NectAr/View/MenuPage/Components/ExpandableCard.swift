@@ -13,6 +13,7 @@ struct ExpandableCard: View {
     let onPlay: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
+    @StateObject private var sound = SoundViewModel()
 
     var isExpanded: Bool {
         expandedStoryID == story.id
@@ -72,6 +73,7 @@ struct ExpandableCard: View {
                             .transition(.scale)
                             
                             Button(action: {
+                                sound.play("bubble.mp3")
                                 onPlay()
                             }) {
                                 Image("startButton")
@@ -114,8 +116,9 @@ struct ExpandableCard: View {
             }
             .onTapGesture {
                 guard isActive else { return }
-                
+
                 if !isExpanded {
+                    sound.play("bubble.mp3")
                     withAnimation(easeOutBack) {
                         expandedStoryID = story.id
                     }
