@@ -16,7 +16,7 @@ final class PreparationDistance {
     weak var arView: ARView?
     /// Live, ungated, used to gate `PlacementController.confirmPlacement()` so
     /// a stale held `hint` never blocks a placement that's actually in range.
-    private(set) var isTooFar = false
+    private(set) var isBlocked = false
     /// Held for at least `hintHoldDuration` once shown, so rapid distance
     /// changes don't flicker unreadable text, see `advanceNow()`.
     private(set) var hint: String?
@@ -24,7 +24,7 @@ final class PreparationDistance {
 
     func update(for kind: DeviceKind, isPlaced: Bool) {
         let rawHint = rawHint(for: kind, isPlaced: isPlaced)
-        isTooFar = rawHint != nil
+        isBlocked = rawHint != nil
 
         guard hintHoldTask == nil else { return }
         applyHint(rawHint)
@@ -35,7 +35,9 @@ final class PreparationDistance {
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
         guard let raycastHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: kind.placementAlignment).first else {
-            return nil
+            // A surface exists here, just not one this device can go on.
+            guard arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first != nil else { return nil }
+            return "Find a Horizontal surface to place your \(kind.label)"
         }
 
         let hitPosition = Transform(matrix: raycastHit.worldTransform).translation
@@ -63,7 +65,7 @@ final class PreparationDistance {
     func reset() {
         hintHoldTask?.cancel()
         hintHoldTask = nil
-        isTooFar = false
+        isBlocked = false
         hint = nil
     }
 }
