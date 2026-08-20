@@ -34,9 +34,12 @@ struct ContentView: View {
                 }
             )
         case .ar(let storyID):
-            ARExperienceView(storyID: storyID, prepExplainService: prepExplainService) {
-                currentPhase = .menu
-            }
+            ARExperienceView(
+                storyID: storyID,
+                prepExplainService: prepExplainService,
+                onExitToMenu: { currentPhase = .menu },
+                onQuiz: { currentPhase = .quiz }
+            )
         case .quiz:
             QuizView(onBack: {
                 currentPhase = .menu

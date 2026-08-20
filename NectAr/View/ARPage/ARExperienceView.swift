@@ -10,6 +10,7 @@ struct ARExperienceView: View {
     /// a future story-driven device catalog.
     let storyID: Story.ID
     let onExitToMenu: () -> Void
+    let onQuiz: () -> Void
 
     @State private var arViewModel: ARViewModel<ARSessionManager>
     @State private var placementViewModel = PlacementViewModel()
@@ -18,9 +19,10 @@ struct ARExperienceView: View {
     @State private var simulationController = SimulationSceneController()
     @State private var phase: ARPhase = .preparation
 
-    init(storyID: Story.ID, prepExplainService: PrepExplainService, onExitToMenu: @escaping () -> Void) {
+    init(storyID: Story.ID, prepExplainService: PrepExplainService, onExitToMenu: @escaping () -> Void, onQuiz: @escaping () -> Void) {
         self.storyID = storyID
         self.onExitToMenu = onExitToMenu
+        self.onQuiz = onQuiz
         _arViewModel = State(initialValue: ARViewModel())
         _prepExplainVM = State(initialValue: PrepExplainViewModel(service: prepExplainService))
     }
@@ -52,10 +54,10 @@ struct ARExperienceView: View {
                     arViewModel: arViewModel,
                     placementViewModel: placementViewModel,
                     mascotViewModel: mascotViewModel,
-                    topology: topology
-                ) {
-                    phase = .preparation
-                }
+                    topology: topology,
+                    onExit: { phase = .preparation },
+                    onQuiz: onQuiz
+                )
             }
         }
     }
