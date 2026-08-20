@@ -19,5 +19,6 @@ struct CloseButton: View {
                     .scaledToFit()
                     .frame(width: 44, height: 44)
             }
+            .accessibilityLabel(Text("Close Button"))
         }
 }

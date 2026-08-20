@@ -11,17 +11,38 @@ struct SimulationView: View {
     
     let topology: PlacedTopology
     let onExit: () -> Void
+    let onQuiz: () -> Void
 
     var body: some View {
-        HStack(alignment: .center) {
-            SidebarSimulation(controller: simulationController)
-            Spacer()
-            StopButton {
-                simulationController.stopAnimating()
-                simulationController.showStandaloneMascot()
-                onExit()
+        ZStack {
+            HStack(alignment: .center) {
+                SidebarSimulation(controller: simulationController)
+                Spacer()
+                StopButton {
+                    simulationController.stopAnimating()
+                    simulationController.showStandaloneMascot()
+                    onExit()
+                }
+                .padding(.trailing)
             }
-            .padding(.trailing)
+
+            if simulationController.isQuizPromptActive {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+
+                SimulationQuizPromptCard(
+                    onAccept: {
+                        simulationController.stopAnimating()
+                        simulationController.showStandaloneMascot()
+                        onQuiz()
+                    },
+                    onDecline: {
+                        simulationController.declineSecondLoop()
+                    }
+                )
+                .transition(.opacity)
+                .animation(.easeInOut, value: simulationController.isQuizPromptActive)
+            }
         }
         .onAppear {
             simulationController.startAnimating(topology: topology)
@@ -36,6 +57,7 @@ struct SimulationView: View {
         placementViewModel: PlacementViewModel(),
         mascotViewModel: MascotViewModel(),
         topology: PlacedTopology(transforms: [:]),
-        onExit: {}
+        onExit: {},
+        onQuiz: {}
     )
 }

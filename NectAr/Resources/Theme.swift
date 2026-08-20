@@ -10,14 +10,12 @@ enum Theme {
 
     // MARK: Brand colours
     // ──────────────────────────────────────────
-    static let yellow      = Color(hex: "FFB100")
-    static let cream       = Color(hex: "FFF4D9")
-    static let brown       = Color(hex: "412800")
-
-
-    // MARK: Neutral / text
-    // ──────────────────────────────────────────
-    static let textPrimary   = cream
+    static let yellow = Color(hex: "FFB100")
+    static let cream = Color(hex: "FFF4D9")
+    static let brown = Color(hex: "412800")
+    
+    static let cream2 = Color(hex: "FFFAF3")
+    static let red = Color(hex: "FF383C")
 
     // MARK: Surfaces
     // ──────────────────────────────────────────

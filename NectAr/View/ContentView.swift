@@ -15,26 +15,35 @@ struct ContentView: View {
     var body: some View {
         switch currentPhase {
         case .splash:
-            SplashScreenView()
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        currentPhase = hasOnboarded ? .menu : .onboarding
-                    }
-                }
+            SplashScreenView(onFinished: {
+                currentPhase = hasOnboarded ? .menu : .onboarding
+            })
         case .onboarding:
             OnBoardingView(onContinue: {
                 hasOnboarded = true
                 currentPhase = .menu
             })
         case .menu:
-            MenuView { storyID in
-                prepExplainService.step(forStory: storyID)
-                currentPhase = .ar(storyID)
-            }
+            MenuView(
+                onStart: { storyID in
+                    prepExplainService.step(forStory: storyID)
+                    currentPhase = .ar(storyID)
+                },
+                onQuiz: {
+                    currentPhase = .quiz
+                }
+            )
         case .ar(let storyID):
-            ARExperienceView(storyID: storyID, prepExplainService: prepExplainService) {
+            ARExperienceView(
+                storyID: storyID,
+                prepExplainService: prepExplainService,
+                onExitToMenu: { currentPhase = .menu },
+                onQuiz: { currentPhase = .quiz }
+            )
+        case .quiz:
+            QuizView(onBack: {
                 currentPhase = .menu
-            }
+            })
         }
     }
 }

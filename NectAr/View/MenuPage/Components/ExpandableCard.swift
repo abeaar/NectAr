@@ -11,6 +11,7 @@ struct ExpandableCard: View {
     let story: Story
     let isActive: Bool
     let onPlay: () -> Void
+    let onQuiz: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
     @StateObject private var sound = SoundViewModel()
@@ -39,7 +40,7 @@ struct ExpandableCard: View {
                     }
                     
                     if isExpanded {
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading) {
                             Text(story.title)
                                 .font(Font.custom("Fredoka-Bold", size: 64, relativeTo: .title))
                                 .foregroundStyle(Theme.brown)
@@ -49,17 +50,17 @@ struct ExpandableCard: View {
                             Text(story.description)
                                 .font(Font.custom("Fredoka-Medium", size: 22, relativeTo: .title2))
                                 .foregroundStyle(Theme.brown)
-                                .padding(20)
-                                .frame(width: 385, height: 215, alignment: .topLeading)
-                                .background(Theme.cream)
+                                .padding(16)
+                                .frame(width: 385, height: 175)
+                                .background(Theme.cream2)
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                                 .minimumScaleFactor(0.4)
                         }
-                        .padding(.bottom, 12)
+                        .padding(.bottom, 20)
                         .transition(.scale)
                     }
                     
-                    HStack (spacing: 26) {
+                    HStack (spacing: 20) {
                         Spacer()
                         if isExpanded {
                             Button(action: {
@@ -81,13 +82,20 @@ struct ExpandableCard: View {
                                     .scaledToFit()
                                     .frame(height: 46)
                             }
+
+                            ButtonStyle(
+                                action: {onPlay()},
+                                backgroundColor: Theme.brown,
+                                textColor: Theme.cream2,
+                                text: "Start"
+                            )
                             .transition(.scale)
                         }
                     }
                     
                 }
-                .padding(.trailing, 38)
-                .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 500 : 515)
+                .padding(.trailing, 40)
+                .frame(width: isExpanded ? 930 : 460, height: isExpanded ? 520 : 515)
                 .background(Theme.storyCardExpanded)
                 .clipShape(RoundedRectangle(cornerRadius: 39))
                 .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 0)
@@ -138,6 +146,7 @@ struct ExpandableCard: View {
                 story: Story(id:"texting", title: "WiFi", icon: "StoryCard-2", description: "Ever wonder how a text message from a phone reaches a laptop without any wires? It’s all thanks to Wi-Fi!\n\nJump in to see the invisible data packages flying around your own room!"),
                 isActive: true,
                 onPlay: {},
+                onQuiz: {},
                 expandedStoryID: $mockExpandedID
             )
         }

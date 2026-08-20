@@ -14,7 +14,7 @@ enum SimulationStepKind: CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .introduction: "introduction"
+        case .introduction: "Introduction"
         case .checkSender: "Form The Data Packet"
         case .sendToRouter: "Send To Router"
         case .checkTarget: "Router Reads The Address"
@@ -52,21 +52,31 @@ enum SimulationStepKind: CaseIterable, Identifiable {
     }
 }
 
-/// What the simulation is currently playing: the full looping round trip, or a
-/// single sidebar step looped in isolation for explanation.
+/// What the simulation is currently playing: the narrated first-loop round trip,
+/// the second loop's continuously-looping full preview, a single sidebar step
+/// looped in isolation, or a specific leg's wall-obstructed travel.
 enum SimulationPlaybackSelection: Equatable {
     case full
+    case fullPreview
     case step(SimulationStepKind)
+    case wall(SimulationStepKind)
 }
 
-/// Text shown on the sidebar's top "Full Simulation" card, the playback mode
-/// that loops the entire round trip instead of a single step.
-struct SimulationFullCard {
-    let title: String
-    let explanation: String
+/// Identifies which sidebar card should be highlighted right now during the
+/// auto-playing full sequence, set explicitly by the controller in lockstep with
+/// the mail animation rather than inferred from separate state changes.
+enum SimulationCardID: Equatable {
+    case step(SimulationStepKind)
+    case wall(SimulationStepKind)
+    case failure
+    case terminal
+    case fullSimulation
+}
 
-    static let `default` = SimulationFullCard(
-        title: "Full Simulation",
-        explanation: "Let's learn how a text message travels from one device to another!"
-    )
+/// Whether the simulation is still auto-narrating the first successful run, or has
+/// switched to the second loop's tap-to-preview-each-card mode after the quiz
+/// prompt was declined.
+enum SimulationLoopMode: Equatable {
+    case narrated
+    case manual
 }

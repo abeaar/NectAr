@@ -42,7 +42,7 @@ final class PlacementController: ARSceneDriven {
     var isComplete: Bool { placedKinds.count == DeviceKind.allCases.count }
     var canUndo: Bool { !ledger.isEmpty }
     var placementDistanceHint: String? { distanceGate.hint }
-    var isPlacementTooFar: Bool { distanceGate.isTooFar }
+    var isPlacementBlocked: Bool { distanceGate.isBlocked }
 
     func advanceDistanceHintNow() {
         distanceGate.advanceNow()
@@ -109,8 +109,8 @@ final class PlacementController: ARSceneDriven {
             print("\(kind.label) has already been placed, or is being placed")
             return
         }
-        guard !isPlacementTooFar else {
-            print("Too far to place \(kind.label), move closer")
+        guard !isPlacementBlocked else {
+            print("Cannot place \(kind.label) here, too far or wrong surface type")
             return
         }
 
@@ -159,11 +159,13 @@ final class PlacementController: ARSceneDriven {
     }
 
     func finishPlacement() {
-        stopPreview()
+        previewCoordinator.teardown()
     }
 
     func tearDown() {
-        stopPreview()
+        previewCoordinator.teardown()
+        updateSubscription?.cancel()
+        updateSubscription = nil
 
         let anchors = ledger.removeAll()
         if let arView {
@@ -175,19 +177,13 @@ final class PlacementController: ARSceneDriven {
         selectedDeviceKind = nil
     }
 
-    private func stopPreview() {
-        previewCoordinator.teardown()
-        updateSubscription?.cancel()
-        updateSubscription = nil
-    }
-
     private func subscribeToSceneUpdates() {
         guard let arView else { return }
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
             guard let self, let selectedDeviceKind else { return }
             let isPlaced = placedKinds.contains(selectedDeviceKind)
             distanceGate.update(for: selectedDeviceKind, isPlaced: isPlaced)
-            previewCoordinator.update(isPlaced: isPlaced, isTooFar: distanceGate.isTooFar)
+            previewCoordinator.update(isPlaced: isPlaced, isBlocked: distanceGate.isBlocked)
         }
     }
 }

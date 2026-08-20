@@ -16,5 +16,6 @@ struct BackButton: View {
             Spacer()
         }
         .ignoresSafeArea(edges: .leading)
+        .accessibilityLabel(Text("Back Button"))
     }
 }

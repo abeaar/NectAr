@@ -28,6 +28,7 @@ struct PreparationActionButton: View {
 //                .padding(.bottom, 16)
                 .disabled(!placementViewModel.canUndo)
                 .opacity(placementViewModel.canUndo ? 1.0 : 0.7)
+                .accessibilityLabel(Text("Undo Button"))
 
                 Button(action: {
                     tapAction()
@@ -38,6 +39,7 @@ struct PreparationActionButton: View {
                         .frame(width: 80)
                 }
                 .explanationHighlight(isActive: isActionHighlighted)
+                .accessibilityLabel(Text("Action Button"))
             }
         }
     }
