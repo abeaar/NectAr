@@ -115,7 +115,7 @@ final class PlacementController: ARSceneDriven {
         }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let firstResult = arView.raycast(from: center, allowing: .estimatedPlane, alignment: kind.placementAlignment).first else {
+        guard let firstResult = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
             print("No surface found at crosshair")
             return
         }

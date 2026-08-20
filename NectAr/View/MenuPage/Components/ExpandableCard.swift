@@ -14,6 +14,7 @@ struct ExpandableCard: View {
     let onQuiz: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
+    @StateObject private var sound = SoundViewModel()
 
     var isExpanded: Bool {
         expandedStoryID == story.id
@@ -62,14 +63,24 @@ struct ExpandableCard: View {
                     HStack (spacing: 20) {
                         Spacer()
                         if isExpanded {
-                            if story.id == "wifi" {
-                                ButtonStyle(
-                                    action: onQuiz,
-                                    backgroundColor: Theme.cream2,
-                                    textColor: Theme.brown,
-                                    text: "Quiz"
-                                )
-                                .transition(.scale)
+                            Button(action: {
+                                print("Quiz button tapped") // test
+                            }) {
+                                Image("QuizLock")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 46)
+                            }
+                            .transition(.scale)
+                            
+                            Button(action: {
+                                sound.play("bubble.mp3")
+                                onPlay()
+                            }) {
+                                Image("startButton")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 46)
                             }
 
                             ButtonStyle(
@@ -113,8 +124,9 @@ struct ExpandableCard: View {
             }
             .onTapGesture {
                 guard isActive else { return }
-                
+
                 if !isExpanded {
+                    sound.play("bubble.mp3")
                     withAnimation(easeOutBack) {
                         expandedStoryID = story.id
                     }

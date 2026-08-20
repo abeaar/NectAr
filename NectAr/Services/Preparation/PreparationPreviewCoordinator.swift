@@ -76,10 +76,16 @@ final class PreparationPreviewCoordinator {
     func update(isPlaced: Bool, isBlocked: Bool) {
         guard let arView, let previewEntity, let previewKind else { return }
 
-        guard !isPlaced else {
-            teardown()
-            return
-        }
+            guard !isPlaced else {
+                teardown()
+                return
+            }
+
+            let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
+        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
+                previewEntity.isEnabled = false
+                return
+            }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
         if let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: previewKind.placementAlignment).first {
