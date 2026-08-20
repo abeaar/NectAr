@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     let onStart: (Story.ID) -> Void
+    let onQuiz: () -> Void
 
     @State private var activeStoryID: Story.ID?
     @State private var expandedStoryID: Story.ID?
@@ -42,6 +43,7 @@ struct MenuView: View {
                                         story: story,
                                         isActive: activeStoryID == story.id,
                                         onPlay: { onStart(story.id) },
+                                        onQuiz: onQuiz,
                                         expandedStoryID: $expandedStoryID
                                     )
                                     .frame(width: cardWidth)
@@ -91,5 +93,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(onStart: { _ in })
+    MenuView(onStart: { _ in }, onQuiz: {})
 }

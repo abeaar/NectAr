@@ -12,4 +12,4 @@ struct StopButton: View {
         }
         .accessibilityLabel(Text("Stop Simulation Button"))
     }
-})
+}

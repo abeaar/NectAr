@@ -12,4 +12,5 @@ enum AppPhase {
     case onboarding
     case menu
     case ar(Story.ID)
+    case quiz
 }

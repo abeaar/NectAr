@@ -44,7 +44,7 @@ struct QuizView: View {
                         
                         Image("QuizHeader")
                             .resizable()
-                            .scaledToFit()
+                            //.scaledToFit()
                             .frame(width: 725)
                     }
                     .padding()
@@ -54,7 +54,7 @@ struct QuizView: View {
                     ZStack {
                         Image("QuizBox")
                             .resizable()
-                            .scaledToFit()
+                            //.scaledToFit()
                             .frame(width: 1100)
                         
                         Text(QuizviewModel.currentQuestion.text)

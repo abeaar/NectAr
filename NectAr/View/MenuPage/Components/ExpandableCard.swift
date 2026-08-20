@@ -11,6 +11,7 @@ struct ExpandableCard: View {
     let story: Story
     let isActive: Bool
     let onPlay: () -> Void
+    let onQuiz: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
 
@@ -61,14 +62,16 @@ struct ExpandableCard: View {
                     HStack (spacing: 20) {
                         Spacer()
                         if isExpanded {
-                            ButtonStyle(
-                                action: {},
-                                backgroundColor: Theme.cream2,
-                                textColor: Theme.brown,
-                                text: "Quiz"
-                            )
-                            .transition(.scale)
-                            
+                            if story.id == "wifi" {
+                                ButtonStyle(
+                                    action: onQuiz,
+                                    backgroundColor: Theme.cream2,
+                                    textColor: Theme.brown,
+                                    text: "Quiz"
+                                )
+                                .transition(.scale)
+                            }
+
                             ButtonStyle(
                                 action: {onPlay()},
                                 backgroundColor: Theme.brown,
@@ -131,6 +134,7 @@ struct ExpandableCard: View {
                 story: Story(id:"texting", title: "WiFi", icon: "StoryCard-2", description: "Ever wonder how a text message from a phone reaches a laptop without any wires? It’s all thanks to Wi-Fi!\n\nJump in to see the invisible data packages flying around your own room!"),
                 isActive: true,
                 onPlay: {},
+                onQuiz: {},
                 expandedStoryID: $mockExpandedID
             )
         }
