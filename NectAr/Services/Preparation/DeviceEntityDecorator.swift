@@ -7,6 +7,12 @@ import Foundation
 import RealityKit
 
 enum DeviceEntityDecorator {
+    /// Per-kind scale tuned against the diorama-authored default, applied here
+    /// individually rather than in `Scene.usda`.
+    private static let deviceAScale: Float = 0.05
+    private static let deviceBScale: Float = 0.5
+    private static let routerScale: Float = 0.4
+
     static func decorate(_ entity: Entity, for kind: DeviceKind, includeRangeSphere: Bool = true) {
         entity.components.set(DeviceIdentityComponent(kind: kind))
         entity.components.set(HighlightComponent())
@@ -17,6 +23,16 @@ enum DeviceEntityDecorator {
             }
         } else {
             entity.components.set(DeviceAttributesComponent(attributes: DeviceAttributes()))
+        }
+
+        entity.scale = SIMD3<Float>(repeating: scale(for: kind))
+    }
+
+    private static func scale(for kind: DeviceKind) -> Float {
+        switch kind {
+        case .deviceA: deviceAScale
+        case .deviceB: deviceBScale
+        case .router: routerScale
         }
     }
 
