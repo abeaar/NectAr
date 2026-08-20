@@ -65,7 +65,7 @@ struct ExpandableCard: View {
                             Button(action: {
                                 print("Quiz button tapped") // test
                             }) {
-                                Image("quizButton")
+                                Image("QuizLock")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: 46)

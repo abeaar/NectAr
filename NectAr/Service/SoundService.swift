@@ -4,7 +4,7 @@ import Foundation
 final class SoundService {
     static let shared = SoundService()
 
-    private var player: AVAudioPlayer?
+    private var players: [AVAudioPlayer] = []
 
     private init() {}
 
@@ -16,8 +16,11 @@ final class SoundService {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
-            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            player?.play()
+            let player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            player.prepareToPlay()
+            player.play()
+            players.append(player)
+            players.removeAll { !$0.isPlaying }
         } catch {
             print("SoundService: \(error.localizedDescription)")
         }
