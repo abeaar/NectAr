@@ -14,6 +14,7 @@ struct ExpandableCard: View {
     let onQuiz: () -> Void
 
     @Binding var expandedStoryID: Story.ID?
+    @StateObject private var sound = SoundViewModel()
 
     var isExpanded: Bool {
         expandedStoryID == story.id
@@ -73,7 +74,10 @@ struct ExpandableCard: View {
                             }
 
                             ButtonStyle(
-                                action: {onPlay()},
+                                action: {
+                                    sound.play("bubble.mp3")
+                                    onPlay()
+                                },
                                 backgroundColor: Theme.brown,
                                 textColor: Theme.cream2,
                                 text: "Start"
@@ -113,8 +117,9 @@ struct ExpandableCard: View {
             }
             .onTapGesture {
                 guard isActive else { return }
-                
+
                 if !isExpanded {
+                    sound.play("bubble.mp3")
                     withAnimation(easeOutBack) {
                         expandedStoryID = story.id
                     }

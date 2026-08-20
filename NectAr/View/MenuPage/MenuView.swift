@@ -13,6 +13,7 @@ struct MenuView: View {
 
     @State private var activeStoryID: Story.ID?
     @State private var expandedStoryID: Story.ID?
+    @StateObject private var sound = SoundViewModel()
 
     let cardWidth: CGFloat = 500
 
@@ -63,10 +64,11 @@ struct MenuView: View {
                         .scrollTargetBehavior(.viewAligned)
                         .scrollPosition(id: $activeStoryID)
                         .onChange(of: activeStoryID) { oldValue, newValue in
+                            guard oldValue != newValue else { return }
+                            sound.play("CardBubble.mp3")
                             withAnimation(.easeInOut(duration: 0.3)) {
                                 expandedStoryID = nil
                             }
-
                         }
                         .padding(.top, 100)
 
