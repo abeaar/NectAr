@@ -27,9 +27,8 @@ final class PreparationPreviewCoordinator {
 
     /// Hands off the already-loaded, already-decorated preview entity for `kind` so it
     /// can be reused as the real placement instead of loading the same asset again.
-    /// Returns nil if there's no ready preview for that kind yet, still loading or a
-    /// different kind is being previewed, in which case the caller falls back to a
-    /// fresh load.
+    /// Returns nil if there's no ready preview for that kind yet (still loading, or a
+    /// different kind is being previewed) — caller should fall back to a fresh load.
     func claimEntityForPlacement(_ kind: DeviceKind) -> Entity? {
         guard previewKind == kind, let entity = previewEntity, let anchor = previewAnchor else { return nil }
 
@@ -73,27 +72,20 @@ final class PreparationPreviewCoordinator {
         isShowingInRangeGhost = false
     }
 
-    func update(isPlaced: Bool, isBlocked: Bool) {
+    func update(isPlaced: Bool, isTooFar: Bool) {
         guard let arView, let previewEntity, let previewKind else { return }
 
-            guard !isPlaced else {
-                teardown()
-                return
-            }
-
-            let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
-                previewEntity.isEnabled = false
-                return
-            }
+        guard !isPlaced else {
+            teardown()
+            return
+        }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
         if let hit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: previewKind.placementAlignment).first {
             movePreviewEntity(previewEntity, to: hit.worldTransform)
             previewEntity.isEnabled = true
-            setGhostColor(isInRange: !isBlocked)
+            setGhostColor(isInRange: !isTooFar)
         } else if let wrongSurfaceHit = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first {
-            // A surface exists here, just not one this device can go on.
             movePreviewEntity(previewEntity, to: wrongSurfaceHit.worldTransform)
             previewEntity.isEnabled = true
             setGhostColor(isInRange: false)

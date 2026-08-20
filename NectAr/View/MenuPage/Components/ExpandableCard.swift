@@ -82,13 +82,6 @@ struct ExpandableCard: View {
                                     .scaledToFit()
                                     .frame(height: 46)
                             }
-
-                            ButtonStyle(
-                                action: {onPlay()},
-                                backgroundColor: Theme.brown,
-                                textColor: Theme.cream2,
-                                text: "Start"
-                            )
                             .transition(.scale)
                         }
                     }
