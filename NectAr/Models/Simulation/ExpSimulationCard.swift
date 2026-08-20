@@ -8,7 +8,8 @@
 import Foundation
 
 struct ExpSimulationCard: Identifiable {
-    enum Source { case full, step(SimulationStepKind) }
+    enum TerminalReason { case router, target }
+    enum Source { case fullSimulation, step(SimulationStepKind), failure(SimulationFailureReason), wallObstruction(leg: SimulationStepKind), unableToSend(TerminalReason) }
 
     let id: String
     let source: Source
