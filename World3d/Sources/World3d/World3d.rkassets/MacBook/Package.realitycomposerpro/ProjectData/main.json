@@ -1,0 +1,11 @@
+{
+  "pathsToIds" : {
+    "\/MacBook\/Sources\/MacBook\/MacBook.rkassets\/Scene.usda" : "454CA07A-3D22-4168-908D-6C2738BE14A9",
+    "MacBook\/Sources\/MacBook\/MacBook.rkassets\/MacBook.usda" : "8FCA56CC-4959-471C-94F2-9F95BD9BD781"
+  },
+  "projectID" : 151456303128334225,
+  "uuidToIntID" : {
+    "454CA07A-3D22-4168-908D-6C2738BE14A9" : 4333796941428170995,
+    "8FCA56CC-4959-471C-94F2-9F95BD9BD781" : 4446502000253142985
+  }
+}

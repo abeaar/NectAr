@@ -1,0 +1,13 @@
+{
+  "pathsToIds" : {
+    "\/TestMock\/Sources\/TestMock\/TestMock.rkassets\/Scene.usda" : "5C9A4631-D426-48CC-B6AB-27CA143B585C",
+    "TestMock\/Sources\/TestMock\/TestMock.rkassets\/Bee.usda" : "1EA4B157-56E6-4C9B-990D-59F1A3071891",
+    "TestMock\/Sources\/TestMock\/TestMock.rkassets\/Scene.usda" : "3D535C99-F880-4718-B24D-EAA45B91F778"
+  },
+  "projectID" : -402796506211635457,
+  "uuidToIntID" : {
+    "1EA4B157-56E6-4C9B-990D-59F1A3071891" : 1826779363300701157,
+    "3D535C99-F880-4718-B24D-EAA45B91F778" : 1037644887893118934,
+    "5C9A4631-D426-48CC-B6AB-27CA143B585C" : -2950316646280410618
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "pathsToIds" : {
+    "\/ARWolrd\/Sources\/ARWolrd\/ARWolrd.rkassets\/Scene.usda" : "E856B96E-FCA1-4D5E-ACFD-51BF53900C03",
+    "ARWolrd\/Sources\/ARWolrd\/ARWolrd.rkassets\/Bee\/Sources\/Bee\/Bee.rkassets\/Bee.usda" : "51EB953C-09F6-4F7D-8871-E1569F8788EA",
+    "ARWolrd\/Sources\/ARWolrd\/ARWolrd.rkassets\/Scene.usda" : "218E11AA-24D5-40CF-A4C5-3805FDEC05A3"
+  },
+  "projectID" : -5104601910022819555,
+  "uuidToIntID" : {
+    "218E11AA-24D5-40CF-A4C5-3805FDEC05A3" : -471591736643086826,
+    "51EB953C-09F6-4F7D-8871-E1569F8788EA" : -5436189751446083232,
+    "E856B96E-FCA1-4D5E-ACFD-51BF53900C03" : -7008797712906078194
+  }
+}

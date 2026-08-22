@@ -1,0 +1,95 @@
+{
+  "218E11AA-24D5-40CF-A4C5-3805FDEC05A3" : {
+    "objectMetadataList" : [
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
+        "Iphone"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
+        "Mail"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
+        "Iphone",
+        "Iphone"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "218E11AA-24D5-40CF-A4C5-3805FDEC05A3",
+        "Root",
+        "Iphone",
+        "Iphone",
+        "Meshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "51EB953C-09F6-4F7D-8871-E1569F8788EA" : {
+    "objectMetadataList" : [
+      [
+        "51EB953C-09F6-4F7D-8871-E1569F8788EA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "51EB953C-09F6-4F7D-8871-E1569F8788EA",
+        "Root",
+        "Group"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "E856B96E-FCA1-4D5E-ACFD-51BF53900C03" : {
+    "objectMetadataList" : [
+      [
+        "E856B96E-FCA1-4D5E-ACFD-51BF53900C03",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "E856B96E-FCA1-4D5E-ACFD-51BF53900C03",
+        "Root",
+        "Bee"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}

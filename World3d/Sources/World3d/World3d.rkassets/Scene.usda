@@ -1,0 +1,71 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.100.6)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "Bee" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -0.05235987, 0)
+        }
+        prepend references = @Bee/Sources/Bee/Bee.rkassets/Bee.usda@
+    )
+    {
+        quatf xformOp:orient = (0.99965733, 0, -0.026176946, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.5, 0.5, -2)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "MacBook" (
+        active = true
+        prepend references = @MacBook/Sources/MacBook/MacBook.rkassets/MacBook.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-1, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Bee_1" (
+        active = true
+        prepend references = @Bee/Sources/Bee/Bee.rkassets/Bee.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (2.5454557, 0.9125644, -1.5825543)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Router_3d" (
+        active = true
+        prepend references = @Router_3d/Sources/Router_3d/Router_3d.rkassets/Router_3d.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.26577747, 0.5366446, -1.5927529)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Iphone" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (1.5707963, 0, 0)
+        }
+        prepend references = @Iphone/Sources/Iphone/Iphone.rkassets/Iphone.usda@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, 0.7071067, 0, 0)
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (-0.4945736, -1.1920929e-7, -0.20476055)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

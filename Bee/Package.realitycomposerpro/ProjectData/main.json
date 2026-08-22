@@ -1,0 +1,11 @@
+{
+  "pathsToIds" : {
+    "\/Bee\/Sources\/Bee\/Bee.rkassets\/Scene.usda" : "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90",
+    "Bee\/Sources\/Bee\/Bee.rkassets\/Bee.usda" : "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C"
+  },
+  "projectID" : 452254324481732565,
+  "uuidToIntID" : {
+    "EB44EEC4-D27F-4526-AA6F-83D5CAC5AB2C" : 3509098784893075307,
+    "FE0D4A5B-99C6-4B20-AD0B-F1820DDECE90" : 5021722405976039149
+  }
+}
