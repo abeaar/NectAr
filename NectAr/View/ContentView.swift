@@ -11,6 +11,7 @@ struct ContentView: View {
     @AppStorage("hasOnboarded") private var hasOnboarded: Bool = false
     @State private var currentPhase: AppPhase = .splash
     @State private var prepExplainService = PrepExplainService()
+    @State private var quizUnlockService = QuizUnlockService()
 
     var body: some View {
         switch currentPhase {
@@ -31,12 +32,14 @@ struct ContentView: View {
                 },
                 onQuiz: {
                     currentPhase = .quiz
-                }
+                },
+                quizUnlockService: quizUnlockService
             )
         case .ar(let storyID):
             ARExperienceView(
                 storyID: storyID,
                 prepExplainService: prepExplainService,
+                quizUnlockService: quizUnlockService,
                 onExitToMenu: { currentPhase = .menu },
                 onQuiz: { currentPhase = .quiz }
             )

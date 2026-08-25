@@ -12,6 +12,7 @@ struct ExpandableCard: View {
     let isActive: Bool
     let onPlay: () -> Void
     let onQuiz: () -> Void
+    let quizUnlockService: QuizUnlockService
 
     @Binding var expandedStoryID: Story.ID?
     @StateObject private var sound = SoundViewModel()
@@ -63,25 +64,33 @@ struct ExpandableCard: View {
                     HStack (spacing: 20) {
                         Spacer()
                         if isExpanded {
-                            Button(action: {
-                                print("Quiz button tapped") // test
-                            }) {
-                                Image("QuizLock")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 46)
+                            if story.id == "wifi" {
+                                if quizUnlockService.isUnlocked(story.id) {
+                                    ButtonStyle(
+                                        action: onQuiz,
+                                        backgroundColor: Theme.cream2,
+                                        textColor: Theme.brown,
+                                        text: "Quiz"
+                                    )
+                                    .transition(.scale)
+                                } else {
+                                    Image("LockedButton")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 48)
+                                        .transition(.scale)
+                                }
                             }
-                            .transition(.scale)
-                            
-                            Button(action: {
-                                sound.play("bubble.mp3")
-                                onPlay()
-                            }) {
-                                Image("startButton")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 46)
-                            }
+
+                            ButtonStyle(
+                                action: {
+                                    sound.play("bubble.mp3")
+                                    onPlay()
+                                },
+                                backgroundColor: Theme.brown,
+                                textColor: Theme.cream2,
+                                text: "Start"
+                            )
                             .transition(.scale)
                         }
                     }
@@ -140,6 +149,7 @@ struct ExpandableCard: View {
                 isActive: true,
                 onPlay: {},
                 onQuiz: {},
+                quizUnlockService: QuizUnlockService(),
                 expandedStoryID: $mockExpandedID
             )
         }

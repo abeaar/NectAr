@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
     let onStart: (Story.ID) -> Void
     let onQuiz: () -> Void
+    let quizUnlockService: QuizUnlockService
 
     @State private var activeStoryID: Story.ID?
     @State private var expandedStoryID: Story.ID?
@@ -32,10 +33,26 @@ struct MenuView: View {
             GeometryReader { geometry in
                 let horizontalPadding = (geometry.size.width - cardWidth) / 2
 
-                VStack(spacing: 70) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: -50) {
-                            ForEach(StoryCatalog.all) { story in
+                ZStack {
+
+                    VStack (spacing: 110) {
+                        // carousel
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: -50) {
+                                ForEach(StoryCatalog.all) { story in
+
+                                    ExpandableCard(
+                                        story: story,
+                                        isActive: activeStoryID == story.id,
+                                        onPlay: { onStart(story.id) },
+                                        onQuiz: onQuiz,
+                                        quizUnlockService: quizUnlockService,
+                                        expandedStoryID: $expandedStoryID
+                                    )
+                                    .frame(width: cardWidth)
+                                    .scrollTransition(axis: .horizontal) { content, phase in
+                                        content
+                                            .scaleEffect(phase.isIdentity ? 1.0 : 0.5)
 
                                 ExpandableCard(
                                     story: story,
@@ -52,18 +69,17 @@ struct MenuView: View {
                                 .zIndex(expandedStoryID == story.id ? 2 : (activeStoryID == story.id ? 1 : 0))
                             }
                         }
-                        .scrollTargetLayout()
-                    }
-                    .frame(height: 500)
-                    .scrollClipDisabled()
-                    .safeAreaPadding(.horizontal, horizontalPadding)
-                    .scrollTargetBehavior(.viewAligned)
-                    .scrollPosition(id: $activeStoryID)
-                    .onChange(of: activeStoryID) { oldValue, newValue in
-                        guard oldValue != newValue else { return }
-                        sound.play("CardBubble.mp3")
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            expandedStoryID = nil
+                        .frame(height: 500)
+                        .scrollClipDisabled()
+                        .safeAreaPadding(.horizontal, horizontalPadding)
+                        .scrollTargetBehavior(.viewAligned)
+                        .scrollPosition(id: $activeStoryID)
+                        .onChange(of: activeStoryID) { oldValue, newValue in
+                            guard oldValue != newValue else { return }
+                            sound.play("CardBubble.mp3")
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                expandedStoryID = nil
+                            }
                         }
                     }
                     .padding(.top, 85)
@@ -89,5 +105,5 @@ struct MenuView: View {
 }
 
 #Preview {
-    MenuView(onStart: { _ in }, onQuiz: {})
+    MenuView(onStart: { _ in }, onQuiz: {}, quizUnlockService: QuizUnlockService())
 }
