@@ -42,7 +42,7 @@ final class PlacementController: ARSceneDriven {
     var isComplete: Bool { placedKinds.count == DeviceKind.allCases.count }
     var canUndo: Bool { !ledger.isEmpty }
     var placementDistanceHint: String? { distanceGate.hint }
-    var isPlacementBlocked: Bool { distanceGate.isBlocked }
+    var isPlacementTooFar: Bool { distanceGate.isTooFar }
 
     func advanceDistanceHintNow() {
         distanceGate.advanceNow()
@@ -109,13 +109,13 @@ final class PlacementController: ARSceneDriven {
             print("\(kind.label) has already been placed, or is being placed")
             return
         }
-        guard !isPlacementBlocked else {
-            print("Cannot place \(kind.label) here, too far or wrong surface type")
+        guard !isPlacementTooFar else {
+            print("Too far to place \(kind.label), move closer")
             return
         }
 
         let center = CGPoint(x: arView.bounds.midX, y: arView.bounds.midY)
-        guard let firstResult = arView.raycast(from: center, allowing: .estimatedPlane, alignment: kind.placementAlignment).first else {
+        guard let firstResult = arView.raycast(from: center, allowing: .estimatedPlane, alignment: .any).first else {
             print("No surface found at crosshair")
             return
         }
@@ -159,13 +159,11 @@ final class PlacementController: ARSceneDriven {
     }
 
     func finishPlacement() {
-        previewCoordinator.teardown()
+        stopPreview()
     }
 
     func tearDown() {
-        previewCoordinator.teardown()
-        updateSubscription?.cancel()
-        updateSubscription = nil
+        stopPreview()
 
         let anchors = ledger.removeAll()
         if let arView {
@@ -177,13 +175,19 @@ final class PlacementController: ARSceneDriven {
         selectedDeviceKind = nil
     }
 
+    private func stopPreview() {
+        previewCoordinator.teardown()
+        updateSubscription?.cancel()
+        updateSubscription = nil
+    }
+
     private func subscribeToSceneUpdates() {
         guard let arView else { return }
         updateSubscription = arView.scene.subscribe(to: SceneEvents.Update.self) { [weak self] _ in
             guard let self, let selectedDeviceKind else { return }
             let isPlaced = placedKinds.contains(selectedDeviceKind)
             distanceGate.update(for: selectedDeviceKind, isPlaced: isPlaced)
-            previewCoordinator.update(isPlaced: isPlaced, isBlocked: distanceGate.isBlocked)
+            previewCoordinator.update(isPlaced: isPlaced, isTooFar: distanceGate.isTooFar)
         }
     }
 }
