@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct QuizScoreView: View {
-    var QuizViewModel: QuizViewModel
+    let presenter: QuizPresenter
     
     let onBack: () -> Void
     let onRestart: () -> Void
     var isSuccess: Bool {
-        QuizViewModel.score >= 80
+        presenter.result?.isPassing ?? false
     }
     
     var body: some View {
@@ -60,7 +60,7 @@ struct QuizScoreView: View {
                     .font(Font.custom("Fredoka-Medium", size: 80, relativeTo: .title))
                     .foregroundStyle(Theme.brown)
                 
-                Text("\(QuizViewModel.score)")
+                Text("\(presenter.score)")
                     .font(Font.custom("Fredoka-Bold", size: 300, relativeTo: .largeTitle))
                     .foregroundStyle(Theme.brown)
                 
@@ -111,7 +111,7 @@ struct QuizScoreView: View {
 
 #Preview {
     QuizScoreView(
-        QuizViewModel: QuizViewModel(),
+        presenter: QuizPresenter(),
         onBack: {},
         onRestart: {}
     )

@@ -1,0 +1,1117 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1786360093.4951541,
+    "ast_hash": "a2fa8e6711acfcb49a7393a15f7a6948",
+    "semantic_hash": "a2fa8e6711acfcb49a7393a15f7a6948"
+  },
+  "ARWolrd/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1787061427.534263,
+    "ast_hash": "fc6f1785c1ae4c7d958fc058876ad73e",
+    "semantic_hash": "fc6f1785c1ae4c7d958fc058876ad73e"
+  },
+  "ARWolrd/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1787203240.0215743,
+    "ast_hash": "105fe073447bdc7e4fb6200936ae91be",
+    "semantic_hash": "105fe073447bdc7e4fb6200936ae91be"
+  },
+  "ARWolrd/Package.swift": {
+    "mtime": 1787031259.1313362,
+    "ast_hash": "397fa9aea7613f91f63a29bf5dadfeda",
+    "semantic_hash": "397fa9aea7613f91f63a29bf5dadfeda"
+  },
+  "ARWolrd/SimExplanationCard.swift": {
+    "mtime": 1787203240.0219543,
+    "ast_hash": "1539b52eec8d8fbc0a0f85c666fc54f0",
+    "semantic_hash": "1539b52eec8d8fbc0a0f85c666fc54f0"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Bee/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786630786.1371005,
+    "ast_hash": "19c33b073727f6a86a77004cd3b79e3d",
+    "semantic_hash": "19c33b073727f6a86a77004cd3b79e3d"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Bee/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786630786.1373248,
+    "ast_hash": "5659a704e2b0ad9e95a050185cece1a7",
+    "semantic_hash": "5659a704e2b0ad9e95a050185cece1a7"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Bee/Package.swift": {
+    "mtime": 1786630786.1378279,
+    "ast_hash": "53097ec754a3fb41744c4016cbd1370f",
+    "semantic_hash": "53097ec754a3fb41744c4016cbd1370f"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Bee/Sources/Bee/Bee.swift": {
+    "mtime": 1786630786.1383305,
+    "ast_hash": "e367751e3a27a3367c209aaea3a14f66",
+    "semantic_hash": "e367751e3a27a3367c209aaea3a14f66"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Iphone/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786630786.138538,
+    "ast_hash": "e37526fe21c07263ccde81c04fbc12ad",
+    "semantic_hash": "e37526fe21c07263ccde81c04fbc12ad"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Iphone/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786630786.1387079,
+    "ast_hash": "4674f1dee4af3934db11daa9da135cb7",
+    "semantic_hash": "4674f1dee4af3934db11daa9da135cb7"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Iphone/Package.swift": {
+    "mtime": 1786630786.1391287,
+    "ast_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa",
+    "semantic_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Iphone/Sources/Iphone/Iphone.swift": {
+    "mtime": 1786630786.1435544,
+    "ast_hash": "5128d05642975400be4b1ff65c13e839",
+    "semantic_hash": "5128d05642975400be4b1ff65c13e839"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/MacBook/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786630786.1446939,
+    "ast_hash": "235cc56f74856a6dfaf81b784bc4da3f",
+    "semantic_hash": "235cc56f74856a6dfaf81b784bc4da3f"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/MacBook/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786630786.1449375,
+    "ast_hash": "b7d919137a0481c23f161bddbce5216c",
+    "semantic_hash": "b7d919137a0481c23f161bddbce5216c"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/MacBook/Package.swift": {
+    "mtime": 1786630786.1453505,
+    "ast_hash": "4e331a5d01d94cc263a36fff3f69fce7",
+    "semantic_hash": "4e331a5d01d94cc263a36fff3f69fce7"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/MacBook/Sources/MacBook/MacBook.swift": {
+    "mtime": 1786630786.1583416,
+    "ast_hash": "c828a02b986ba1a7b635085ec5fb77b0",
+    "semantic_hash": "c828a02b986ba1a7b635085ec5fb77b0"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Mail_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817574.3197896,
+    "ast_hash": "4fc966fa89607eb82efb0ed3426643f7",
+    "semantic_hash": "4fc966fa89607eb82efb0ed3426643f7"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Mail_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817574.320009,
+    "ast_hash": "b0851caebe27b1800255a75f67bc50e4",
+    "semantic_hash": "b0851caebe27b1800255a75f67bc50e4"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Mail_3d/Package.swift": {
+    "mtime": 1786817574.320635,
+    "ast_hash": "56a492e40ad979579c51780f9e0f0e6e",
+    "semantic_hash": "56a492e40ad979579c51780f9e0f0e6e"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Mail_3d/Sources/Mail_3d/Mail_3d.swift": {
+    "mtime": 1786817574.321322,
+    "ast_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e",
+    "semantic_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Router_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786630786.1596076,
+    "ast_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6",
+    "semantic_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Router_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786630786.160749,
+    "ast_hash": "2d82bb1e7016d2e9e993cc86f3beef9c",
+    "semantic_hash": "2d82bb1e7016d2e9e993cc86f3beef9c"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Router_3d/Package.swift": {
+    "mtime": 1786630786.1620336,
+    "ast_hash": "40bfede4c87ed476e0b3c848ae11918d",
+    "semantic_hash": "40bfede4c87ed476e0b3c848ae11918d"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.rkassets/Router_3d/Sources/Router_3d/Router_3d.swift": {
+    "mtime": 1786630786.1627495,
+    "ast_hash": "7959abfba311141c83375caf25883387",
+    "semantic_hash": "7959abfba311141c83375caf25883387"
+  },
+  "ARWolrd/Sources/ARWolrd/ARWolrd.swift": {
+    "mtime": 1786630786.1630688,
+    "ast_hash": "9e02cad7b8f9bb0ce3ca36ec5a6faa9e",
+    "semantic_hash": "9e02cad7b8f9bb0ce3ca36ec5a6faa9e"
+  },
+  "Bee/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1787205582.894334,
+    "ast_hash": "19c33b073727f6a86a77004cd3b79e3d",
+    "semantic_hash": "19c33b073727f6a86a77004cd3b79e3d"
+  },
+  "Bee/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1787205851.5410695,
+    "ast_hash": "c926da58ec0c37957656c9aa310c201c",
+    "semantic_hash": "c926da58ec0c37957656c9aa310c201c"
+  },
+  "Bee/Package.swift": {
+    "mtime": 1787031259.1326032,
+    "ast_hash": "53097ec754a3fb41744c4016cbd1370f",
+    "semantic_hash": "53097ec754a3fb41744c4016cbd1370f"
+  },
+  "Bee/Sources/Bee/Bee.swift": {
+    "mtime": 1786625271.036854,
+    "ast_hash": "e367751e3a27a3367c209aaea3a14f66",
+    "semantic_hash": "e367751e3a27a3367c209aaea3a14f66"
+  },
+  "Iphone/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786625576.7179768,
+    "ast_hash": "e37526fe21c07263ccde81c04fbc12ad",
+    "semantic_hash": "e37526fe21c07263ccde81c04fbc12ad"
+  },
+  "Iphone/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786625576.7181754,
+    "ast_hash": "4674f1dee4af3934db11daa9da135cb7",
+    "semantic_hash": "4674f1dee4af3934db11daa9da135cb7"
+  },
+  "Iphone/Package.swift": {
+    "mtime": 1787031259.1332426,
+    "ast_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa",
+    "semantic_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa"
+  },
+  "Iphone/Sources/Iphone/Iphone.swift": {
+    "mtime": 1786625576.7237303,
+    "ast_hash": "5128d05642975400be4b1ff65c13e839",
+    "semantic_hash": "5128d05642975400be4b1ff65c13e839"
+  },
+  "MacBook/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3008492,
+    "ast_hash": "ade02a413a4e16c7585056c878f5cbc8",
+    "semantic_hash": "ade02a413a4e16c7585056c878f5cbc8"
+  },
+  "MacBook/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786625576.7244463,
+    "ast_hash": "b7d919137a0481c23f161bddbce5216c",
+    "semantic_hash": "b7d919137a0481c23f161bddbce5216c"
+  },
+  "MacBook/Package.swift": {
+    "mtime": 1787031259.1335824,
+    "ast_hash": "4e331a5d01d94cc263a36fff3f69fce7",
+    "semantic_hash": "4e331a5d01d94cc263a36fff3f69fce7"
+  },
+  "MacBook/Sources/MacBook/MacBook.swift": {
+    "mtime": 1786625576.7379022,
+    "ast_hash": "c828a02b986ba1a7b635085ec5fb77b0",
+    "semantic_hash": "c828a02b986ba1a7b635085ec5fb77b0"
+  },
+  "Mail_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1787061817.573561,
+    "ast_hash": "4fc966fa89607eb82efb0ed3426643f7",
+    "semantic_hash": "4fc966fa89607eb82efb0ed3426643f7"
+  },
+  "Mail_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1787203240.023124,
+    "ast_hash": "680c945948d70db4ad63300486bb2bb3",
+    "semantic_hash": "680c945948d70db4ad63300486bb2bb3"
+  },
+  "Mail_3d/Package.swift": {
+    "mtime": 1787031259.134071,
+    "ast_hash": "56a492e40ad979579c51780f9e0f0e6e",
+    "semantic_hash": "56a492e40ad979579c51780f9e0f0e6e"
+  },
+  "Mail_3d/Sources/Mail_3d/Mail_3d.swift": {
+    "mtime": 1786625516.867852,
+    "ast_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e",
+    "semantic_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e"
+  },
+  "NectAr/App/NectArApp.swift": {
+    "mtime": 1787552728.9987235,
+    "ast_hash": "1fe2ea238cc6c6c0d2b6ad773d0c2c19",
+    "semantic_hash": "1fe2ea238cc6c6c0d2b6ad773d0c2c19"
+  },
+  "NectAr/Controllers/MascotOnboardingController.swift": {
+    "mtime": 1787203240.02506,
+    "ast_hash": "5afff70fe3cacf7e793b888f52211bdb",
+    "semantic_hash": "5afff70fe3cacf7e793b888f52211bdb"
+  },
+  "NectAr/Controllers/PlacementController.swift": {
+    "mtime": 1787552728.9990966,
+    "ast_hash": "ae8684b0dd85caedc8f64fe535b6ae42",
+    "semantic_hash": "ae8684b0dd85caedc8f64fe535b6ae42"
+  },
+  "NectAr/Controllers/SimulationSceneController.swift": {
+    "mtime": 1787551466.04098,
+    "ast_hash": "2dc63466806b415401125c7145a554a1",
+    "semantic_hash": "2dc63466806b415401125c7145a554a1"
+  },
+  "NectAr/ECS/Components/DeviceAttributesComponent.swift": {
+    "mtime": 1786630786.1645222,
+    "ast_hash": "9360588c4528d98196ad92617996682e",
+    "semantic_hash": "9360588c4528d98196ad92617996682e"
+  },
+  "NectAr/ECS/Components/DeviceIdentityComponent.swift": {
+    "mtime": 1786630786.164654,
+    "ast_hash": "611113a65d2dc850f58461a6aa59fd16",
+    "semantic_hash": "611113a65d2dc850f58461a6aa59fd16"
+  },
+  "NectAr/ECS/Components/HighlightComponent.swift": {
+    "mtime": 1786776189.9711506,
+    "ast_hash": "79863de255fdc346b5a7ec23ad9dfd6e",
+    "semantic_hash": "79863de255fdc346b5a7ec23ad9dfd6e"
+  },
+  "NectAr/ECS/Components/MascotMovementComponent.swift": {
+    "mtime": 1787031259.1360488,
+    "ast_hash": "baa6253d17dc485dd6a8f9c4233909e2",
+    "semantic_hash": "baa6253d17dc485dd6a8f9c4233909e2"
+  },
+  "NectAr/ECS/Components/MascotStateComponent.swift": {
+    "mtime": 1787031259.1362588,
+    "ast_hash": "022ef12c8ffb1aa9acb0b7728d9cb8c1",
+    "semantic_hash": "022ef12c8ffb1aa9acb0b7728d9cb8c1"
+  },
+  "NectAr/ECS/Components/RangeSphereVisibilityComponent.swift": {
+    "mtime": 1786817574.3233838,
+    "ast_hash": "9ed3a8d77a6656a109b1c27fe569a7e2",
+    "semantic_hash": "9ed3a8d77a6656a109b1c27fe569a7e2"
+  },
+  "NectAr/ECS/Components/RouteComponent.swift": {
+    "mtime": 1786630786.1652746,
+    "ast_hash": "6627b2841530263d7e35f473ee200c94",
+    "semantic_hash": "6627b2841530263d7e35f473ee200c94"
+  },
+  "NectAr/ECS/Components/RouterAttributesComponent.swift": {
+    "mtime": 1786817574.3235393,
+    "ast_hash": "2a08c5899c66fb4132c2de279708f056",
+    "semantic_hash": "2a08c5899c66fb4132c2de279708f056"
+  },
+  "NectAr/ECS/Systems/HighlightSystem.swift": {
+    "mtime": 1786817574.3237112,
+    "ast_hash": "0991af19e7fcf1ecc2758a97f2cbd852",
+    "semantic_hash": "0991af19e7fcf1ecc2758a97f2cbd852"
+  },
+  "NectAr/ECS/Systems/MascotFollowSystem.swift": {
+    "mtime": 1787079727.1018772,
+    "ast_hash": "498619342ca3c593963da2cdc67a1ecd",
+    "semantic_hash": "498619342ca3c593963da2cdc67a1ecd"
+  },
+  "NectAr/ECS/Systems/RangeVisualizationSystem.swift": {
+    "mtime": 1786817574.3242164,
+    "ast_hash": "40a1a793b6ac539012c414055c1248fb",
+    "semantic_hash": "40a1a793b6ac539012c414055c1248fb"
+  },
+  "NectAr/ECS/Systems/SystemRegistration.swift": {
+    "mtime": 1786817574.324376,
+    "ast_hash": "b6357d17e73db97a880754c8fb5b8414",
+    "semantic_hash": "b6357d17e73db97a880754c8fb5b8414"
+  },
+  "NectAr/Loaders/DeviceEntityLoader.swift": {
+    "mtime": 1787203240.02592,
+    "ast_hash": "e97e92fbe35a28fab5d7ff6db898f6cb",
+    "semantic_hash": "e97e92fbe35a28fab5d7ff6db898f6cb"
+  },
+  "NectAr/Models/ARPhase.swift": {
+    "mtime": 1786625271.0383825,
+    "ast_hash": "7db18cb214201fc10afc4cdff95a4c5e",
+    "semantic_hash": "7db18cb214201fc10afc4cdff95a4c5e"
+  },
+  "NectAr/Models/AppPhase.swift": {
+    "mtime": 1787203240.0260181,
+    "ast_hash": "73fa98f1aaa4d0c51ced811d577b1e51",
+    "semantic_hash": "73fa98f1aaa4d0c51ced811d577b1e51"
+  },
+  "NectAr/Models/DeviceAttributes.swift": {
+    "mtime": 1786625271.0387695,
+    "ast_hash": "62fc009011248da194fd170561c4b92a",
+    "semantic_hash": "62fc009011248da194fd170561c4b92a"
+  },
+  "NectAr/Models/DeviceKind.swift": {
+    "mtime": 1787204836.5705028,
+    "ast_hash": "1c69801bf30b674f57f7e399ce65f355",
+    "semantic_hash": "1c69801bf30b674f57f7e399ce65f355"
+  },
+  "NectAr/Models/FrequencyBand.swift": {
+    "mtime": 1786625271.0390594,
+    "ast_hash": "9ce002d308d9e767fa6a3f0f84b00cbe",
+    "semantic_hash": "9ce002d308d9e767fa6a3f0f84b00cbe"
+  },
+  "NectAr/Models/OnBoarding.swift": {
+    "mtime": 1787203240.0265198,
+    "ast_hash": "d2a05daf431426687efff0e991a54050",
+    "semantic_hash": "d2a05daf431426687efff0e991a54050"
+  },
+  "NectAr/Models/PrepExplain.swift": {
+    "mtime": 1787113485.3846703,
+    "ast_hash": "c4e81774be39536751771f0a40d3add6",
+    "semantic_hash": "c4e81774be39536751771f0a40d3add6"
+  },
+  "NectAr/Models/PrepExplainCardStyle.swift": {
+    "mtime": 1787113485.3847215,
+    "ast_hash": "3ed986814f1bc94b8d654965515cadad",
+    "semantic_hash": "3ed986814f1bc94b8d654965515cadad"
+  },
+  "NectAr/Models/PrepExplainCatalog.swift": {
+    "mtime": 1787113485.384809,
+    "ast_hash": "5b2d07beabb4abfdbb4443174ca2bb57",
+    "semantic_hash": "5b2d07beabb4abfdbb4443174ca2bb57"
+  },
+  "NectAr/Models/PrepExplainHighlightTarget.swift": {
+    "mtime": 1787113485.3848653,
+    "ast_hash": "36cfffe8570d6423dc7a80151132c3a1",
+    "semantic_hash": "36cfffe8570d6423dc7a80151132c3a1"
+  },
+  "NectAr/Models/QuizQuestion.swift": {
+    "mtime": 1787203240.026806,
+    "ast_hash": "d3e4ae720b9c108550ccd38d4b49bb43",
+    "semantic_hash": "d3e4ae720b9c108550ccd38d4b49bb43"
+  },
+  "NectAr/Models/QuizQuestionCatalog.swift": {
+    "mtime": 1787203240.0270097,
+    "ast_hash": "db9cb7b8fa06f804a818b5ef780b1a29",
+    "semantic_hash": "db9cb7b8fa06f804a818b5ef780b1a29"
+  },
+  "NectAr/Models/RouterAttributes.swift": {
+    "mtime": 1787203240.0271242,
+    "ast_hash": "41e4aed214123fee6367ff2c87d55782",
+    "semantic_hash": "41e4aed214123fee6367ff2c87d55782"
+  },
+  "NectAr/Models/Simulation/ExpSimulationCard.swift": {
+    "mtime": 1787203240.0272176,
+    "ast_hash": "467b53f5ccb0b34b331507064e63fe1a",
+    "semantic_hash": "467b53f5ccb0b34b331507064e63fe1a"
+  },
+  "NectAr/Models/Simulation/PlacedTopology.swift": {
+    "mtime": 1787042004.2848558,
+    "ast_hash": "08a51206828c1fd8f723e882371f1f71",
+    "semantic_hash": "08a51206828c1fd8f723e882371f1f71"
+  },
+  "NectAr/Models/Simulation/SimulationFailureReason.swift": {
+    "mtime": 1787203240.02729,
+    "ast_hash": "03f1c13fe225d527fba3359b1746b9bb",
+    "semantic_hash": "03f1c13fe225d527fba3359b1746b9bb"
+  },
+  "NectAr/Models/Simulation/SimulationStep.swift": {
+    "mtime": 1787203240.027452,
+    "ast_hash": "25dd5f275cf339f7996eebc89778c1f9",
+    "semantic_hash": "25dd5f275cf339f7996eebc89778c1f9"
+  },
+  "NectAr/Models/Story.swift": {
+    "mtime": 1786630786.1666033,
+    "ast_hash": "a34520e8a2e315b23f3a9a3595f6331f",
+    "semantic_hash": "a34520e8a2e315b23f3a9a3595f6331f"
+  },
+  "NectAr/Models/StoryCatalog.swift": {
+    "mtime": 1787203240.0277274,
+    "ast_hash": "fff288a0d6891a953298266b15450d64",
+    "semantic_hash": "fff288a0d6891a953298266b15450d64"
+  },
+  "NectAr/Models/TrackingFailureReason.swift": {
+    "mtime": 1786625271.0396297,
+    "ast_hash": "31618ba24fcbabd0182c869442a866d9",
+    "semantic_hash": "31618ba24fcbabd0182c869442a866d9"
+  },
+  "NectAr/Protocol/ARSceneDriven.swift": {
+    "mtime": 1786625271.0397966,
+    "ast_hash": "45b074c74178be79b772e8c82e1c5045",
+    "semantic_hash": "45b074c74178be79b772e8c82e1c5045"
+  },
+  "NectAr/Protocol/ARSessionManaging.swift": {
+    "mtime": 1786625271.0398943,
+    "ast_hash": "f1260a48e6a8f99a61bc1da85f301e8c",
+    "semantic_hash": "f1260a48e6a8f99a61bc1da85f301e8c"
+  },
+  "NectAr/Resources/Assets.xcassets/AbeeIcon.imageset/Contents.json": {
+    "mtime": 1786537506.5140774,
+    "ast_hash": "94900fa52ab756b76c1cb1e1444b3c36",
+    "semantic_hash": "94900fa52ab756b76c1cb1e1444b3c36"
+  },
+  "NectAr/Resources/Assets.xcassets/AccentColor.colorset/Contents.json": {
+    "mtime": 1786083864.5537407,
+    "ast_hash": "55019f7265dde0a78318b0807f98e847",
+    "semantic_hash": "55019f7265dde0a78318b0807f98e847"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json": {
+    "mtime": 1786083864.5539086,
+    "ast_hash": "cbe75704b2680422c4156009a528e292",
+    "semantic_hash": "cbe75704b2680422c4156009a528e292"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon/Assets/Contents.json": {
+    "mtime": 1787203240.0278172,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon/Assets/logoNectAR.imageset/Contents.json": {
+    "mtime": 1787203240.028076,
+    "ast_hash": "c20eecfb348ec731bae37e2a50539591",
+    "semantic_hash": "c20eecfb348ec731bae37e2a50539591"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon/Contents.json": {
+    "mtime": 1787203240.02934,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon/icon.dataset/Contents.json": {
+    "mtime": 1787203240.0295,
+    "ast_hash": "5160e7ffc58e32e9b96e0582074bc557",
+    "semantic_hash": "5160e7ffc58e32e9b96e0582074bc557"
+  },
+  "NectAr/Resources/Assets.xcassets/AppIcon/icon.dataset/icon.json": {
+    "mtime": 1787203240.029658,
+    "ast_hash": "7d265e36cc1a1d5a7b908293320ed932",
+    "semantic_hash": "7d265e36cc1a1d5a7b908293320ed932"
+  },
+  "NectAr/Resources/Assets.xcassets/Background/Contents.json": {
+    "mtime": 1787037616.5228298,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/Background/Honeycomb.imageset/Contents.json": {
+    "mtime": 1787203240.0299387,
+    "ast_hash": "89cda1284a0793e303c6bb8c17dcc5d1",
+    "semantic_hash": "89cda1284a0793e303c6bb8c17dcc5d1"
+  },
+  "NectAr/Resources/Assets.xcassets/Background/MenuPageBG.imageset/Contents.json": {
+    "mtime": 1787037616.5234482,
+    "ast_hash": "376bfaac958a75922e5f40d023a6e37f",
+    "semantic_hash": "376bfaac958a75922e5f40d023a6e37f"
+  },
+  "NectAr/Resources/Assets.xcassets/Background/QuizHeader.imageset/Contents.json": {
+    "mtime": 1787203240.0309238,
+    "ast_hash": "bde98e1c343be4de9843fb0898b45e8c",
+    "semantic_hash": "bde98e1c343be4de9843fb0898b45e8c"
+  },
+  "NectAr/Resources/Assets.xcassets/Background/SplashScreen.imageset/Contents.json": {
+    "mtime": 1787037616.5240924,
+    "ast_hash": "ea8020f0c6376d466d3ecfc7214aad57",
+    "semantic_hash": "ea8020f0c6376d466d3ecfc7214aad57"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/BackButton2.imageset/Contents.json": {
+    "mtime": 1787203240.032979,
+    "ast_hash": "ca05452791ad18bacd34f7496a711a99",
+    "semantic_hash": "ca05452791ad18bacd34f7496a711a99"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/CloseButton.imageset/Contents.json": {
+    "mtime": 1786537506.5146017,
+    "ast_hash": "53944ad7f574ef338480b05d74948ebe",
+    "semantic_hash": "53944ad7f574ef338480b05d74948ebe"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Contents.json": {
+    "mtime": 1787201151.586657,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/DeviceA.imageset/Contents.json": {
+    "mtime": 1786779276.899057,
+    "ast_hash": "b99e02ea0826e7a110f281cd0a9a2eaf",
+    "semantic_hash": "b99e02ea0826e7a110f281cd0a9a2eaf"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/DeviceB.imageset/Contents.json": {
+    "mtime": 1786537506.5151243,
+    "ast_hash": "7b317677d6179231e64618fec3fa9c10",
+    "semantic_hash": "7b317677d6179231e64618fec3fa9c10"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Laptop.imageset/Contents.json": {
+    "mtime": 1787203240.0332832,
+    "ast_hash": "b6757dcecee20842a3fdc5386eeb2836",
+    "semantic_hash": "b6757dcecee20842a3fdc5386eeb2836"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/LibraryButton.imageset/Contents.json": {
+    "mtime": 1786817236.3024762,
+    "ast_hash": "43b7ae1bb980e359bad081d4363e1cde",
+    "semantic_hash": "43b7ae1bb980e359bad081d4363e1cde"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/LockedButton.imageset/Contents.json": {
+    "mtime": 1787203240.0335364,
+    "ast_hash": "c091c9bbe451f22cbef443881e016274",
+    "semantic_hash": "c091c9bbe451f22cbef443881e016274"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Phone.imageset/Contents.json": {
+    "mtime": 1787203240.0338495,
+    "ast_hash": "91e4f00c36c46b0178b84ef99d77d849",
+    "semantic_hash": "91e4f00c36c46b0178b84ef99d77d849"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/PlayButton2.imageset/Contents.json": {
+    "mtime": 1787037616.5257986,
+    "ast_hash": "7ae3326147ff5dc3927d0785b9e70eb9",
+    "semantic_hash": "7ae3326147ff5dc3927d0785b9e70eb9"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/PlusButton2.imageset/Contents.json": {
+    "mtime": 1787037616.5259576,
+    "ast_hash": "e00733d737197a404ed0cd1ae9dcf091",
+    "semantic_hash": "e00733d737197a404ed0cd1ae9dcf091"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/QuizLock.imageset/Contents.json": {
+    "mtime": 1787552728.9998019,
+    "ast_hash": "5848d7364e4ba5267b32f68cc5de51cd",
+    "semantic_hash": "5848d7364e4ba5267b32f68cc5de51cd"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Redo.imageset/Contents.json": {
+    "mtime": 1786537506.5157142,
+    "ast_hash": "7df079dd320d6b2c4097cefa65f9f530",
+    "semantic_hash": "7df079dd320d6b2c4097cefa65f9f530"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Router.imageset/Contents.json": {
+    "mtime": 1787203240.0342708,
+    "ast_hash": "d3e299ceb079568e3be37fc78be56238",
+    "semantic_hash": "d3e299ceb079568e3be37fc78be56238"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/SettingsButton.imageset/Contents.json": {
+    "mtime": 1786903207.4135802,
+    "ast_hash": "133f1a3e1f3a7252d85be82ef6e734eb",
+    "semantic_hash": "133f1a3e1f3a7252d85be82ef6e734eb"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/StopButton2.imageset/Contents.json": {
+    "mtime": 1786817236.303514,
+    "ast_hash": "c0680d28bc5c19375039bc5a7dcac021",
+    "semantic_hash": "c0680d28bc5c19375039bc5a7dcac021"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/Undo.imageset/Contents.json": {
+    "mtime": 1786537506.5163152,
+    "ast_hash": "d568b7ba94a689480294197deb13e1e4",
+    "semantic_hash": "d568b7ba94a689480294197deb13e1e4"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/UndoButton2.imageset/Contents.json": {
+    "mtime": 1786817236.3036735,
+    "ast_hash": "753d2f1ee501623f8d21f0a5e0d744ed",
+    "semantic_hash": "753d2f1ee501623f8d21f0a5e0d744ed"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/quizButton.imageset/Contents.json": {
+    "mtime": 1786630786.1669662,
+    "ast_hash": "688bbe872b7e18b84d626cb8d77b2981",
+    "semantic_hash": "688bbe872b7e18b84d626cb8d77b2981"
+  },
+  "NectAr/Resources/Assets.xcassets/Buttons/startButton.imageset/Contents.json": {
+    "mtime": 1786630786.1672106,
+    "ast_hash": "65e9b76b6bca643f74e0113472389377",
+    "semantic_hash": "65e9b76b6bca643f74e0113472389377"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/AlertCard.imageset/Contents.json": {
+    "mtime": 1787203240.0346358,
+    "ast_hash": "c52a3d9821f1a2a0f10b889386628e78",
+    "semantic_hash": "c52a3d9821f1a2a0f10b889386628e78"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/Contents.json": {
+    "mtime": 1787164841.34328,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/ExplanationCard.imageset/Contents.json": {
+    "mtime": 1786817236.3039687,
+    "ast_hash": "e8c76e9a4370676918dbe6d58d03155a",
+    "semantic_hash": "e8c76e9a4370676918dbe6d58d03155a"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/OnBoardingCard.imageset/Contents.json": {
+    "mtime": 1787037616.526435,
+    "ast_hash": "fff9e1e2a56f43707898dd8d8484e474",
+    "semantic_hash": "fff9e1e2a56f43707898dd8d8484e474"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/PrepExplainCard.imageset/Contents.json": {
+    "mtime": 1787203240.0349936,
+    "ast_hash": "7647b22b2963555ead07c3221b7ffce5",
+    "semantic_hash": "7647b22b2963555ead07c3221b7ffce5"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/PrepExplainCard2.imageset/Contents.json": {
+    "mtime": 1787203240.0353112,
+    "ast_hash": "076aec42f7376805edf6c3f147b1ce1c",
+    "semantic_hash": "076aec42f7376805edf6c3f147b1ce1c"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/PrepOnboardCard.imageset/Contents.json": {
+    "mtime": 1787113485.384962,
+    "ast_hash": "fbdc23b4ebd8ac965bbbd33d9e21708c",
+    "semantic_hash": "fbdc23b4ebd8ac965bbbd33d9e21708c"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/QuizBox.imageset/Contents.json": {
+    "mtime": 1787203240.0356953,
+    "ast_hash": "da7cb3ea9e2c2471cc2382ab3b29b6a4",
+    "semantic_hash": "da7cb3ea9e2c2471cc2382ab3b29b6a4"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/StoryCard.imageset/Contents.json": {
+    "mtime": 1786632233.857772,
+    "ast_hash": "5c38d702dba50b42574fc014c4684b12",
+    "semantic_hash": "5c38d702dba50b42574fc014c4684b12"
+  },
+  "NectAr/Resources/Assets.xcassets/Cards/arrow.imageset/Contents.json": {
+    "mtime": 1787203240.0360308,
+    "ast_hash": "6b4bde46c93d7140cf1ae46edd8c3155",
+    "semantic_hash": "6b4bde46c93d7140cf1ae46edd8c3155"
+  },
+  "NectAr/Resources/Assets.xcassets/Contents.json": {
+    "mtime": 1787198674.734486,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/Router.dataset/Contents.json": {
+    "mtime": 1786603200.1199908,
+    "ast_hash": "d2166365b8320bba3cbc60fb1d8a20c1",
+    "semantic_hash": "d2166365b8320bba3cbc60fb1d8a20c1"
+  },
+  "NectAr/Resources/Assets.xcassets/StoryCard/Contents.json": {
+    "mtime": 1786903207.4152012,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/StoryCard/StoryCard-1.imageset/Contents.json": {
+    "mtime": 1786903207.415452,
+    "ast_hash": "7665f0e09f90b209420bec46ff9efde6",
+    "semantic_hash": "7665f0e09f90b209420bec46ff9efde6"
+  },
+  "NectAr/Resources/Assets.xcassets/StoryCard/StoryCard-2.imageset/Contents.json": {
+    "mtime": 1786903207.4160404,
+    "ast_hash": "0afc377e145b06aae89c5d6e7d36b9a1",
+    "semantic_hash": "0afc377e145b06aae89c5d6e7d36b9a1"
+  },
+  "NectAr/Resources/Assets.xcassets/bee/Contents.json": {
+    "mtime": 1787203240.0362546,
+    "ast_hash": "9deb2ada1cc834bbebf8bbad9c8978a1",
+    "semantic_hash": "9deb2ada1cc834bbebf8bbad9c8978a1"
+  },
+  "NectAr/Resources/Assets.xcassets/bee/leftBee.imageset/Contents.json": {
+    "mtime": 1787203240.0363977,
+    "ast_hash": "dac62a7b22d23b46f14135b1895efdbb",
+    "semantic_hash": "dac62a7b22d23b46f14135b1895efdbb"
+  },
+  "NectAr/Resources/Assets.xcassets/bee/leftBeeCry.imageset/Contents.json": {
+    "mtime": 1787203240.0367723,
+    "ast_hash": "5bdd8b273ce40e4f4d11d8bf5b166556",
+    "semantic_hash": "5bdd8b273ce40e4f4d11d8bf5b166556"
+  },
+  "NectAr/Resources/Assets.xcassets/bee/rightBee.imageset/Contents.json": {
+    "mtime": 1787203240.0372717,
+    "ast_hash": "3b40379a13174c707256db1ffb934078",
+    "semantic_hash": "3b40379a13174c707256db1ffb934078"
+  },
+  "NectAr/Resources/Assets.xcassets/bee/rightBeeCry.imageset/Contents.json": {
+    "mtime": 1787203240.0376992,
+    "ast_hash": "25bbfb162f248099812c940a22e071f7",
+    "semantic_hash": "25bbfb162f248099812c940a22e071f7"
+  },
+  "NectAr/Resources/Assets.xcassets/mail.dataset/Contents.json": {
+    "mtime": 1786600700.454227,
+    "ast_hash": "dbcb4960259bd237d4a03cd121a6b1dd",
+    "semantic_hash": "dbcb4960259bd237d4a03cd121a6b1dd"
+  },
+  "NectAr/Resources/Assets.xcassets/nectar-logo-2.imageset/Contents.json": {
+    "mtime": 1787037616.5268147,
+    "ast_hash": "c96f58510402fa9da652e3774fb7a42d",
+    "semantic_hash": "c96f58510402fa9da652e3774fb7a42d"
+  },
+  "NectAr/Resources/Assets.xcassets/nectar-logo.imageset/Contents.json": {
+    "mtime": 1787037616.5279422,
+    "ast_hash": "fe870790b73f8cad9baad7dd14227372",
+    "semantic_hash": "fe870790b73f8cad9baad7dd14227372"
+  },
+  "NectAr/Resources/Theme.swift": {
+    "mtime": 1787203240.0418894,
+    "ast_hash": "2731c9f17da3d81ae0947ccb2a1968f1",
+    "semantic_hash": "2731c9f17da3d81ae0947ccb2a1968f1"
+  },
+  "NectAr/Services/ARSessionManager.swift": {
+    "mtime": 1786625271.0400867,
+    "ast_hash": "8d6fb0a39ed767ee71a0eb8e667236b3",
+    "semantic_hash": "8d6fb0a39ed767ee71a0eb8e667236b3"
+  },
+  "NectAr/Services/AnchoredEntityPlacer.swift": {
+    "mtime": 1786625271.040316,
+    "ast_hash": "601b2d1d36b620ac850636909f8d64cc",
+    "semantic_hash": "601b2d1d36b620ac850636909f8d64cc"
+  },
+  "NectAr/Services/Mascot/MascotFoundSequence.swift": {
+    "mtime": 1786817574.3248124,
+    "ast_hash": "e56cce9fc93bc5e629fab2e2e7cdaf95",
+    "semantic_hash": "e56cce9fc93bc5e629fab2e2e7cdaf95"
+  },
+  "NectAr/Services/Mascot/MascotSpawnPlacer.swift": {
+    "mtime": 1786817574.3248997,
+    "ast_hash": "acf76225c39f667a1c5cc2e9eee5c184",
+    "semantic_hash": "acf76225c39f667a1c5cc2e9eee5c184"
+  },
+  "NectAr/Services/Preparation/DeviceEntityDecorator.swift": {
+    "mtime": 1787638057.7822716,
+    "ast_hash": "5ad7dc95a9a4fe8903c077388ef038f6",
+    "semantic_hash": "5ad7dc95a9a4fe8903c077388ef038f6"
+  },
+  "NectAr/Services/Preparation/PrepExplainService.swift": {
+    "mtime": 1787113485.3852813,
+    "ast_hash": "71c3de99937193cf6f36d38b4898d5e9",
+    "semantic_hash": "71c3de99937193cf6f36d38b4898d5e9"
+  },
+  "NectAr/Services/Preparation/PreparationDistance.swift": {
+    "mtime": 1787552729.0013065,
+    "ast_hash": "c3c5d9c20fdd8314a920c42f110e34ca",
+    "semantic_hash": "c3c5d9c20fdd8314a920c42f110e34ca"
+  },
+  "NectAr/Services/Preparation/PreparationLedger.swift": {
+    "mtime": 1786814872.6305044,
+    "ast_hash": "1de1cada20ab369664d27a50b3a6b6de",
+    "semantic_hash": "1de1cada20ab369664d27a50b3a6b6de"
+  },
+  "NectAr/Services/Preparation/PreparationPreviewCoordinator.swift": {
+    "mtime": 1787552729.0017056,
+    "ast_hash": "32e70339b2a1d30c725cc39299c784ba",
+    "semantic_hash": "32e70339b2a1d30c725cc39299c784ba"
+  },
+  "NectAr/Services/Preparation/PreparationPreviewStyler.swift": {
+    "mtime": 1787113485.3857532,
+    "ast_hash": "bba50a879bcd8c0ec20ce8ce279a6aeb",
+    "semantic_hash": "bba50a879bcd8c0ec20ce8ce279a6aeb"
+  },
+  "NectAr/Services/QuizUnlockService.swift": {
+    "mtime": 1787638057.782574,
+    "ast_hash": "1ed3f38aad64125acf569880ca19c2cf",
+    "semantic_hash": "1ed3f38aad64125acf569880ca19c2cf"
+  },
+  "NectAr/Services/Simulation/MailFacing.swift": {
+    "mtime": 1787203240.0431201,
+    "ast_hash": "c7238624d2788e9fdca91d59cdc8796d",
+    "semantic_hash": "c7238624d2788e9fdca91d59cdc8796d"
+  },
+  "NectAr/Services/Simulation/SimulationObstructionChecker.swift": {
+    "mtime": 1786625339.9769511,
+    "ast_hash": "d4daa800c33fb4f28efbc9374c70a29a",
+    "semantic_hash": "d4daa800c33fb4f28efbc9374c70a29a"
+  },
+  "NectAr/Services/Simulation/SimulationRangeChecker.swift": {
+    "mtime": 1786625339.9770243,
+    "ast_hash": "85d58d71062bb15d544abbd1c248e8de",
+    "semantic_hash": "85d58d71062bb15d544abbd1c248e8de"
+  },
+  "NectAr/Services/Simulation/SimulationRouteResolver.swift": {
+    "mtime": 1786625339.9771032,
+    "ast_hash": "43ab379fecc0e8a247462722821923f4",
+    "semantic_hash": "43ab379fecc0e8a247462722821923f4"
+  },
+  "NectAr/Services/SoundService.swift": {
+    "mtime": 1787638057.782889,
+    "ast_hash": "27411bf6c2266a7c3ceb9cd6237c6699",
+    "semantic_hash": "27411bf6c2266a7c3ceb9cd6237c6699"
+  },
+  "NectAr/View/ARPage/ARExperienceView.swift": {
+    "mtime": 1787638057.783104,
+    "ast_hash": "d3d46035d2abac6a2ce48be6d6be6273",
+    "semantic_hash": "d3d46035d2abac6a2ce48be6d6be6273"
+  },
+  "NectAr/View/ARPage/Components/ARContainer.swift": {
+    "mtime": 1787113485.3861372,
+    "ast_hash": "79eec292bf0768b173a4f7fe3cf6ba2f",
+    "semantic_hash": "79eec292bf0768b173a4f7fe3cf6ba2f"
+  },
+  "NectAr/View/ARPage/Components/BackButton.swift": {
+    "mtime": 1787203240.0434172,
+    "ast_hash": "0c69b7f23348a20cc5d31241f32222b6",
+    "semantic_hash": "0c69b7f23348a20cc5d31241f32222b6"
+  },
+  "NectAr/View/ARPage/Components/DebugToggleButton.swift": {
+    "mtime": 1786817574.3256838,
+    "ast_hash": "ae1b44a39cd3deddac1aebdeb88fe4c6",
+    "semantic_hash": "ae1b44a39cd3deddac1aebdeb88fe4c6"
+  },
+  "NectAr/View/ARPage/Components/DeviceSelectorView.swift": {
+    "mtime": 1787113485.3865044,
+    "ast_hash": "d5f85f13b1b253ee3253dc136071987c",
+    "semantic_hash": "d5f85f13b1b253ee3253dc136071987c"
+  },
+  "NectAr/View/ARPage/Components/ExplanationHighlight.swift": {
+    "mtime": 1787113485.3865538,
+    "ast_hash": "c5f305285af617b0682fbe2246244054",
+    "semantic_hash": "c5f305285af617b0682fbe2246244054"
+  },
+  "NectAr/View/ARPage/Components/FloatingArrow.swift": {
+    "mtime": 1787203240.0437121,
+    "ast_hash": "392b735c2678898652c9ee9738b50a0a",
+    "semantic_hash": "392b735c2678898652c9ee9738b50a0a"
+  },
+  "NectAr/View/ARPage/Components/PrepExplainationCard.swift": {
+    "mtime": 1787203240.0438664,
+    "ast_hash": "2ae6c822aed916afda2e647f1af24979",
+    "semantic_hash": "2ae6c822aed916afda2e647f1af24979"
+  },
+  "NectAr/View/ARPage/Components/PrepOnboardExplanationCard.swift": {
+    "mtime": 1787113485.3868396,
+    "ast_hash": "cecdc8e5f6ce6e1b8ea6c4cde6317f9c",
+    "semantic_hash": "cecdc8e5f6ce6e1b8ea6c4cde6317f9c"
+  },
+  "NectAr/View/ARPage/Components/PreparationActionButton.swift": {
+    "mtime": 1787203240.043951,
+    "ast_hash": "e9d4a74954c36f133eff2b1612cfe25a",
+    "semantic_hash": "e9d4a74954c36f133eff2b1612cfe25a"
+  },
+  "NectAr/View/ARPage/Components/SidebarSimulation.swift": {
+    "mtime": 1787203240.0440397,
+    "ast_hash": "3bb5ebd1548644b1676d991d2ab963a6",
+    "semantic_hash": "3bb5ebd1548644b1676d991d2ab963a6"
+  },
+  "NectAr/View/ARPage/Components/SimExplanationCard.swift": {
+    "mtime": 1787042004.2861083,
+    "ast_hash": "1539b52eec8d8fbc0a0f85c666fc54f0",
+    "semantic_hash": "1539b52eec8d8fbc0a0f85c666fc54f0"
+  },
+  "NectAr/View/ARPage/Components/SimulationQuizPromptCard.swift": {
+    "mtime": 1787203240.044093,
+    "ast_hash": "8e1b1cc312c33cc6908d1b28aec5f269",
+    "semantic_hash": "8e1b1cc312c33cc6908d1b28aec5f269"
+  },
+  "NectAr/View/ARPage/Components/StopButton.swift": {
+    "mtime": 1787203240.0441787,
+    "ast_hash": "988a47f98d6779cd0b445ab8cb1e4413",
+    "semantic_hash": "988a47f98d6779cd0b445ab8cb1e4413"
+  },
+  "NectAr/View/ARPage/PreparationView.swift": {
+    "mtime": 1787203240.0446289,
+    "ast_hash": "204cb6813a64da539ad7afbabb0a3336",
+    "semantic_hash": "204cb6813a64da539ad7afbabb0a3336"
+  },
+  "NectAr/View/ARPage/SimulationView.swift": {
+    "mtime": 1787203240.044985,
+    "ast_hash": "2edcbf28dcd2b3c278ed56019ac9da3f",
+    "semantic_hash": "2edcbf28dcd2b3c278ed56019ac9da3f"
+  },
+  "NectAr/View/ContentView.swift": {
+    "mtime": 1787638057.783453,
+    "ast_hash": "98b67b05a3386ebca8490b1a32b342b4",
+    "semantic_hash": "98b67b05a3386ebca8490b1a32b342b4"
+  },
+  "NectAr/View/MenuPage/Components/ButtonStyle.swift": {
+    "mtime": 1787203240.0452983,
+    "ast_hash": "e4042f7b9dd42b1eee23625f55faf38e",
+    "semantic_hash": "e4042f7b9dd42b1eee23625f55faf38e"
+  },
+  "NectAr/View/MenuPage/Components/CloseButton.swift": {
+    "mtime": 1787203240.0457304,
+    "ast_hash": "90b2ffbfe4fbeeca547d645de65dedbd",
+    "semantic_hash": "90b2ffbfe4fbeeca547d645de65dedbd"
+  },
+  "NectAr/View/MenuPage/Components/ExpandableCard.swift": {
+    "mtime": 1787638057.7839696,
+    "ast_hash": "37e7fe22fd98243f9a4d9b4bfff8a55f",
+    "semantic_hash": "37e7fe22fd98243f9a4d9b4bfff8a55f"
+  },
+  "NectAr/View/MenuPage/Components/QuizAlertCard.swift": {
+    "mtime": 1787203240.0461078,
+    "ast_hash": "58511a70e4b21edc0f5f05b364df7090",
+    "semantic_hash": "58511a70e4b21edc0f5f05b364df7090"
+  },
+  "NectAr/View/MenuPage/MenuView.swift": {
+    "mtime": 1787719857.8514204,
+    "ast_hash": "8f1ad20cefa4522f2213ec63e832f236",
+    "semantic_hash": "8f1ad20cefa4522f2213ec63e832f236"
+  },
+  "NectAr/View/MenuPage/OnBoardingView.swift": {
+    "mtime": 1787203240.046356,
+    "ast_hash": "3d3e60a787cc5df22b26e8a08bfc9881",
+    "semantic_hash": "3d3e60a787cc5df22b26e8a08bfc9881"
+  },
+  "NectAr/View/MenuPage/SplashScreenView.swift": {
+    "mtime": 1787203240.0465531,
+    "ast_hash": "e00436677e36c025097cc645299d85fa",
+    "semantic_hash": "e00436677e36c025097cc645299d85fa"
+  },
+  "NectAr/View/QuizPage/QuizScoreView.swift": {
+    "mtime": 1787203240.0467842,
+    "ast_hash": "5730a9f8f56323c7f6909b9c8579a335",
+    "semantic_hash": "5730a9f8f56323c7f6909b9c8579a335"
+  },
+  "NectAr/View/QuizPage/QuizView.swift": {
+    "mtime": 1787385532.5841224,
+    "ast_hash": "58c48c3ba105a1710edeac447dc8ed40",
+    "semantic_hash": "58c48c3ba105a1710edeac447dc8ed40"
+  },
+  "NectAr/View/TestLoad3D.swift": {
+    "mtime": 1787386814.5805755,
+    "ast_hash": "1689077ec5e6a027032f38b9a6642873",
+    "semantic_hash": "1689077ec5e6a027032f38b9a6642873"
+  },
+  "NectAr/ViewModels/ARViewModel.swift": {
+    "mtime": 1787113485.3877046,
+    "ast_hash": "a6d5f63cca5abe2b0b825b713023fca5",
+    "semantic_hash": "a6d5f63cca5abe2b0b825b713023fca5"
+  },
+  "NectAr/ViewModels/ExpSimulationViewModel.swift": {
+    "mtime": 1787203240.0477755,
+    "ast_hash": "938a99012b1d89234dc016c117ab4fd6",
+    "semantic_hash": "938a99012b1d89234dc016c117ab4fd6"
+  },
+  "NectAr/ViewModels/MascotViewModel.swift": {
+    "mtime": 1787113485.3877873,
+    "ast_hash": "eb295e7d4f0e9afc76c2f39e6e3b99d2",
+    "semantic_hash": "eb295e7d4f0e9afc76c2f39e6e3b99d2"
+  },
+  "NectAr/ViewModels/PlacementViewModel.swift": {
+    "mtime": 1787113485.3878486,
+    "ast_hash": "6a3087c47f349e6bf5cbf778379c1826",
+    "semantic_hash": "6a3087c47f349e6bf5cbf778379c1826"
+  },
+  "NectAr/ViewModels/PrepExplainViewModel.swift": {
+    "mtime": 1787113485.3879142,
+    "ast_hash": "5644edb880ce364961dfbd94b287fc55",
+    "semantic_hash": "5644edb880ce364961dfbd94b287fc55"
+  },
+  "NectAr/ViewModels/QuizViewModel.swift": {
+    "mtime": 1787203240.0479224,
+    "ast_hash": "f188a94881a106d47cd6897327c35855",
+    "semantic_hash": "f188a94881a106d47cd6897327c35855"
+  },
+  "NectAr/ViewModels/SoundViewModel.swift": {
+    "mtime": 1787638057.7844708,
+    "ast_hash": "3515071eafc15b261a4de437aa72107b",
+    "semantic_hash": "3515071eafc15b261a4de437aa72107b"
+  },
+  "Router_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786603200.1397846,
+    "ast_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6",
+    "semantic_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6"
+  },
+  "Router_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786603200.1399364,
+    "ast_hash": "2d82bb1e7016d2e9e993cc86f3beef9c",
+    "semantic_hash": "2d82bb1e7016d2e9e993cc86f3beef9c"
+  },
+  "Router_3d/Package.swift": {
+    "mtime": 1786603200.1402354,
+    "ast_hash": "40bfede4c87ed476e0b3c848ae11918d",
+    "semantic_hash": "40bfede4c87ed476e0b3c848ae11918d"
+  },
+  "Router_3d/Sources/Router_3d/Router_3d.swift": {
+    "mtime": 1786625271.0439434,
+    "ast_hash": "7959abfba311141c83375caf25883387",
+    "semantic_hash": "7959abfba311141c83375caf25883387"
+  },
+  "TestMock/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1787217365.456103,
+    "ast_hash": "0501b627ba4a86d8b8a062819a300299",
+    "semantic_hash": "0501b627ba4a86d8b8a062819a300299"
+  },
+  "TestMock/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1787217365.460927,
+    "ast_hash": "377aeb6849025cb1fa252878f3c7ea4e",
+    "semantic_hash": "377aeb6849025cb1fa252878f3c7ea4e"
+  },
+  "TestMock/Package.swift": {
+    "mtime": 1787203240.0489328,
+    "ast_hash": "3093cbb4b691bd8d0a3ef86c1c57d0af",
+    "semantic_hash": "3093cbb4b691bd8d0a3ef86c1c57d0af"
+  },
+  "TestMock/Sources/TestMock/TestMock.swift": {
+    "mtime": 1787042004.3136358,
+    "ast_hash": "ef4929fb510244390ed4075b7619a78e",
+    "semantic_hash": "ef4929fb510244390ed4075b7619a78e"
+  },
+  "World3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3066034,
+    "ast_hash": "54b911eb72530cda11ad937dcf61116e",
+    "semantic_hash": "54b911eb72530cda11ad937dcf61116e"
+  },
+  "World3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.306697,
+    "ast_hash": "163fbe66900653e09e339dca85f957d2",
+    "semantic_hash": "163fbe66900653e09e339dca85f957d2"
+  },
+  "World3d/Package.swift": {
+    "mtime": 1786817236.3069742,
+    "ast_hash": "3efd8271279ee6e81cb44c78d6a5aac7",
+    "semantic_hash": "3efd8271279ee6e81cb44c78d6a5aac7"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Bee/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3074925,
+    "ast_hash": "19c33b073727f6a86a77004cd3b79e3d",
+    "semantic_hash": "19c33b073727f6a86a77004cd3b79e3d"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Bee/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.307671,
+    "ast_hash": "5659a704e2b0ad9e95a050185cece1a7",
+    "semantic_hash": "5659a704e2b0ad9e95a050185cece1a7"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Bee/Package.swift": {
+    "mtime": 1786817236.3080487,
+    "ast_hash": "53097ec754a3fb41744c4016cbd1370f",
+    "semantic_hash": "53097ec754a3fb41744c4016cbd1370f"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Bee/Sources/Bee/Bee.swift": {
+    "mtime": 1786817236.3083704,
+    "ast_hash": "e367751e3a27a3367c209aaea3a14f66",
+    "semantic_hash": "e367751e3a27a3367c209aaea3a14f66"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Iphone/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3085363,
+    "ast_hash": "e37526fe21c07263ccde81c04fbc12ad",
+    "semantic_hash": "e37526fe21c07263ccde81c04fbc12ad"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Iphone/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.3086274,
+    "ast_hash": "4674f1dee4af3934db11daa9da135cb7",
+    "semantic_hash": "4674f1dee4af3934db11daa9da135cb7"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Iphone/Package.swift": {
+    "mtime": 1786817236.3088195,
+    "ast_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa",
+    "semantic_hash": "7828cf6c6cfd21a17d0953fb9f8d6baa"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Iphone/Sources/Iphone/Iphone.swift": {
+    "mtime": 1786817236.3136756,
+    "ast_hash": "5128d05642975400be4b1ff65c13e839",
+    "semantic_hash": "5128d05642975400be4b1ff65c13e839"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/MacBook/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.313888,
+    "ast_hash": "ade02a413a4e16c7585056c878f5cbc8",
+    "semantic_hash": "ade02a413a4e16c7585056c878f5cbc8"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/MacBook/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.31402,
+    "ast_hash": "b7d919137a0481c23f161bddbce5216c",
+    "semantic_hash": "b7d919137a0481c23f161bddbce5216c"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/MacBook/Package.swift": {
+    "mtime": 1786817236.3142586,
+    "ast_hash": "4e331a5d01d94cc263a36fff3f69fce7",
+    "semantic_hash": "4e331a5d01d94cc263a36fff3f69fce7"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/MacBook/Sources/MacBook/MacBook.swift": {
+    "mtime": 1786817236.3290288,
+    "ast_hash": "c828a02b986ba1a7b635085ec5fb77b0",
+    "semantic_hash": "c828a02b986ba1a7b635085ec5fb77b0"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Mail_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3302598,
+    "ast_hash": "4fc966fa89607eb82efb0ed3426643f7",
+    "semantic_hash": "4fc966fa89607eb82efb0ed3426643f7"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Mail_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.3304276,
+    "ast_hash": "b0851caebe27b1800255a75f67bc50e4",
+    "semantic_hash": "b0851caebe27b1800255a75f67bc50e4"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Mail_3d/Package.swift": {
+    "mtime": 1786817236.3315308,
+    "ast_hash": "56a492e40ad979579c51780f9e0f0e6e",
+    "semantic_hash": "56a492e40ad979579c51780f9e0f0e6e"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Mail_3d/Sources/Mail_3d/Mail_3d.swift": {
+    "mtime": 1786817236.3320007,
+    "ast_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e",
+    "semantic_hash": "2f4e37b1e9dc24d265f7a8ddcbf6758e"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Router_3d/Package.realitycomposerpro/ProjectData/main.json": {
+    "mtime": 1786817236.3321786,
+    "ast_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6",
+    "semantic_hash": "d8fa847ac149f6f8d48cb41a3bc0a9c6"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Router_3d/Package.realitycomposerpro/WorkspaceData/SceneMetadataList.json": {
+    "mtime": 1786817236.332342,
+    "ast_hash": "2d82bb1e7016d2e9e993cc86f3beef9c",
+    "semantic_hash": "2d82bb1e7016d2e9e993cc86f3beef9c"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Router_3d/Package.swift": {
+    "mtime": 1786817236.3338082,
+    "ast_hash": "40bfede4c87ed476e0b3c848ae11918d",
+    "semantic_hash": "40bfede4c87ed476e0b3c848ae11918d"
+  },
+  "World3d/Sources/World3d/World3d.rkassets/Router_3d/Sources/Router_3d/Router_3d.swift": {
+    "mtime": 1786817236.334699,
+    "ast_hash": "7959abfba311141c83375caf25883387",
+    "semantic_hash": "7959abfba311141c83375caf25883387"
+  },
+  "World3d/Sources/World3d/World3d.swift": {
+    "mtime": 1786817236.3348522,
+    "ast_hash": "bef53a9a4733208969b40d5a76cd9788",
+    "semantic_hash": "bef53a9a4733208969b40d5a76cd9788"
+  },
+  "nectARIcon.icon/icon.json": {
+    "mtime": 1787203240.05017,
+    "ast_hash": "cb5a729f3f8a32e021694b5ac932ee8f",
+    "semantic_hash": "cb5a729f3f8a32e021694b5ac932ee8f"
+  },
+  "NectAr/Resources/CardBubble.mp3": {
+    "mtime": 1787205237.8252337,
+    "ast_hash": "f7573505e51e4db50ba516a03844ef55",
+    "semantic_hash": "f7573505e51e4db50ba516a03844ef55"
+  },
+  "NectAr/Resources/bubble.mp3": {
+    "mtime": 1787205237.8261235,
+    "ast_hash": "44a83083e27add74fb1d36985c20e287",
+    "semantic_hash": "44a83083e27add74fb1d36985c20e287"
+  }
+}
