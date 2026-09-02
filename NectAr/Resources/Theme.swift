@@ -23,8 +23,9 @@ enum Theme {
     static let storyCardExpanded    = yellow
     static let stroke       = yellow
 
-    // MARK: Semantic / role-based aliases
-    // ──────────────────────────────────────────
+    // MARK: Animation
+    static let easeOutBack = Animation.timingCurve(0.175, 0.885, 0.32, 1.275, duration: 0.5)
+    static let easeInBack = Animation.timingCurve(0.6, -0.28, 0.735, 0.045, duration: 0.5)
 
 }
 
