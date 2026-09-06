@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct MenuView: View {
-    let onStart: (Story.ID) -> Void
-    let onQuiz: () -> Void
-    let quizUnlockService: QuizUnlockService
     
-    @State private var activeStoryID: Story.ID?
-    @State private var expandedStoryID: Story.ID?
-    @StateObject private var sound = SoundViewModel()
-    
-    let cardWidth: CGFloat = 500
-    
+    @State private var presenter = MenuPresenter()
+
+    private let cardWidth: CGFloat = 500
+
     var body: some View {
         ZStack {
             Theme.cream.ignoresSafeArea()
@@ -42,31 +37,26 @@ struct MenuView: View {
                                 ForEach(StoryCatalog.all) { story in
                                     
                                     ExpandableCard(
-                                        story: story,
-                                        isActive: activeStoryID == story.id,
-                                        onPlay: { onStart(story.id) },
-                                        onQuiz: onQuiz,
-                                        quizUnlockService: quizUnlockService,
-                                        expandedStoryID: $expandedStoryID
+                                        story: story
                                     )
                                     .frame(width: cardWidth)
                                     .scrollTransition(axis: .horizontal) { content, phase in
                                         content
                                             .scaleEffect(phase.isIdentity ? 1.0 : 0.5)
                                     }
-                                    .zIndex(expandedStoryID == story.id ? 2 : (activeStoryID == story.id ? 1 : 0))
+                                    .zIndex(presenter.expandedStoryID == story.id ? 2 : (presenter.activeStoryID == story.id ? 1 : 0))
                                 }
                             }
                             .frame(height: 500)
                             .scrollClipDisabled()
                             .safeAreaPadding(.horizontal, horizontalPadding)
                             .scrollTargetBehavior(.viewAligned)
-                            .scrollPosition(id: $activeStoryID)
-                            .onChange(of: activeStoryID) { oldValue, newValue in
+                            .scrollPosition(id: $presenter.activeStoryID)
+                            .onChange(of: presenter.activeStoryID) { oldValue, newValue in
                                 guard oldValue != newValue else { return }
-                                sound.play("CardBubble.mp3")
+                                //                            sound.play("CardBubble.mp3")
                                 withAnimation(.easeInOut(duration: 0.3)) {
-                                    expandedStoryID = nil
+                                    presenter.expandedStoryID = nil
                                 }
                             }
                         }
@@ -75,14 +65,14 @@ struct MenuView: View {
                         HStack(spacing: 12) {
                             ForEach(StoryCatalog.all) { story in
                                 Circle()
-                                    .fill(activeStoryID == story.id ? Theme.brown : Theme.brown.opacity(0.3))
+                                    .fill(presenter.activeStoryID == story.id ? Theme.brown : Theme.brown.opacity(0.3))
                                     .frame(width: 12, height: 12)
-                                    .animation(.easeInOut, value: activeStoryID)
+                                    .animation(.easeInOut, value: presenter.activeStoryID)
                             }
                         }
                         .onAppear {
-                            if activeStoryID == nil {
-                                activeStoryID = StoryCatalog.all.first?.id
+                            if presenter.activeStoryID == nil {
+                                presenter.activeStoryID = StoryCatalog.all.first?.id
                             }
                         }
                     }
@@ -93,5 +83,5 @@ struct MenuView: View {
     }
 }
 #Preview {
-    MenuView(onStart: { _ in }, onQuiz: {}, quizUnlockService: QuizUnlockService())
+    MenuView()
 }
