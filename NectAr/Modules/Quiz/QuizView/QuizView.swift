@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuizView: View {
-    @State private var QuizviewModel = QuizViewModel()
+    @State private var presenter = QuizPresenter()
     
     @State private var showAlert = false
     
@@ -38,14 +38,14 @@ struct QuizView: View {
                 
                 VStack(spacing: 30) {
                     ZStack {
-                        Text("Question \(QuizviewModel.currentQuestionIndex + 1)")
+                        Text("Question \(presenter.currentQuestionIndex + 1)")
                             .font(Font.custom("Fredoka-Bold", size: 92, relativeTo: .largeTitle))
                             .foregroundStyle(Theme.brown)
-                        
-                        Image("QuizHeader")
-                            .resizable()
-                            //.scaledToFit()
-                            .frame(width: 725)
+//                        
+//                        Image("QuizHeader")
+//                            .resizable()
+//                            //.scaledToFit()
+//                            .frame(width: 725)
                     }
                     .padding()
                     
@@ -57,7 +57,7 @@ struct QuizView: View {
                             //.scaledToFit()
                             .frame(width: 1100)
                         
-                        Text(QuizviewModel.currentQuestion.text)
+                        Text(presenter.currentQuestion.text)
                             .font(Font.custom("Fredoka-Medium", size: 34, relativeTo: .title))
                             .foregroundStyle(Theme.brown)
                             .frame(width: 1000, height: 130)
@@ -75,18 +75,18 @@ struct QuizView: View {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(0..<4, id: \.self) { index in
                                 Button(action: {
-                                    QuizviewModel.selectAnswer(index: index)
+                                    presenter.selectAnswer(index: index)
                                 }) {
-                                    Text(QuizviewModel.currentQuestion.options[index])
+                                    Text(presenter.currentQuestion.options[index])
                                         .font(Font.custom("Fredoka-Medium", size: 24, relativeTo: .title))
                                         .foregroundStyle(Theme.brown)
                                         .padding(16)
                                         .frame(width: 510, height: 135)
                                         .minimumScaleFactor(0.4)
-                                        .background(QuizviewModel.buttonColor(for: index))
+                                        .background(presenter.buttonColor(for: index))
                                         .cornerRadius(16)
                                 }
-                                .disabled(QuizviewModel.selectedAnswerIndex != nil)
+                                .disabled(presenter.selectedAnswerIndex != nil)
                             }
                         }
                     }
@@ -94,14 +94,14 @@ struct QuizView: View {
                     Spacer()
                 }
             }
-            .navigationDestination(isPresented: $QuizviewModel.isQuizFinished) {
+            .navigationDestination(isPresented: $presenter.isQuizFinished) {
                 QuizScoreView(
-                    QuizViewModel: QuizviewModel,
+                    presenter: presenter,
                     onBack: {
                         onBack()
                     },
                     onRestart: {
-                        QuizviewModel.resetQuiz()
+                        presenter.resetQuiz()
                     }
                 )
             }
